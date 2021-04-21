@@ -1,8 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharStats : MonoBehaviour
 {
-
+    public HealthBar healthBar;
     public int maxStat = 100;
     public int playerMana{get;private set;}
     public int playerHealth{get;private set;}
@@ -11,8 +14,21 @@ public class CharStats : MonoBehaviour
     private float remainingTime;
     private float delayTime = 3;
 
+    /*public void Save()
+    {
+        PlayerPrefs.SetInt("Health", playerHealth);
+        PlayerPrefs.SetInt("Mana", playerMana);
+    }
+
+    public void Load()
+    {
+        playerHealth = PlayerPrefs.GetInt("Health");
+        playerMana = PlayerPrefs.GetInt("Mana");
+    }*/
 
     void Awake(){
+        healthBar.SetMaxHealth(maxStat);
+        healthBar.SetMaxMana(maxStat);
         playerHealth = maxStat;
         playerMana = maxStat;
     }
@@ -39,8 +55,9 @@ public class CharStats : MonoBehaviour
         damageTaken = true;
         remainingTime = delayTime;
         Debug.Log(transform.name + " damage taken: " + damage);
+        healthBar.SetHealth(playerHealth);
 
-        if(playerHealth <= 0){
+        if (playerHealth <= 0){
             Debug.Log("health: "+ playerHealth);
             Die();
             Destroy(this.gameObject);
@@ -51,13 +68,20 @@ public class CharStats : MonoBehaviour
         if(!damageTaken){
         if(playerHealth < maxStat)
             playerHealth += 2;
-        Debug.Log("added hp");
+            healthBar.SetHealth(playerHealth);
+            Debug.Log("added hp");
         }
     }
     void RegenerateMana(){
         if(playerMana < maxStat)
+        {
             playerMana += 2;
-        Debug.Log("added mana");
+            healthBar.SetMana(playerMana);
+            Debug.Log("added mana");
+        }
+            
+            
+        
     }
 
 
