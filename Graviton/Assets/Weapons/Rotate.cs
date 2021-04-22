@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    //public Rigidbody2D rb;
     //public Camera cam;
     public Vector2 mousePos;
     // Update is called once per frame
@@ -15,8 +15,11 @@ public class Rotate : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 lookDir = mousePos - rb.position;
+        Vector2 transpos = transform.position;
+        Vector2 lookDir = mousePos - transpos;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        transform.rotation = rotation;
     }
 }
