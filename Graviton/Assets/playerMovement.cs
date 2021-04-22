@@ -49,7 +49,7 @@ public class playerMovement : MonoBehaviour
             Vector2 dashPosition = rb.position + movement * dashAmount;
            // GameObject clone = Instantiate(dashEffect, rb.position, Quaternion.identity);
             //clone.name = "wierd";
-            RaycastHit2D raycasthit2D = Physics2D.Raycast(rb.position, movement, dashAmount);
+            RaycastHit2D raycasthit2D = Physics2D.Raycast(rb.position, movement, dashAmount, dashLayerMask);
             if(raycasthit2D.collider != null)
             {
                 dashPosition = raycasthit2D.point;

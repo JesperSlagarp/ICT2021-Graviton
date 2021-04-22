@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5439233922429001058, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
+      propertyPath: dashLayerMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5439233922429001059, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -178,6 +182,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5439233922901877857, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439233922901877887, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439233922901877887, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6642699881641066106, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
       propertyPath: m_Size.x
       value: 1.4458888
@@ -193,6 +209,10 @@ PrefabInstance:
     - target: {fileID: 6642699881641066106, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
       propertyPath: m_Offset.y
       value: 0.19896743
+      objectReference: {fileID: 0}
+    - target: {fileID: 9080252632233776868, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
