@@ -10,10 +10,12 @@ public class Pickup : MonoBehaviour
     {
         if (Input.GetButton("Pickup"))
         {
-            GameObject player = GameObject.Find("PlayerFront");
-            if (player.transform.childCount == 0)
+            GameObject player = GameObject.Find("Player");
+            if (player.transform.childCount == 1)
             {
-                GameObject weapon = Instantiate(playerWeapon, player.transform.position, Quaternion.identity);
+                Vector3 pos = new Vector3(0.6f, 0.8f, 0) + player.transform.position;
+
+                GameObject weapon = Instantiate(playerWeapon, pos, Quaternion.identity);
                 Destroy(this.gameObject);
                 weapon.transform.parent = player.transform;
             }

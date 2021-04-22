@@ -17,7 +17,7 @@ public class Rotate : MonoBehaviour
     {
         Vector2 transpos = transform.position;
         Vector2 lookDir = mousePos - transpos;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg; //- 90f;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         transform.rotation = rotation;
