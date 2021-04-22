@@ -5,14 +5,17 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
 
-    public float health = 10f;
+    //public enemyHealthbarBehaviour healthBar;
+    public int maxHealth;
+    private int health;
     // Start is called before the first frame update
-   /* void Start()
+    void Start()
     {
-        
+        health = maxHealth;
+        //healthBar.SetHealth(health, maxHealth);
     }
 
-    // Update is called once per frame
+    /*/ Update is called once per frame
     void Update()
     {
         
@@ -23,14 +26,11 @@ public class EnemyHealth : MonoBehaviour
     {
         if(collision.gameObject.name == "Bullet(Clone)")
         {
+            health = health - 1;
+            //healthBar.SetHealth(health, maxHealth);
+           
             if (health == 0)
-            {
                 Destroy(this.gameObject);
-            }
-            else
-            {
-                health = health - 1;
-            }
         }
     }
 }
