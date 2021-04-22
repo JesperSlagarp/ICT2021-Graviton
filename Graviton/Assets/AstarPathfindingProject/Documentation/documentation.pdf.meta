@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Graviton/Assets/AstarPathfindingProject/Documentation/documentation.pdf.meta
 guid: db74980c78fa984bc82a439643c95961
+=======
+guid: 8932b8dbc98ac5d4ab3af3780fb08989
+>>>>>>> origin/Shooting:Graviton/Assets/Scenes/ShootingScene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
