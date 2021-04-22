@@ -43,6 +43,7 @@ public class playerMovement : MonoBehaviour
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
+        
         if (isDashButtonDown){
             float dashAmount = 5f;
             Vector2 dashPosition = rb.position + movement * dashAmount;
