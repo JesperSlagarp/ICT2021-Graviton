@@ -11,20 +11,14 @@ public class CharStats : MonoBehaviour
     public int playerHealth{get;private set;}
     public bool damageTaken = false;
     public Stats damage;
+    public Stats armor;
+    [Min(0)]
+    public int baseArmor = 0;
+    public int baseDamage = 1;
     private float remainingTime;
     private float delayTime = 3;
 
-    /*public void Save()
-    {
-        PlayerPrefs.SetInt("Health", playerHealth);
-        PlayerPrefs.SetInt("Mana", playerMana);
-    }
 
-    public void Load()
-    {
-        playerHealth = PlayerPrefs.GetInt("Health");
-        playerMana = PlayerPrefs.GetInt("Mana");
-    }*/
 
     void Awake(){
         healthBar.SetMaxHealth(maxStat);
@@ -33,13 +27,13 @@ public class CharStats : MonoBehaviour
         playerMana = maxStat;
     }
 
-    void Start(){
+    void Start(){ //lägger till 1 hp
         InvokeRepeating("RegenerateHP", 0, 1);
         InvokeRepeating("RegenerateMana", 0, 1);
     }
 
     void Update(){
-        if(Input.GetKeyDown(KeyCode.T))
+        if(Input.GetKeyDown(KeyCode.T)) //testa ta damage
             TakeDamage(10);
         if (damageTaken){
             remainingTime -= Time.deltaTime;
@@ -49,12 +43,17 @@ public class CharStats : MonoBehaviour
     }
 
 
-    public void TakeDamage(int damage){
+    public void TakeDamage(int dps){
 
-        playerHealth = playerHealth - damage;
+
+        int currentArmor =  armor.GetValue(baseArmor);
+        dps = dps - currentArmor;
+        dps = Mathf.Clamp(dps, 0, int.MaxValue);
+
+        playerHealth = playerHealth - dps;
         damageTaken = true;
         remainingTime = delayTime;
-        Debug.Log(transform.name + " damage taken: " + damage);
+        Debug.Log(transform.name + " damage taken: " + dps);
         healthBar.SetHealth(playerHealth);
 
         if (playerHealth <= 0){

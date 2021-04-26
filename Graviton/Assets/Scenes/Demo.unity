@@ -6885,8 +6885,8 @@ MonoBehaviour:
   healthBar: {fileID: 1948300717}
   maxStat: 100
   damageTaken: 0
-  damage:
-    baseValue: 0
+  baseArmor: 5
+  baseDamage: 1
 --- !u!1001 &1488220223
 PrefabInstance:
   m_ObjectHideFlags: 0
