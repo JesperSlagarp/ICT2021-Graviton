@@ -13,6 +13,8 @@ public class CharStats : MonoBehaviour
     public Stats damage;
     private float remainingTime;
     private float delayTime = 3;
+    public float damageCooldown;
+    private float nextDamagetaken = 0f;
 
     /*public void Save()
     {
@@ -82,6 +84,28 @@ public class CharStats : MonoBehaviour
             
             
         
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            if (nextDamagetaken < Time.time)
+            {
+                EnemyStats enemystats = collision.gameObject.GetComponent<EnemyStats>();
+                TakeDamage(enemystats.damage);
+                nextDamagetaken = Time.time + damageCooldown;
+            }
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemybullet")
+        {
+            EnemyBullet enemybullet = collision.gameObject.GetComponent<EnemyBullet>();
+            TakeDamage(enemybullet.damage);
+        }
     }
 
 

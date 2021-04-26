@@ -10,7 +10,7 @@ public class BasicGun : MonoBehaviour
     public GameObject player;
     public GameObject droppedWeapon;
     public float reloadTime = 1f;
-    public float nextShoot = 0f;
+    private float nextShoot = 0f;
 
     public float bulletForce = 20f;
 

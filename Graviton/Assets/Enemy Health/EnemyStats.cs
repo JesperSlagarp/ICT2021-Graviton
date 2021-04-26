@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyStats : MonoBehaviour
 {
 
     public GameObject healthbar;
     public float health;
+    public int damage;
     private float maxHealth;
     // Start is called before the first frame update
     void Start()
@@ -24,9 +25,10 @@ public class EnemyHealth : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.name == "Bullet(Clone)")
+        if(collision.gameObject.tag == "Bullet")
         {
-            health -= 20;
+            Bullet enemybullet = collision.gameObject.GetComponent<Bullet>();
+            health -= enemybullet.damage; 
             healthbar.transform.localScale = new Vector3(health / maxHealth, healthbar.transform.localScale.y, healthbar.transform.localScale.z);
            
             if (health == 0)
