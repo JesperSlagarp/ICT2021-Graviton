@@ -6,11 +6,14 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
+    public static bool InventoryActive = false;
 
     public GameObject pauseMenuUI;
+    public GameObject inventoryUI;
     // Update is called once per frame
     void Update()
     {
+        //pause menu if press esc
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
@@ -21,8 +24,22 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
-    }
 
+        //inventory if press E
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (!InventoryActive)
+            {
+                InventoryDisplay();
+            }
+            else
+            {
+                InventoryFade();
+            }
+            
+        }
+    }
+//pause menu functions, start
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -32,7 +49,7 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
-	Time.timeScale = 1f;
+	    Time.timeScale = 1f;
         SceneManager.LoadScene("StartMenu");
     }
 
@@ -47,5 +64,19 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+    }
+    //pause menu functions, end
+
+    // inventory functions, start
+    void InventoryDisplay()
+    {
+        inventoryUI.SetActive(true);
+        InventoryActive = true;
+    }
+    void InventoryFade()
+    {
+        
+        inventoryUI.SetActive(false);
+        InventoryActive = false;
     }
 }
