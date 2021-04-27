@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-
+    public LootTable thisLoot;
     public GameObject healthbar;
     public float health;
     private float maxHealth;
@@ -30,7 +30,25 @@ public class EnemyHealth : MonoBehaviour
             healthbar.transform.localScale = new Vector3(health / maxHealth, healthbar.transform.localScale.y, healthbar.transform.localScale.z);
            
             if (health == 0)
+            {
+                MakeLoot();
                 Destroy(this.gameObject);
+            }
+                
+        }
+    }
+
+    private void MakeLoot()
+    {
+        if (thisLoot != null)
+        {
+            Sprite current = thisLoot.LootSprite();
+            if (current != null)
+            {
+                Debug.Log("sssssssss");
+                Instantiate(current, transform.position, Quaternion.identity);
+            }
+
         }
     }
 }
