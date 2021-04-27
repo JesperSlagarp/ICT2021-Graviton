@@ -390,7 +390,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b263df3902c546646a2686cd70584ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisLoot: {fileID: 11400000, guid: 7868ce5de75245e4eb3a512e047c16c1, type: 2}
   healthbar: {fileID: 9195879383961827985}
   health: 100
 --- !u!1 &6309963781553138613
