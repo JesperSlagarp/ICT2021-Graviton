@@ -10,6 +10,7 @@ public class CharStats : MonoBehaviour
     public int playerMana{get;private set;}
     public int playerHealth{get;private set;}
     public bool damageTaken = false;
+    public bool shield = false;
     public Stats damage;
     private float remainingTime;
     private float delayTime = 3;
@@ -43,6 +44,8 @@ public class CharStats : MonoBehaviour
     void Update(){
         if(Input.GetKeyDown(KeyCode.T))
             TakeDamage(10);
+        if(Input.GetKeyDown(KeyCode.Y))
+            DepleteMana(10);
         if (damageTaken){
             remainingTime -= Time.deltaTime;
             if(remainingTime < 0)
@@ -66,6 +69,15 @@ public class CharStats : MonoBehaviour
         }
     }
 
+    public void DepleteMana(int mana)
+    {
+        if (playerMana >= 0 && mana <= playerMana)
+        {
+            playerMana = playerMana - mana;
+            healthBar.SetMana(playerMana);
+        }
+    }
+
     void RegenerateHP(){
         if(!damageTaken){
         if(playerHealth < maxStat)
@@ -80,15 +92,12 @@ public class CharStats : MonoBehaviour
             playerMana += 2;
             healthBar.SetMana(playerMana);
             Debug.Log("added mana");
-        }
-            
-            
-        
+        }                               
     }
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && shield == false)
         {
             if (nextDamagetaken < Time.time)
             {
@@ -101,7 +110,7 @@ public class CharStats : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemybullet")
+        if (collision.gameObject.tag == "Enemybullet" && shield == false)
         {
             EnemyBullet enemybullet = collision.gameObject.GetComponent<EnemyBullet>();
             TakeDamage(enemybullet.damage);

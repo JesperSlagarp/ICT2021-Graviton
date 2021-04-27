@@ -20,6 +20,7 @@ public class Rotate : MonoBehaviour
         if (mousePos.x < 0)
         {
             Debug.Log("hey");
+            positiveDir = false;
         }
         Vector2 transpos = transform.position;
         Vector2 lookDir = mousePos - transpos;

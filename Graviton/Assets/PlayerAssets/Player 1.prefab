@@ -221,7 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea05998120f055a46baa92ebd1aca9d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 1960129103775039954, guid: e41abdcca6332b6408f4ca8dadf94703, type: 3}
+  manaBar: {fileID: 1747404149122583108, guid: f5ffe80c3bd144e4cbc0fc0c0aebd29e, type: 3}
   maxStat: 100
   damageTaken: 0
   damage:
