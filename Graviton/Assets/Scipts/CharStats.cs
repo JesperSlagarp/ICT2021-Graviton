@@ -6,14 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class CharStats : MonoBehaviour
 {
+
     public HealthBar healthBar;
     public int maxStat = 100;
-    public int playerMana{get;private set;}
-    public int playerHealth{get;private set;}
+    public int playerMana;
+    public int playerHealth;
     public bool damageTaken = false;
     public Stats damage;
     private float remainingTime;
     private float delayTime = 3;
+
+    public int exp;
 
     /*public void Save()
     {
@@ -32,6 +35,7 @@ public class CharStats : MonoBehaviour
         healthBar.SetMaxMana(maxStat);
         playerHealth = maxStat;
         playerMana = maxStat;
+        exp = 0;
     }
 
     void Start(){

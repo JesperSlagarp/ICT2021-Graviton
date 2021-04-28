@@ -392,6 +392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthbar: {fileID: 9195879383961827985}
   health: 100
+  lootTable: {fileID: 11400000, guid: b9bcb9fc4e6664743820c6af416493c7, type: 2}
 --- !u!1 &6309963781553138613
 GameObject:
   m_ObjectHideFlags: 0
