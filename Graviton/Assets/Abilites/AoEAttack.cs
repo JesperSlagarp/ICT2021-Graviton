@@ -9,6 +9,7 @@ public class AoEAttack : MonoBehaviour
     public int mana;
     public int duration;
     public int attackDistance;
+    public int damage;
     private float nextUse = 0f;
     private float stop = 0f;
     private CharStats charstats;
@@ -16,8 +17,8 @@ public class AoEAttack : MonoBehaviour
     void Awake()
     {
         CooldownBar = GetComponent<HealthBar>();
-        CooldownBar.SetMaxCooldown(1f);
-        CooldownBar.SetCooldown(0f);
+        CooldownBar.SetMaxCooldown2(1f);
+        CooldownBar.SetCooldown2(0f);
     }
 
     void Start()
@@ -35,6 +36,24 @@ public class AoEAttack : MonoBehaviour
             charstats.DepleteMana(mana);
 
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach(GameObject target in enemies)
+            {
+                float distance = Vector2.Distance(target.transform.position, transform.position);
+                if (distance <= attackDistance)
+                {
+                    EnemyStats enemystat = target.GetComponent<EnemyStats>();
+                    enemystat.TakeDamage(damage);
+                }
+            }
+        }
+
+        if (nextUse > Time.time)
+        {
+            CooldownBar.SetCooldown2(1 - ((nextUse - Time.time) / cooldown));
+        }
+        else
+        {
+            CooldownBar.SetCooldown2(0);
         }
     }
 }

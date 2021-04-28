@@ -28,11 +28,20 @@ public class EnemyStats : MonoBehaviour
         if(collision.gameObject.tag == "Bullet")
         {
             Bullet enemybullet = collision.gameObject.GetComponent<Bullet>();
-            health -= enemybullet.damage; 
+            TakeDamage(enemybullet.damage);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (health < damage || health == 0)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            health = health - damage;
             healthbar.transform.localScale = new Vector3(health / maxHealth, healthbar.transform.localScale.y, healthbar.transform.localScale.z);
-           
-            if (health == 0)
-                Destroy(this.gameObject);
         }
     }
 }
