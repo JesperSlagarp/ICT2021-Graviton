@@ -15,11 +15,12 @@ public class LootPickUp : MonoBehaviour
             if(currentObject == PickupObject.EXP)
             {
                 GameObject.Find("Player").GetComponent<CharStats>().exp += objectQuantity;
+                GameObject.Find("Player").GetComponent<CharStats>().UpdateStats();
             }
             if (currentObject == PickupObject.HEART)
             {
-                GameObject.Find("Player").GetComponent<CharStats>().playerHealth += objectQuantity;
-                GameObject.Find("Player").GetComponent<CharStats>().healthBar.SetHealth(GameObject.Find("Player").GetComponent<CharStats>().playerHealth);
+                GameObject.Find("Player").GetComponent<CharStats>().Heal(objectQuantity);
+                GameObject.Find("Player").GetComponent<CharStats>().UpdateStats();
             }
             Destroy(gameObject);
         }

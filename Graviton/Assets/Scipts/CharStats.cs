@@ -7,10 +7,12 @@ using UnityEngine.SceneManagement;
 public class CharStats : MonoBehaviour
 {
 
-    public HealthBar healthBar;
+    public Bar healthBar;
+    public Bar manaBar;
+    public Bar expBar;
     public int maxStat = 100;
-    public int playerMana;
-    public int playerHealth;
+    public int playerMana { get; private set; }
+    public int playerHealth { get; private set; }
     public bool damageTaken = false;
     public Stats damage;
     private float remainingTime;
@@ -31,11 +33,13 @@ public class CharStats : MonoBehaviour
     }*/
 
     void Awake(){
-        healthBar.SetMaxHealth(maxStat);
-        healthBar.SetMaxMana(maxStat);
         playerHealth = maxStat;
         playerMana = maxStat;
         exp = 0;
+
+        healthBar.SetMaxHealth(maxStat);
+        manaBar.SetMaxMana(maxStat);
+        expBar.SetMaxExp(maxStat);
     }
 
     void Start(){
@@ -81,7 +85,7 @@ public class CharStats : MonoBehaviour
         if(playerMana < maxStat)
         {
             playerMana += 2;
-            healthBar.SetMana(playerMana);
+            manaBar.SetMana(playerMana);
             Debug.Log("added mana");
         }
             
@@ -89,7 +93,21 @@ public class CharStats : MonoBehaviour
         
     }
 
+    public void Heal(int quantity)
+    {
+        playerHealth += quantity;
+        if(playerHealth >= maxStat)
+        {
+            playerHealth = maxStat;
+        }
+    }
 
+    public void UpdateStats()
+    {
+        healthBar.SetHealth(playerHealth);
+        manaBar.SetMana(playerMana);
+        expBar.SetExp(exp);
+    }
 
     public virtual void Die(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
