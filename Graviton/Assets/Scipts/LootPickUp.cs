@@ -14,7 +14,7 @@ public class LootPickUp : MonoBehaviour
         {
             if(currentObject == PickupObject.EXP)
             {
-                GameObject.Find("Player").GetComponent<CharStats>().exp += objectQuantity;
+                GameObject.Find("Player").GetComponent<CharStats>().getExp(objectQuantity);
                 GameObject.Find("Player").GetComponent<CharStats>().UpdateStats();
             }
             if (currentObject == PickupObject.HEART)

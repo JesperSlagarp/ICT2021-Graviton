@@ -19,6 +19,8 @@ public class CharStats : MonoBehaviour
     private float delayTime = 3;
 
     public int exp;
+    public int maxExp = 100;
+    public int level = 1;
 
     /*public void Save()
     {
@@ -35,11 +37,12 @@ public class CharStats : MonoBehaviour
     void Awake(){
         playerHealth = maxStat;
         playerMana = maxStat;
-        exp = 0;
+        exp = 80;
 
         healthBar.SetMaxHealth(maxStat);
         manaBar.SetMaxMana(maxStat);
-        expBar.SetMaxExp(maxStat);
+        expBar.SetMaxExp(maxExp);
+        UpdateStats();
     }
 
     void Start(){
@@ -100,6 +103,22 @@ public class CharStats : MonoBehaviour
         {
             playerHealth = maxStat;
         }
+    }
+
+    public void getExp(int quantity)
+    {
+        exp += quantity;
+        if(exp >= maxExp)
+        {
+            levelUp();
+        }
+    }
+
+    public void levelUp()
+    {
+        level += 1;
+        exp = 0;
+        maxExp += 50;
     }
 
     public void UpdateStats()
