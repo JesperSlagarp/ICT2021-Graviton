@@ -14,7 +14,7 @@ TagManager:
   - Bullets
   - Player
   - Enemies
-  - 
+  - Background
   - 
   - 
   - 
@@ -49,4 +49,13 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 1253158959
+    locked: 0
+  - name: background
+    uniqueID: 853442323
+    locked: 0
+  - name: black_pieces
+    uniqueID: 3288469949
+    locked: 0
+  - name: pieces
+    uniqueID: 3869408343
     locked: 0
