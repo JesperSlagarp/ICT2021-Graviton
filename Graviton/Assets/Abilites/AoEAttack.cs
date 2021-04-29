@@ -7,11 +7,9 @@ public class AoEAttack : MonoBehaviour
     private HealthBar CooldownBar;
     public int cooldown;
     public int mana;
-    public int duration;
     public int attackDistance;
     public int damage;
     private float nextUse = 0f;
-    private float stop = 0f;
     private CharStats charstats;
     // Start is called before the first frame update
     void Awake()
@@ -32,7 +30,6 @@ public class AoEAttack : MonoBehaviour
         if (Input.GetButtonDown("Ability 2") && nextUse < Time.time)
         {
             nextUse = Time.time + cooldown;
-            stop = Time.time + duration;
             charstats.DepleteMana(mana);
 
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");

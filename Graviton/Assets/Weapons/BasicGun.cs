@@ -7,7 +7,6 @@ public class BasicGun : MonoBehaviour
 
     public Transform firePoint;
     public GameObject bulletPrefab;
-    public GameObject player;
     public GameObject droppedWeapon;
     public float reloadTime = 1f;
     private float nextShoot = 0f;
