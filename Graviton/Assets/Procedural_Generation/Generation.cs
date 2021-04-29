@@ -7,39 +7,43 @@ using Pathfinding;
 public class Generation : MonoBehaviour
 {
     [SerializeField]
-    private Tile floorTile;
-
-    [SerializeField]
     private Tilemap floorMap;
-
-    [SerializeField]
-    private Tile wallTile;
-
     [SerializeField]
     private Tilemap wallMap;
-
-    [SerializeField]
-    private Tile midTile;
-
-    [SerializeField]
-    private Tile topTile;
-
     [SerializeField]
     private Tilemap topMap;
-
-    private int i = 0;
-
+    [SerializeField]
+    private Tile floorTile;
+    [SerializeField]
+    private Tile wallTile;
+    [SerializeField]
+    private Tile midTile;
+    [SerializeField]
+    private Tile topTile;
+    [SerializeField]
+    private int recursionLimit;
+    [SerializeField]
+    private int maxRoomSize;
+    [SerializeField]
+    private int minRoomSize;
+    [SerializeField]
+    private int maxCorridorLength;
+    [SerializeField]
+    private int minCorridorLength;
 
     private Vector3Int startPos;
 
 
     private void Awake()
     {
-        int bossPathLock = 1;
 
         startPos = new Vector3Int(0, 0, 0);
 
-        generate(startPos, 0, 10, bossPathLock, true);
+        int bossPathLock = 0;
+
+        int startSide = 0;
+
+        generate(startPos, startSide, recursionLimit, bossPathLock, true);
 
         fillWalls();
 
@@ -149,351 +153,214 @@ public class Generation : MonoBehaviour
     private void generate(Vector3Int currPos, int entranceSide, int limit, int bossPathLock, bool isBossPath) {
         if (limit < 1) return;
 
-        int roomWidth = Random.Range(9, 19);
+        if (limit < 2 && isBossPath)
+        {
+            Debug.Log("Spawning boss room. isbossPath = " + isBossPath);
+            spawnBossRoom(currPos, entranceSide);
+            return;
+        }
+
+        //Spawns randomly sized room at current position
+        int roomWidth = Random.Range(minRoomSize, maxRoomSize);
         if (roomWidth % 2 == 0) roomWidth--;
-        int roomHeight = Random.Range(9, 19);
+        int roomHeight = Random.Range(minRoomSize, maxRoomSize);
         if (roomHeight % 2 == 0) roomHeight--;
-
         spawnRoom(roomWidth, roomHeight, currPos, entranceSide);
-        if (limit < 3) return;
 
-        
-        bool goDown = (Random.value > 0.5f);
-        bool goRight = (Random.value > 0.5f);
-        bool goUp = (Random.value > 0.5f);
-        bool goLeft = (Random.value > 0.5f);
+        if(limit < 2)
+            return;
 
-
+        //Centralizes position in room
+        //entranceSide --> 0 = bottom, 1 = right, 2 = top, 3 = left
         switch (entranceSide) {
-            // Sets Disables origin path and centralizes position in room
-            case 0: goDown  = false; currPos.y += roomHeight / 2; break;
-            case 1: goRight = false; currPos.x -= roomWidth  / 2; break;
-            case 2: goUp    = false; currPos.y -= roomHeight / 2; break;
-            case 3: goLeft  = false; currPos.x += roomWidth  / 2; break;
+            case 0: currPos.y += roomHeight / 2; break;
+            case 1: currPos.x -= roomWidth  / 2; break;
+            case 2: currPos.y -= roomHeight / 2; break;
+            case 3: currPos.x += roomWidth  / 2; break;
         }
 
-        //Guarantees at least one corridor
-        if (!(goDown || goRight || goUp || goLeft))
+        //Determining which directions to go and making sure there's at least one
+        bool goingStraight = false, goingRight = false, goingLeft = false;
+        if (Random.value < 0.5f) goingStraight = true;
+        if (Random.value < 0.5f) goingRight    = true;
+        if (Random.value < 0.5f) goingLeft     = true;
+        if (!(goingStraight || goingRight || goingLeft)) 
         {
-            float f = Random.value;
-            switch (entranceSide)
+            int r = Random.Range(1,3);
+            switch (r) {
+                case 1: goingStraight = true; break;
+                case 2: goingRight    = true; break;
+                case 3: goingLeft     = true; break;
+            }
+        }
+
+        //Assigns a singular boss path
+        bool bossIsStraight = false; bool bossIsRight = false; bool bossIsLeft = false;
+        if (isBossPath) {
+            bool potentialStraight = invertDir(entranceSide, "straight") != bossPathLock;
+            bool potentialRight    = invertDir(entranceSide, "right"   ) != bossPathLock;
+            bool potentialLeft     = invertDir(entranceSide, "left"    ) != bossPathLock;
+
+            //If no paths are potential boss paths, make one (COULD USE SOME RANDOMNESS LATER BUT THIS WORKS FOR NOW)
+            if (!((potentialStraight && goingStraight) || (potentialRight && goingRight) || (potentialLeft && goingLeft))) 
             {
-                case 0:
-                    if (f < 1 / 3) { goRight = true; }
-                    else if (f < 2 / 3) { goLeft = true; }
-                    else { goUp = true; }
-                    break;
-                case 1:
-                    if (f < 1 / 3) { goDown = true; }
-                    else if (f < 2 / 3) { goLeft = true; }
-                    else { goUp = true; }
-                    break;
-                case 2:
-                    if (f < 1 / 3) { goRight = true; }
-                    else if (f < 2 / 3) { goLeft = true; }
-                    else { goDown = true; }
-                    break;
-                case 3:
-                    if (f < 1 / 3) { goRight = true; }
-                    else if (f < 2 / 3) { goDown = true; }
-                    else { goUp = true; }
-                    break;
-            }
-        }
-
-        /*if (goDown) 
-        {
-            Vector3Int CD = path(currPos, 2, roomWidth, roomHeight);
-
-            int dirD = CD.z;
-            CD.z = 0;
-
-            Vector3Int probeD = CD;
-
-            switch (dirD) {
-                case 0: probeD.y += 1; break;
-                case 1: probeD.x += 1; break;
-                case 2: probeD.y -= 1; break;
-                case 3: probeD.x -= 1; break;
+                if (potentialStraight  ) goingStraight = true;
+                else if (potentialRight) goingRight    = true;
+                else if (potentialLeft ) goingLeft     = true;
             }
 
-            if (!floorMap.HasTile(probeD)) {
-                generate(CD, dirD, limit - 1, bossPathLock, true);
-            }
-
-        }
-        if (goRight)
-        {
-            Vector3Int CR = path(currPos, 1, roomWidth, roomHeight);
-
-            int dirR = CR.z;
-            CR.z = 0;
-
-            Vector3Int probeR = CR;
-
-            switch (dirR)
-            {
-                case 0: probeR.y += 1; break;
-                case 1: probeR.x += 1; break;
-                case 2: probeR.y -= 1; break;
-                case 3: probeR.x -= 1; break;
-            }
-
-            if (!floorMap.HasTile(probeR))
-            {
-                generate(CR, dirR, limit - 1, bossPathLock, true);
-            }
-        }
-        if (goUp)
-        {
-            Vector3Int CU = path(currPos, 0, roomWidth, roomHeight);
-
-            int dirU = CU.z;
-            CU.z = 0;
-
-            Vector3Int probeU = CU;
-
-            switch (dirU)
-            {
-                case 0: probeU.y += 1; break;
-                case 1: probeU.x += 1; break;
-                case 2: probeU.y -= 1; break;
-                case 3: probeU.x -= 1; break;
-            }
-
-            if (!floorMap.HasTile(probeU))
-            {
-                generate(CU, dirU, limit - 1, bossPathLock, true);
-            }
-        }
-        if (goLeft)
-        {
-            Vector3Int CL = path(currPos, 3, roomWidth, roomHeight);
-
-            int dirL = CL.z;
-            CL.z = 0;
-
-            Vector3Int probeL = CL;
-
-            switch (dirL)
-            {
-                case 0: probeL.y += 1; break;
-                case 1: probeL.x += 1; break;
-                case 2: probeL.y -= 1; break;
-                case 3: probeL.x -= 1; break;
-            }
-
-            if (!floorMap.HasTile(probeL))
-            {
-                generate(CL, dirL, limit - 1, bossPathLock, true);
-            }
-        }*/
-        
-        if (goDown)
-        {
-            Vector3Int down = path(currPos, 2, roomWidth, roomHeight);
-            Vector3Int probeDown = down; probeDown.y -= 1;
-            if(!floorMap.HasTile(probeDown))
-                generate(down, 2, limit - 1, bossPathLock, true);
-        }
-        if (goRight)
-        {
-            Vector3Int right = path(currPos, 1, roomWidth, roomHeight);
-            Vector3Int probeRight = right; probeRight.x += 1;
-            if (!floorMap.HasTile(probeRight))
-                generate(right, 3, limit - 1, bossPathLock, true);
-        }
-        if (goUp)
-        {
-            Vector3Int up = path(currPos, 0, roomWidth, roomHeight);
-            Vector3Int probeUp = up; probeUp.y += 1;
-            if (!floorMap.HasTile(probeUp))
-                generate(up, 0, limit - 1, bossPathLock, true);
-        }
-        if (goLeft)
-        {
-            Vector3Int left = path(currPos, 3, roomWidth, roomHeight);
-            Vector3Int probeLeft = left; probeLeft.x -= 1;
-            if (!floorMap.HasTile(probeLeft))
-                generate(left, 1, limit - 1, bossPathLock, true);
-        }
-
-    }
-
-    //dir --> 0 = up, 1 = right, 2 = down, 3 = left
-    private Vector3Int path(Vector3Int currPos, int dir, int roomWidth, int roomHeight) {
-        Vector3Int exitPos;
-        int length = Random.Range(10, 20);
-        switch (dir) {
-            case 0: currPos.y += roomHeight / 2; exitPos = currPos; exitPos.y += length; break; //Up
-            case 1: currPos.x += roomWidth  / 2; exitPos = currPos; exitPos.x += length; break; //Right
-            case 2: currPos.y -= roomHeight / 2; exitPos = currPos; exitPos.y -= length; break; //Down
-            case 3: currPos.x -= roomWidth  / 2; exitPos = currPos; exitPos.x -= length; break; //Left
-            default:                             exitPos = currPos; break;
-        }
-
-        bool stop = HasTile(exitPos.x - 1, exitPos.y - 1, 3, 3, floorMap);
-        spawnCorridor(length, currPos, dir);
-
-        //Assign direction for room
-        exitPos.z = dir;
-
-        //50% chance of continuing
-        if (Random.value > 0.5f || stop)
-        {
-            return exitPos;
-        }
-
-        currPos = exitPos;
-        length = Random.Range(10, 20);
-
-        /*if (Random.value > 0.5f) //Right (if dir is assumed to be forward)
-        {
-            switch (dir)
-            {
-                case 0: exitPos = pathTurn(1, length, currPos); break; //True right
-                case 1: exitPos = pathTurn(2, length, currPos); break; //True down
-                case 2: exitPos = pathTurn(3, length, currPos); break; //True left
-                case 3: exitPos = pathTurn(0, length, currPos); break; //True up
-            }
-        }
-        else                     //Left (if dir is assumed to be forward)
-        {
-            switch (dir)
-            {
-                case 0: exitPos = pathTurn(3, length, currPos); break; //True left
-                case 1: exitPos = pathTurn(0, length, currPos); break; //True up
-                case 2: exitPos = pathTurn(1, length, currPos); break; //True right
-                case 3: exitPos = pathTurn(2, length, currPos); break; //True down
-            }
-        }*/
-
-            if (Random.value > 0.5f) //Right (if dir is assumed to be forward)
-            {
-                switch (dir) {
-                    case 0: //True right
-                        currPos.x -= 1;
-                        Vector3Int probeRightR = exitPos; probeRightR.x += 9;
-                        if (!floorMap.HasTile(probeRightR)) 
-                        {
-                            spawnCorridor(length, currPos, 1);
-                            exitPos.x += length;
-                        }
-                        break;
-                    case 1: //True down
-                        currPos.y += 2;
-                        Vector3Int probeDownR = exitPos; probeDownR.y -= 9;
-                        if (!floorMap.HasTile(probeDownR))
-                        {
-                            spawnCorridor(length + 1, currPos, 2);
-                            exitPos.y -= length;
-                        }
-                        break;
-                    case 2: //True left
-                        currPos.x += 2;
-                        Vector3Int probeLeftR = exitPos; probeLeftR.x -= 9;
-                        if (!floorMap.HasTile(probeLeftR))
-                        {
-                            spawnCorridor(length + 1, currPos, 3);
-                            exitPos.x -= length;
-                        }
-                        break;
-                    case 3: //True up
-                        currPos.y -= 1;
-                        Vector3Int probeUpR = exitPos; probeUpR.y += 9;
-                        if (!floorMap.HasTile(probeUpR))
-                        {
-                            spawnCorridor(length, currPos, 0);
-                            exitPos.y += length;
-                        }
-                        break;
-
-                    default: break;
-                }
-            }
-            else                     //Left (if dir is assumed to be forward)
-            {
-                switch (dir)
-                {
-                    case 0: //True left
-                        currPos.x += 2;
-                        Vector3Int probeLeftL = exitPos; probeLeftL.x -= 9;
-                        if (!floorMap.HasTile(probeLeftL))
-                        {
-                            spawnCorridor(length + 1, currPos, 3);
-                            exitPos.x -= length;
-                        }
-                        break;
-                    case 1: //True up
-                        currPos.y -= 1;
-                        Vector3Int probeUpL = exitPos; probeUpL.y += 9;
-                        if (!floorMap.HasTile(probeUpL))
-                        {
-                            spawnCorridor(length, currPos, 0);
-                            exitPos.y += length;
-                        }
-                        break;
-                    case 2: //True right
-                        currPos.x -= 1;
-                        Vector3Int probeRightL = exitPos; probeRightL.x += 9;
-                        if (!floorMap.HasTile(probeRightL))
-                        {
-                            spawnCorridor(length, currPos, 1);
-                            exitPos.x += length;
-                        }
-                        break;
-                    case 3: //True down
-                        currPos.y += 2;
-                        Vector3Int probeDownL = exitPos; probeDownL.y -= 9;
-                        if (!floorMap.HasTile(probeDownL))
-                        {
-                            spawnCorridor(length + 1, currPos, 2);
-                            exitPos.y -= length;
-                        }
-                        break;
-
-                    default: break;
-                }
-            }
-
-            //direction stored in z component
-            return exitPos;
-    }
-
-    private Vector3Int pathTurn(int dir, int length, Vector3Int pos) {
-
-        Vector3Int probe = pos;
-        Vector3Int probeHalf = pos;
-
-        switch (dir) {
-            case 0:
-                probe.y += length;
-                probeHalf.y += length / 2;
-                break;        
-            case 1:
-                probe.x += length;
-                probeHalf.x += length / 2;
-                break;
-            case 2:
-                probe.y -= length;
-                probeHalf.y -= length / 2;
-                break;
-            case 3:
-                probe.x -= length;
-                probeHalf.x -= length / 2;
-                break;
-        }
-
-        //if (!floorMap.HasTile(probe) && !floorMap.HasTile(probeHalf)) {
-            spawnCorridor(length, pos, dir);
-            probe.z = dir;
-            return probe;
-        /*} 
-        else
-        {
-            return pos;
-        }*/
+            //Will go Straight if possible, otherwise to the Right, otherwise to the Left
+            if (potentialStraight && goingStraight) bossIsStraight = true;
+            else if (potentialRight && goingRight) bossIsRight = true;
+            else if (potentialLeft && goingLeft) bossIsLeft = true;
             
+
+            Debug.Log("S: " + bossIsStraight + " " + goingStraight + " R: " + bossIsRight + " " + goingRight + " L: " + bossIsLeft + " " + goingLeft + " LIMIT: " + limit);
+        }
+
+        
+
+        if (goingStraight) //Going straight
+        {
+            int straightDir = invertDir(entranceSide, "straight");
+            Vector3Int straightPos = doorPos(currPos, straightDir, roomWidth, roomHeight);
+            path(straightPos, straightDir, limit, bossPathLock, bossIsStraight);
+        }
+        if (goingRight) //Going right
+        {
+            int rightDir = invertDir(entranceSide, "right");
+            Vector3Int rightPos = doorPos(currPos, rightDir, roomWidth, roomHeight);
+            path(rightPos, rightDir, limit, bossPathLock, bossIsRight);
+        }
+        if (goingLeft) //Going left
+        {
+            int leftDir = invertDir(entranceSide, "left");
+            Vector3Int leftPos = doorPos(currPos, leftDir, roomWidth, roomHeight);
+            path(leftPos, leftDir, limit, bossPathLock, bossIsLeft);
+
+        }
+    }
+
+    private void spawnBossRoom(Vector3Int pos, int entranceSide) {
+        int dir = invertDir(entranceSide, "straight");
+        spawnCorridor(50, pos, dir);
+
+        Vector3Int enterPos = pos;
+
+        switch (dir)
+        {
+            case 0: enterPos.y -= 50; break;
+            case 1: enterPos.x += 50; break;
+            case 2: enterPos.y += 50; break;
+            case 3: enterPos.x -= 50; break;
+        }
+
+        spawnRoom(50, 50, enterPos, entranceSide);
+
+    }
+
+    //Returns position to the middle of the exit side of a room given the room's center position and dimensions
+    private Vector3Int doorPos(Vector3Int pos, int dir, int roomWidth, int roomHeight) {
+
+        switch (dir) {
+            case 0: pos.y -= roomHeight / 2; break;
+            case 1: pos.x += roomWidth  / 2; break;
+            case 2: pos.y += roomHeight / 2; break;
+            case 3: pos.x -= roomWidth  / 2; break;
+        }
+
+        return pos;
+    }
+
+    //Returns the direction of a corridor given the origin room's entrance side and a relative direction
+    private int invertDir(int entranceSide, string change) {
+
+        int dir = 0;
+
+        //Straight direction is opposite of entrance side
+        switch (entranceSide) {
+            case 0: dir = 2; break;
+            case 1: dir = 3; break;
+            case 2: dir = 0; break;
+            case 3: dir = 1; break;
+        }
+
+        return changeDir(dir, change);
+    }
+
+    private int changeDir(int dir, string change) {
+
+        switch (change)
+        {
+            //case "straight dir = dir";
+            case "right": dir -= 1; break;
+            case "left": dir += 1; break;
+        }
+
+        //Makes it loop around
+        if (dir == -1) dir = 3;
+        else if (dir == 4) dir = 0;
+
+        return dir;
+    }
+
+    //dir --> 0 = down, 1 = right, 2 = up, 3 = left
+    private void path(Vector3Int startPos, int dir, int limit, int bossPathLock, bool isBossPath) {
+        Vector3Int exitPos = startPos;
+
+        //Randomizing length of corridor
+        int length = Random.Range(minCorridorLength, maxCorridorLength);
+
+        //Sets position of exit depending on direction
+        switch (dir)
+        {
+            case 0: exitPos.y -= length; break;
+            case 1: exitPos.x += length; break;
+            case 2: exitPos.y += length; break;
+            case 3: exitPos.x -= length; break;
+        }
+
+        //Checking if the end of the corridor has found generated floor
+        bool stop = floorMap.HasTile(exitPos);
+
+        //Spawning the corridor
+        spawnCorridor(length, startPos, dir);
+
+        //Spawn a room if end of recursion limit is soon to be reached
+        if (limit < 2 && !stop && !isBossPath) { 
+            dir = invertDir(dir, "straight");
+            generate(exitPos, dir, 1, 1, isBossPath);
+        }
+
+        if (stop && !isBossPath)                        //Stop corridor here and don't spawn room
+        {
+            return;
+        }
+        else if (Random.value < 0.5f || isBossPath)    //Stop corridor here and DO spawn room | Does no extra turns if on path to boss for simplicity
+        {
+            dir = invertDir(dir, "straight");
+            generate(exitPos, dir, limit - 1, bossPathLock, isBossPath);
+        }
+        else if (Random.value < 0.5f)    //Turn corridor to the right
+        {
+            dir = changeDir(dir, "right");
+            for (int x = 0; x < 3; x++) {
+                for (int y = 0; y < 3; y++) {
+                    floorMap.SetTile(new Vector3Int(exitPos.x + x - 1, exitPos.y + y - 1, 0), floorTile);
+                }
+            }
+            path(exitPos, dir, limit - 1, bossPathLock, false);
+        }
+        else                             //Turn corridor to the left
+        {
+            dir = changeDir(dir, "left");
+            for (int x = 0; x < 3; x++) {
+                for (int y = 0; y < 3; y++) {
+                    floorMap.SetTile(new Vector3Int(exitPos.x + x - 1, exitPos.y + y - 1, 0), floorTile);
+                }
+            }
+            path(exitPos, dir, limit - 1, bossPathLock, false);
+        }
     }
 
     //x and y are coordinates for bottom left corner
@@ -551,14 +418,14 @@ public class Generation : MonoBehaviour
         }
     }
 
-    //dir --> 0 = up, 1 = right, 2 = down, 3 = left
+    //dir --> 0 = down, 1 = right, 2 = up, 3 = left
     private void spawnCorridor(int length, Vector3Int entrancePos, int dir) {
         int xOffset = 0;
         int yOffset = 0;
 
         if (dir == 0 || dir == 2)
         {
-            if (dir == 2)
+            if (dir == 0)
             {
                 yOffset = -length;
             }
