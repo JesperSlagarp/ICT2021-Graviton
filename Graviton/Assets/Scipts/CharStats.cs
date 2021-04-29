@@ -14,7 +14,14 @@ public class CharStats : MonoBehaviour
     public int playerMana { get; private set; }
     public int playerHealth { get; private set; }
     public bool damageTaken = false;
+
     public Stats damage;
+    public Stats armor;
+
+    [Min(0)]
+    public int baseArmor = 0;
+    public int baseDamage = 1;
+
     private float remainingTime;
     private float delayTime = 3;
 
@@ -61,12 +68,17 @@ public class CharStats : MonoBehaviour
     }
 
 
-    public void TakeDamage(int damage){
+    public void TakeDamage(int dps){
 
-        playerHealth = playerHealth - damage;
+
+        int currentArmor = armor.GetValue(baseArmor);
+        dps = dps - currentArmor;
+        dps = Mathf.Clamp(dps, 0, int.MaxValue);
+
+        playerHealth = playerHealth - dps;
         damageTaken = true;
         remainingTime = delayTime;
-        Debug.Log(transform.name + " damage taken: " + damage);
+        Debug.Log(transform.name + " damage taken: " + dps);
         healthBar.SetHealth(playerHealth);
 
         if (playerHealth <= 0){
