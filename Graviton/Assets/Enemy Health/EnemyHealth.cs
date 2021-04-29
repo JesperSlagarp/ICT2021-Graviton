@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     public GameObject healthbar;
     public float health;
     private float maxHealth;
+    public LootTable lootTable;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,23 @@ public class EnemyHealth : MonoBehaviour
             healthbar.transform.localScale = new Vector3(health / maxHealth, healthbar.transform.localScale.y, healthbar.transform.localScale.z);
            
             if (health == 0)
+            {
                 Destroy(this.gameObject);
+                MakeLoot();
+            }
+                
+        }
+    }
+
+    private void MakeLoot()
+    {
+        if(lootTable != null)
+        {
+            GameObject current = lootTable.LootGameObject();
+            if(current != null)
+            {
+                Instantiate(current, transform.position, Quaternion.identity);
+            }
         }
     }
 }
