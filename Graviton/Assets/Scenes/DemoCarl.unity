@@ -6414,14 +6414,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6137725625876964967, guid: 8e1ddbfd614780645b0f9339e71b73ac, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6137725625876964967, guid: 8e1ddbfd614780645b0f9339e71b73ac, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6137725627231463134, guid: 8e1ddbfd614780645b0f9339e71b73ac, type: 3}
       propertyPath: m_Name
       value: HealthBar
@@ -6492,11 +6484,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6137725627231463135, guid: 8e1ddbfd614780645b0f9339e71b73ac, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -253
+      value: -452.6
       objectReference: {fileID: 0}
     - target: {fileID: 6137725627231463135, guid: 8e1ddbfd614780645b0f9339e71b73ac, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -163.6
+      value: -243.1
       objectReference: {fileID: 0}
     - target: {fileID: 6137725627231463135, guid: 8e1ddbfd614780645b0f9339e71b73ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -23907,11 +23899,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4850747045052852462, guid: 575b2d75691ed2645869dad49ca5c465, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -253
+      value: -453.2
       objectReference: {fileID: 0}
     - target: {fileID: 4850747045052852462, guid: 575b2d75691ed2645869dad49ca5c465, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -225.5
+      value: -279.7
       objectReference: {fileID: 0}
     - target: {fileID: 4850747045052852462, guid: 575b2d75691ed2645869dad49ca5c465, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
