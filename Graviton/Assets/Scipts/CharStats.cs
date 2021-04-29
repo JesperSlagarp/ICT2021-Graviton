@@ -131,6 +131,7 @@ public class CharStats : MonoBehaviour
         level += 1;
         exp = 0;
         maxExp += 50;
+        baseDamage += 20;
     }
 
     public void UpdateStats()
