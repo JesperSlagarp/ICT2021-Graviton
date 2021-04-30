@@ -28,7 +28,7 @@ public class Shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Ability 1") && nextUse < Time.time)
+        if (Input.GetButtonDown("Ability 1") && nextUse < Time.time && mana <= charstats.playerMana)
         {
             nextUse = Time.time + cooldown;
             stop = Time.time + duration;
