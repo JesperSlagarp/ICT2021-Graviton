@@ -6,7 +6,7 @@ public class rangedTargetScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform mob;
-    public Transform player;
+    private Transform player;
     private Vector3 lastSeen;
     RaycastHit2D hit;
     void Start()
@@ -17,6 +17,7 @@ public class rangedTargetScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        player = GameObject.Find("Player").transform;
         if (CanSeePlayer())
         {
             lastSeen = player.position;

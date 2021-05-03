@@ -112,10 +112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 3035906443093378212}
   bulletPrefab: {fileID: 4912265991779006812, guid: 708904239a485034a93fe24ef1387334, type: 3}
-  player: {fileID: 0}
   droppedWeapon: {fileID: 8187785556384653705, guid: ce5cfc617fe09014a94b93165df627a4, type: 3}
   reloadTime: 0.2
-  nextShoot: 0
   bulletForce: 20
 --- !u!1 &8513412554343754324
 GameObject:

@@ -5,28 +5,51 @@ using UnityEngine.UI;
 
 public class Bar : MonoBehaviour
 {
-    public Slider slider;
-    
+    public Slider healthSlider;
+    public Slider manaSlider;
+    public Slider cooldownSlider;
+    public Slider cooldownSlider2;
+
     public void SetMaxHealth(int health)
     {
-        slider.maxValue = health;
-        slider.value = health;
+        healthSlider.maxValue = health;
+        healthSlider.value = health;
     }
 
     public void SetHealth(int health)
     {
-        slider.value = health;
+        healthSlider.value = health;
     }
 
     public void SetMaxMana(int mana)
     {
-        slider.maxValue = mana;
-        slider.value = mana;
+        manaSlider.maxValue = mana;
+        manaSlider.value = mana;
     }
 
     public void SetMana(int mana)
     {
-        slider.value = mana;
+        manaSlider.value = mana;
+    }
+
+    public void SetMaxCooldown(float cooldown)
+    {
+        cooldownSlider.maxValue = cooldown;
+    }
+
+    public void SetCooldown(float cooldown)
+    {
+        cooldownSlider.value = cooldown;
+    }
+
+    public void SetMaxCooldown2(float cooldown)
+    {
+        cooldownSlider2.maxValue = cooldown;
+    }
+
+    public void SetCooldown2(float cooldown)
+    {
+        cooldownSlider2.value = cooldown;
     }
 
     public void SetMaxExp(int exp)
