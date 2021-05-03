@@ -21,7 +21,7 @@ public class CharStats : MonoBehaviour
 
     [Min(0)]
     public int baseArmor = 0;
-    public int baseDamage = 1;
+    public int baseDamage = 10;
 
     private float remainingTime;
     private float delayTime = 3;
@@ -167,7 +167,8 @@ public class CharStats : MonoBehaviour
         level += 1;
         exp = 0;
         maxExp += 50;
-        baseDamage += 20;
+        baseDamage += 50;
+        baseArmor += 2;
     }
 
     public void UpdateStats()

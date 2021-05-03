@@ -11,9 +11,11 @@ public class EnemyStats : MonoBehaviour
     public int damage;
     private float maxHealth;
     // Start is called before the first frame update
+
     void Start()
     {
         maxHealth = health;
+        
         //healthBar.SetHealth(health, maxHealth);
     }
 
@@ -28,14 +30,14 @@ public class EnemyStats : MonoBehaviour
     {
         if(collision.gameObject.tag == "Bullet")
         {
-            Bullet enemybullet = collision.gameObject.GetComponent<Bullet>();
-            TakeDamage(enemybullet.damage);
+            int playerDamage = GameObject.Find("Player").GetComponent<CharStats>().baseDamage;
+            TakeDamage(playerDamage);
         }
     }
 
     public void TakeDamage(int damage)
     {
-        if (health < damage || health == 0)
+        if (health <= damage || health == 0)
         {
             Destroy(this.gameObject);
             MakeLoot();
