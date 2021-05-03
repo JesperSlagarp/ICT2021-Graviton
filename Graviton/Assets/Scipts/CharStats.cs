@@ -14,6 +14,7 @@ public class CharStats : MonoBehaviour
     public int playerMana { get; private set; }
     public int playerHealth { get; private set; }
     public bool damageTaken = false;
+    public bool shield = false;
 
     public Stats damage;
     public Stats armor;
@@ -24,6 +25,8 @@ public class CharStats : MonoBehaviour
 
     private float remainingTime;
     private float delayTime = 3;
+    public float damageCooldown;
+    private float nextDamagetaken = 0f;
 
     public int exp;
     public int maxExp = 100;
@@ -58,11 +61,14 @@ public class CharStats : MonoBehaviour
     }
 
     void Update(){
-        if(Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T))
             TakeDamage(10);
-        if (damageTaken){
+        if (Input.GetKeyDown(KeyCode.Y))
+            DepleteMana(10);
+        if (damageTaken)
+        {
             remainingTime -= Time.deltaTime;
-            if(remainingTime < 0)
+            if (remainingTime < 0)
                 damageTaken = false;
         }
     }
@@ -103,10 +109,40 @@ public class CharStats : MonoBehaviour
             manaBar.SetMana(playerMana);
             Debug.Log("added mana");
         }
-            
-            
         
     }
+
+    public void DepleteMana(int mana)
+    {
+        if (playerMana >= 0 && mana <= playerMana)
+        {
+            playerMana = playerMana - mana;
+            manaBar.SetMana(playerMana);
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy" && shield == false)
+        {
+            if (nextDamagetaken < Time.time)
+            {
+                EnemyStats enemystats = collision.gameObject.GetComponent<EnemyStats>();
+                TakeDamage(enemystats.damage);
+                nextDamagetaken = Time.time + damageCooldown;
+            }
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemybullet" && shield == false)
+        {
+            EnemyBullet enemybullet = collision.gameObject.GetComponent<EnemyBullet>();
+            TakeDamage(enemybullet.damage);
+        }
+    }
+
 
     public void Heal(int quantity)
     {
