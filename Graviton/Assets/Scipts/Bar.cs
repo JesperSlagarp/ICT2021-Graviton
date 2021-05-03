@@ -5,51 +5,28 @@ using UnityEngine.UI;
 
 public class Bar : MonoBehaviour
 {
-    public Slider healthSlider;
-    public Slider manaSlider;
-    public Slider cooldownSlider;
-    public Slider cooldownSlider2;
-
+    public Slider slider;
+    
     public void SetMaxHealth(int health)
     {
-        healthSlider.maxValue = health;
-        healthSlider.value = health;
+        slider.maxValue = health;
+        slider.value = health;
     }
 
     public void SetHealth(int health)
     {
-        healthSlider.value = health;
+        slider.value = health;
     }
 
     public void SetMaxMana(int mana)
     {
-        manaSlider.maxValue = mana;
-        manaSlider.value = mana;
+        slider.maxValue = mana;
+        slider.value = mana;
     }
 
     public void SetMana(int mana)
     {
-        manaSlider.value = mana;
-    }
-
-    public void SetMaxCooldown(float cooldown)
-    {
-        cooldownSlider.maxValue = cooldown;
-    }
-
-    public void SetCooldown(float cooldown)
-    {
-        cooldownSlider.value = cooldown;
-    }
-
-    public void SetMaxCooldown2(float cooldown)
-    {
-        cooldownSlider2.maxValue = cooldown;
-    }
-
-    public void SetCooldown2(float cooldown)
-    {
-        cooldownSlider2.value = cooldown;
+        slider.value = mana;
     }
 
     public void SetMaxExp(int exp)
@@ -61,5 +38,27 @@ public class Bar : MonoBehaviour
     public void SetExp(int exp)
     {
         slider.value = exp;
+    }
+
+    public void SetMaxCooldown(float cooldown)
+    {
+        slider.maxValue = cooldown;
+        slider.value = cooldown;
+    }
+
+    public void SetCooldown(float cooldown)
+    {
+        slider.value = cooldown;
+    }
+
+    public void SetMaxCooldown2(float cooldown)
+    {
+        slider.maxValue = cooldown;
+        slider.value = cooldown;
+    }
+
+    public void SetCooldown2(float cooldown)
+    {
+        slider.value = cooldown;
     }
 }

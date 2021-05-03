@@ -26,10 +26,10 @@ public class EnemyBasicGun : MonoBehaviour
         GameObject player = GameObject.Find("Player");
         //Vector2 v = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
         //float distance = v.magnitude;
-        int mask = (1<<LayerMask.NameToLayer("Player hit detection")) | (1<<LayerMask.NameToLayer("obstacles"));
+        int mask = (1<<LayerMask.NameToLayer("Player")) | (1<<LayerMask.NameToLayer("obstacles"));
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, Mathf.Infinity, mask);
         //Debug.Log(hit.collider.gameObject.name);
-        if (hit.collider.gameObject.name == "Sprite") //&& distance < maxDistance
+        if (hit.collider.gameObject.name == "Player") //&& distance < maxDistance
         {
             GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();

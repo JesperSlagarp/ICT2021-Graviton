@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7240764085092545317}
   - component: {fileID: 1909479215996618615}
   - component: {fileID: 1909479215996618619}
+  - component: {fileID: 5620371456945991859}
+  - component: {fileID: 8150714407089314740}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -88,8 +90,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.046453618, y: 0.15544327}
-  m_Size: {x: 1.4502578, y: 0.3103327}
+  m_Offset: {x: 0.04645362, y: 0.16738354}
+  m_Size: {x: 1.4502583, y: 0.80724293}
   m_Direction: 1
 --- !u!114 &1909479215996618615
 MonoBehaviour:
@@ -126,9 +128,44 @@ MonoBehaviour:
   expBar: {fileID: 0}
   maxStat: 100
   damageTaken: 0
-  damage:
-    baseValue: 0
+  shield: 0
+  baseArmor: 0
+  baseDamage: 1
+  damageCooldown: 0
   exp: 0
+  maxExp: 100
+  level: 1
+--- !u!114 &5620371456945991859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837755101286234274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0a4021d91d28d41b54f161d58bc0ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 2
+  mana: 10
+  attackDistance: 2
+  damage: 30
+--- !u!114 &8150714407089314740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837755101286234274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bedfe219a303664089cae17cb7036ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 2
+  mana: 10
+  duration: 3
 --- !u!1 &5837755101884924347
 GameObject:
   m_ObjectHideFlags: 0

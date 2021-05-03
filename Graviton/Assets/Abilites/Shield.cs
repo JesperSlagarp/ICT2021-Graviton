@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    private HealthBar CooldownBar;
+    [SerializeField]
+    private Bar CooldownBar;
     public int cooldown;
     public int mana;
     public int duration;
@@ -14,7 +15,6 @@ public class Shield : MonoBehaviour
 
     void Awake()
     {
-        CooldownBar = GetComponent<HealthBar>();
         CooldownBar.SetMaxCooldown(1f);
         CooldownBar.SetCooldown(0f);
     }

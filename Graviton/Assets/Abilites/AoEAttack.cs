@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AoEAttack : MonoBehaviour
 {
-    private HealthBar CooldownBar;
+    [SerializeField]
+    private Bar CooldownBar;
     public int cooldown;
     public int mana;
     public int attackDistance;
@@ -14,7 +15,7 @@ public class AoEAttack : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        CooldownBar = GetComponent<HealthBar>();
+        
         CooldownBar.SetMaxCooldown2(1f);
         CooldownBar.SetCooldown2(0f);
     }
