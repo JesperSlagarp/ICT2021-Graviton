@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0a4021d91d28d41b54f161d58bc0ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CooldownBar: {fileID: 0}
   cooldown: 2
   mana: 10
   attackDistance: 2
@@ -163,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bedfe219a303664089cae17cb7036ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CooldownBar: {fileID: 0}
   cooldown: 2
   mana: 10
   duration: 3

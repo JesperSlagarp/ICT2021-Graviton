@@ -9,7 +9,9 @@ public class meleeTargetScript : MonoBehaviour
     private GameObject player;
     private Vector3 lastSeen;
     RaycastHit2D hit;
-    void Start()
+
+    private float range = 20; 
+    void Awake()
     {
         player = GameObject.Find("Player");
         lastSeen = mob.position;
@@ -18,7 +20,7 @@ public class meleeTargetScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (CanSeePlayer())
+        if (CanSeePlayer() && isActiveAndEnabled)
         {
             lastSeen = player.transform.position;
             this.transform.position = player.transform.position;
@@ -32,9 +34,9 @@ public class meleeTargetScript : MonoBehaviour
     bool CanSeePlayer()
     {
         Vector2 v = new Vector2(player.transform.position.x - mob.position.x, player.transform.position.y - mob.position.y);
-        float distance = v.magnitude;
+        float distance = Mathf.Min(v.magnitude, range);
         hit = Physics2D.Raycast(mob.position, v, distance, 0x1 << LayerMask.NameToLayer("obstacles"));
-        if (hit.collider == null) return true;
+        if (hit.collider == null && distance < range) return true;
         else return false;
     }
 }

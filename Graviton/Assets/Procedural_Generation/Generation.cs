@@ -7,6 +7,10 @@ using Pathfinding;
 public class Generation : MonoBehaviour
 {
     [SerializeField]
+    private GameObject meleeEnemy;
+    [SerializeField]
+    private GameObject rangedEnemy;
+    [SerializeField]
     private Tilemap floorMap;
     [SerializeField]
     private Tilemap wallMap;
@@ -23,13 +27,13 @@ public class Generation : MonoBehaviour
     [SerializeField]
     private int recursionLimit;
     [SerializeField]
-    private int maxRoomSize;
+    private int roomWidth;
     [SerializeField]
-    private int minRoomSize;
+    private int roomHeight;
     [SerializeField]
-    private int maxCorridorLength;
-    [SerializeField]
-    private int minCorridorLength;
+    private int corridorlength;
+
+    private List<GameObject> gameObjects = new List<GameObject>();
 
     private Vector3Int startPos;
 
@@ -48,6 +52,8 @@ public class Generation : MonoBehaviour
         fillWalls();
 
         configAI();
+
+        Invoke("enableEnemies", 0.2f);
     }
 
     private void configAI() {
@@ -155,20 +161,18 @@ public class Generation : MonoBehaviour
 
         if (limit < 2 && isBossPath)
         {
-            Debug.Log("Spawning boss room. isbossPath = " + isBossPath);
             spawnBossRoom(currPos, entranceSide);
             return;
         }
 
         //Spawns randomly sized room at current position
-        int roomWidth = Random.Range(minRoomSize, maxRoomSize);
-        if (roomWidth % 2 == 0) roomWidth--;
-        int roomHeight = Random.Range(minRoomSize, maxRoomSize);
-        if (roomHeight % 2 == 0) roomHeight--;
+        //int roomWidth = Random.Range(minRoomSize, maxRoomSize);
+        //if (roomWidth % 2 == 0) roomWidth--;
+        //int roomHeight = Random.Range(minRoomSize, maxRoomSize);
+        //if (roomHeight % 2 == 0) roomHeight--;
         spawnRoom(roomWidth, roomHeight, currPos, entranceSide);
 
-        if(limit < 2)
-            return;
+        
 
         //Centralizes position in room
         //entranceSide --> 0 = bottom, 1 = right, 2 = top, 3 = left
@@ -179,6 +183,12 @@ public class Generation : MonoBehaviour
             case 3: currPos.x += roomWidth  / 2; break;
         }
 
+        if(limit != recursionLimit)
+            spawnEnemies(currPos);
+
+        if (limit < 2)
+            return;
+
         //Determining which directions to go and making sure there's at least one
         bool goingStraight = false, goingRight = false, goingLeft = false;
         if (Random.value < 0.5f) goingStraight = true;
@@ -186,7 +196,7 @@ public class Generation : MonoBehaviour
         if (Random.value < 0.5f) goingLeft     = true;
         if (!(goingStraight || goingRight || goingLeft)) 
         {
-            int r = Random.Range(1,3);
+            int r = Random.Range(1,4);
             switch (r) {
                 case 1: goingStraight = true; break;
                 case 2: goingRight    = true; break;
@@ -214,8 +224,6 @@ public class Generation : MonoBehaviour
             else if (potentialRight && goingRight) bossIsRight = true;
             else if (potentialLeft && goingLeft) bossIsLeft = true;
             
-
-            Debug.Log("S: " + bossIsStraight + " " + goingStraight + " R: " + bossIsRight + " " + goingRight + " L: " + bossIsLeft + " " + goingLeft + " LIMIT: " + limit);
         }
 
         
@@ -241,6 +249,81 @@ public class Generation : MonoBehaviour
         }
     }
 
+    private void spawnEnemy(Vector3Int pos, string type) {
+        GameObject enemy;
+        switch (type) {
+            case "melee": enemy = Instantiate(meleeEnemy, pos, Quaternion.identity); break;
+            case "ranged": enemy = Instantiate(rangedEnemy, pos, Quaternion.identity); break;
+            default: enemy = Instantiate(meleeEnemy, pos, Quaternion.identity); break;
+        }
+
+        enemy.SetActive(false);
+        gameObjects.Add(enemy);
+    }
+    private void spawnEnemies(Vector3Int pos) {
+
+
+        int roomType = Random.Range(1, 4);
+
+        switch (roomType) {
+            case 1: 
+                for (int i = 0; i < 2; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        Vector3Int tempPos = new Vector3Int(
+                            pos.x - (roomWidth / 4) + ((roomWidth / 2) * i),
+                            pos.y - (roomHeight / 4) + ((roomHeight / 2) * j),
+                            pos.z
+                            );
+                        spawnEnemy(tempPos, "melee");
+                    }
+                }
+                break;
+            case 2:
+                for (int i = 0; i < 2; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        Vector3Int tempPos = new Vector3Int(
+                            pos.x - (roomWidth / 4) + ((roomWidth / 2) * i),
+                            pos.y - (roomHeight / 4) + ((roomHeight / 2) * j),
+                            pos.z
+                            );
+                        spawnEnemy(tempPos, "ranged");
+                    }
+                }
+                break;
+            case 3:
+                for (int i = 0; i < 2; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        Vector3Int tempPos = new Vector3Int(
+                            pos.x - (roomWidth / 4) + ((roomWidth / 2) * i),
+                            pos.y - (roomHeight / 4) + ((roomHeight / 2) * j),
+                            pos.z
+                            );
+                        if (Random.value < 0.5f)
+                        {
+                            spawnEnemy(tempPos, "melee");
+                        }
+                        else
+                        {
+                            spawnEnemy(tempPos, "ranged");
+                        }
+                    }
+                }
+                break;
+        }
+    }
+
+    private void enableEnemies() {
+        foreach (GameObject gameObject in gameObjects) {
+            gameObject.SetActive(true);
+        }
+    }
+
     private void spawnBossRoom(Vector3Int pos, int entranceSide) {
         int dir = invertDir(entranceSide, "straight");
         spawnCorridor(50, pos, dir);
@@ -255,7 +338,7 @@ public class Generation : MonoBehaviour
             case 3: enterPos.x -= 50; break;
         }
 
-        spawnRoom(50, 50, enterPos, entranceSide);
+        spawnRoom(39, 31, enterPos, entranceSide);
 
     }
 
@@ -309,7 +392,7 @@ public class Generation : MonoBehaviour
         Vector3Int exitPos = startPos;
 
         //Randomizing length of corridor
-        int length = Random.Range(minCorridorLength, maxCorridorLength);
+        int length = corridorlength; //= Random.Range(minCorridorLength, maxCorridorLength);
 
         //Sets position of exit depending on direction
         switch (dir)
@@ -335,8 +418,13 @@ public class Generation : MonoBehaviour
         if (stop && !isBossPath)                        //Stop corridor here and don't spawn room
         {
             return;
+        } 
+        else
+        {
+            dir = invertDir(dir, "straight");
+            generate(exitPos, dir, limit - 1, bossPathLock, isBossPath);
         }
-        else if (Random.value < 0.5f || isBossPath)    //Stop corridor here and DO spawn room | Does no extra turns if on path to boss for simplicity
+        /*else if (Random.value < 0.5f || isBossPath)    //Stop corridor here and DO spawn room | Does no extra turns if on path to boss for simplicity
         {
             dir = invertDir(dir, "straight");
             generate(exitPos, dir, limit - 1, bossPathLock, isBossPath);
@@ -360,7 +448,7 @@ public class Generation : MonoBehaviour
                 }
             }
             path(exitPos, dir, limit - 1, bossPathLock, false);
-        }
+        }*/
     }
 
     //x and y are coordinates for bottom left corner

@@ -15,13 +15,16 @@ public class Pickup : MonoBehaviour
     void OnTriggerStay2D(Collider2D collider)
     {
         if (Input.GetButton("Pickup")){
+            Debug.Log("Pressed F");
             for(int i = 0; i < weaponSlots.slots.Length; i++)
             {
                 if(weaponSlots.isFull[i] == false)
                 {
                     weaponSlots.isFull[i] = true;
                     GameObject player = GameObject.Find("Player");
+                    Debug.Log("Before error");
                     weaponSlots.slots[i].sprite = playerWeapon.GetComponent<SpriteRenderer>().sprite;
+                    Debug.Log("After error");
                     if (player.transform.childCount == 1)
                     {
                         Vector3 pos = new Vector3(0.6f, 0.8f, 0) + player.transform.position;

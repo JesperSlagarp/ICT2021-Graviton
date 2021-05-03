@@ -9,6 +9,8 @@ public class rangedTargetScript : MonoBehaviour
     private Transform player;
     private Vector3 lastSeen;
     RaycastHit2D hit;
+
+    private float range = 20;
     void Start()
     {
         lastSeen = mob.position;
@@ -18,7 +20,7 @@ public class rangedTargetScript : MonoBehaviour
     void FixedUpdate()
     {
         player = GameObject.Find("Player").transform;
-        if (CanSeePlayer())
+        if (CanSeePlayer() && isActiveAndEnabled)
         {
             lastSeen = player.position;
             this.transform.position = mob.position;
@@ -29,9 +31,9 @@ public class rangedTargetScript : MonoBehaviour
 
     bool CanSeePlayer() {
         Vector2 v = new Vector2(player.position.x - mob.position.x, player.position.y - mob.position.y);
-        float distance = v.magnitude;
+        float distance = Mathf.Min(v.magnitude, range);
         hit = Physics2D.Raycast(mob.position, v, distance, 0x1 << LayerMask.NameToLayer("obstacles"));
-        if (hit.collider == null) return true;
+        if (hit.collider == null && distance < range) return true;
         else return false;
     }
 }
