@@ -7,9 +7,12 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public static bool InventoryActive = false;
+    public static bool StatsWindowActive = false;
+
 
     public GameObject pauseMenuUI;
     public GameObject inventoryUI;
+    public GameObject statsWindowUI;
     // Update is called once per frame
     void Update()
     {
@@ -37,6 +40,19 @@ public class PauseMenu : MonoBehaviour
                 InventoryFade();
             }
             
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (!StatsWindowActive)
+            {
+                StatsWindowDisplay();
+            }
+            else
+            {
+                StatsWindowFade();
+            }
+
         }
     }
 //pause menu functions, start
@@ -78,5 +94,17 @@ public class PauseMenu : MonoBehaviour
         
         inventoryUI.SetActive(false);
         InventoryActive = false;
+    }
+
+    void StatsWindowDisplay()
+    {
+        statsWindowUI.SetActive(true);
+        StatsWindowActive = true;
+    }
+    void StatsWindowFade()
+    {
+
+        statsWindowUI.SetActive(false);
+        StatsWindowActive = false;
     }
 }
