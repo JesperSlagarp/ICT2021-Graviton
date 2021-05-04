@@ -10,6 +10,7 @@ public class CharStats : MonoBehaviour
     public Bar healthBar;
     public Bar manaBar;
     public Bar expBar;
+    public Bar reloadBar;
     public int maxStat = 100;
     public int playerMana { get; private set; }
     public int playerHealth { get; private set; }
@@ -191,6 +192,24 @@ public class CharStats : MonoBehaviour
         else
         {
             return 0;
+        }
+    }
+
+    public void ReloadBarSetup()
+    {
+        reloadBar.SetMaxReload(1f);
+        reloadBar.SetReload(0f);
+    }
+
+    public void SetReloadBar(float nextShoot, float reloadTime)
+    {
+        if (nextShoot > Time.time)
+        {
+            reloadBar.SetReload((1 - ((nextShoot - Time.time) / reloadTime)));
+        }
+        else
+        {
+            reloadBar.SetReload(0f);
         }
     }
 }

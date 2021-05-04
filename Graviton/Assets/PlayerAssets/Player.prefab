@@ -153,6 +153,7 @@ MonoBehaviour:
   mana: 10
   attackDistance: 2
   damage: 30
+  abilities: {fileID: 0}
 --- !u!114 &8150714407089314740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,9 +182,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4c7fc95c372416b8fab3069da6a2404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAbility1: {fileID: 5620371456945991859}
-  playerAbility2: {fileID: 8150714407089314740}
+  aoeattack: {fileID: 0}
+  shield: {fileID: 0}
+  CooldownBar: {fileID: 0}
   CooldownBar2: {fileID: 4397137895158539098, guid: 7c03149dbd4cd39458c4efb43a00c100, type: 3}
+  aoeattackEnabled: 0
+  shieldEnabled: 0
 --- !u!1 &5837755101884924347
 GameObject:
   m_ObjectHideFlags: 0
