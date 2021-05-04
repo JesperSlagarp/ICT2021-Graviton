@@ -114,6 +114,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4912265991779006812, guid: 708904239a485034a93fe24ef1387334, type: 3}
   droppedWeapon: {fileID: 8079221772577003265, guid: f624315c811fec1439b26dccd7230c0a, type: 3}
   reloadTime: 2
+  bulletAmount: 10
   bulletForce: 20
 --- !u!1 &6621144127947021303
 GameObject:

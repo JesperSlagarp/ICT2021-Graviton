@@ -8,6 +8,7 @@ public class Shotgun : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject droppedWeapon;
     public float reloadTime;
+    public float bulletAmount;
     private float nextShoot = 0f;
 
     public float bulletForce = 20f;
@@ -34,7 +35,24 @@ public class Shotgun : MonoBehaviour
         //Vector3 dir = new Vector3(direx.y, direx.x, 0);
         //Vector3 dir = new Vector3(0, 1, 0) + direx;
 
-        Rigidbody2D[] rigidbodies = new Rigidbody2D[3];
+        //float angle = Mathf.Atan2(firePoint.position.y, firePoint.position.x) * Mathf.Rad2Deg;
+        //float spread = 20;  //Random.Range(-10, 10);
+        //Quaternion bulletRotation = Quaternion.Euler(new Vector3(0, 0, angle + spread));
+        //Quaternion bulletRotation = Quaternion.AngleAxis(spread, Vector3.forward);
+        //GameObject bullet = Instantiate(bulletPrefab, firePoint.position, bulletRotation);
+        //Vector3 dir = bulletRotation * firePoint.right;
+        //bullet.GetComponent<Rigidbody2D>().AddForce(dir * bulletForce, ForceMode2D.Impulse);
+
+        for (int n = 0; n < bulletAmount; n++)
+        {
+            float spread = Random.Range(-20, 20);
+            Quaternion bulletRotation = Quaternion.AngleAxis(spread, Vector3.forward);
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            Vector3 dir = bulletRotation * firePoint.right;
+            bullet.GetComponent<Rigidbody2D>().AddForce(dir * bulletForce, ForceMode2D.Impulse);
+        }
+
+        /*Rigidbody2D[] rigidbodies = new Rigidbody2D[3];
 
         for (int n = 0; n < 3; n++)
         {
@@ -48,7 +66,7 @@ public class Shotgun : MonoBehaviour
 
         rigidbodies[0].AddForce((firePoint.up + firePoint.right) * bulletForce, ForceMode2D.Impulse);
         rigidbodies[1].AddForce((firePoint.right) * bulletForce, ForceMode2D.Impulse);
-        rigidbodies[2].AddForce((-(firePoint.up) + firePoint.right) * bulletForce, ForceMode2D.Impulse);
+        rigidbodies[2].AddForce((-(firePoint.up) + firePoint.right) * bulletForce, ForceMode2D.Impulse);*/
 
         //Vector3 dir = Quaternion.AngleAxis(-90, Vector3.up) * firePoint.right;
 

@@ -8,6 +8,8 @@ public class LaserGun : MonoBehaviour
     public float reloadTime;
     public float duration; 
     private float nextShoot = 0f;
+    private float timer;
+    private bool reload;
     public LineRenderer lineRenderer;
     public int damage;
     // Start is called before the first frame update
@@ -19,14 +21,25 @@ public class LaserGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.time > nextShoot)
         {
+            timer = Time.time;
+        }
+        else if (Input.GetButton("Fire1") && Time.time - timer < duration)
+        {
+            nextShoot = (Time.time - timer) + Time.time;
             Shoot();
         }
         else
         {
             lineRenderer.enabled = false;
         }
+    }
+
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(4);
+        reload = false;
     }
 
     void Shoot()
