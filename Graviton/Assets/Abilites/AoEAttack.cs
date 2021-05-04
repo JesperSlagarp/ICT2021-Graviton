@@ -6,23 +6,26 @@ public class AoEAttack : MonoBehaviour
 {
     [SerializeField]
     private Bar CooldownBar;
-    public int cooldown;
+    public int cooldown = 2;
     public int mana;
     public int attackDistance;
     public int damage;
     private float nextUse = 0f;
     private CharStats charstats;
+    [SerializeField]
+    private Abilities abilities;
     // Start is called before the first frame update
     void Awake()
     {
         
-        CooldownBar.SetMaxCooldown2(1f);
-        CooldownBar.SetCooldown2(0f);
+        CooldownBar.SetMaxCooldown(1f);
+        CooldownBar.SetCooldown(0f);
+        charstats = GetComponent<CharStats>();
     }
 
     void Start()
     {
-        charstats = GetComponent<CharStats>();
+        //charstats = GetComponent<CharStats>();
     }
 
     // Update is called once per frame
@@ -45,13 +48,31 @@ public class AoEAttack : MonoBehaviour
             }
         }
 
-        if (nextUse > Time.time)
+        /*if (nextUse > Time.time)
         {
-            CooldownBar.SetCooldown2(1 - ((nextUse - Time.time) / cooldown));
+            CooldownBar.SetCooldown(1 - ((nextUse - Time.time) / cooldown));
         }
         else
         {
-            CooldownBar.SetCooldown2(0);
-        }
+            CooldownBar.SetCooldown(0);
+        }*/
+
+        //float cooldownset = charstats.SetCooldownBar(nextUse, cooldown);
+
+        CooldownBar.SetCooldown(charstats.SetCooldownBar(nextUse, cooldown));
+    }
+
+    public void Use()
+    {  
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject target in enemies)
+            {
+                float distance = Vector2.Distance(target.transform.position, transform.position);
+                if (distance <= attackDistance)
+                {
+                    EnemyStats enemystat = target.GetComponent<EnemyStats>();
+                    enemystat.TakeDamage(damage);
+                }
+            }
     }
 }

@@ -182,4 +182,15 @@ public class CharStats : MonoBehaviour
         //play death animation
     }
 
+    public float SetCooldownBar(float nextUse, int cooldown)
+    {
+        if (nextUse > Time.time)
+        {
+            return (1 - ((nextUse - Time.time) / cooldown));
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }

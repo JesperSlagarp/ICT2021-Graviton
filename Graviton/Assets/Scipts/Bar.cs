@@ -51,7 +51,7 @@ public class Bar : MonoBehaviour
         slider.value = cooldown;
     }
 
-    public void SetMaxCooldown2(float cooldown)
+    /*public void SetMaxCooldown2(float cooldown)
     {
         slider.maxValue = cooldown;
         slider.value = cooldown;
@@ -60,5 +60,5 @@ public class Bar : MonoBehaviour
     public void SetCooldown2(float cooldown)
     {
         slider.value = cooldown;
-    }
+    }*/
 }

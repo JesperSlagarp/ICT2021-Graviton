@@ -3,7 +3,11 @@ guid: a4c7fc95c372416b8fab3069da6a2404
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerAbility1: {fileID: 5620371456945991859, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
+  - playerAbility2: {fileID: 8150714407089314740, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
+  - CooldownBar: {fileID: 6309215059680660734, guid: 47505b23ee8cdde4f8be2c581ade0d72, type: 3}
+  - CooldownBar2: {fileID: 4397137895158539098, guid: 7c03149dbd4cd39458c4efb43a00c100, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
