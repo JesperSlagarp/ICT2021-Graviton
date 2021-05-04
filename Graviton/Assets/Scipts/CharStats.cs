@@ -38,6 +38,9 @@ public class CharStats : MonoBehaviour
     public int maxExp = 100;
     public int level = 1;
 
+    public int aoeLevel;
+    public int shieldLevel;
+
     /*public void Save()
     {
         PlayerPrefs.SetInt("Health", playerHealth);
@@ -54,6 +57,9 @@ public class CharStats : MonoBehaviour
         playerHealth = maxHealth;
         playerMana = maxMana;
         exp = 80;
+
+        aoeLevel = 1;
+        shieldLevel = 1;
 
         healthBar.SetMaxHealth(maxHealth);
         manaBar.SetMaxMana(maxMana) ;
@@ -214,6 +220,24 @@ public class CharStats : MonoBehaviour
         {
             baseArmor += 1;
             statPoint--;
+        }
+    }
+
+    public void AoeLevelUp()
+    {
+        if(skillPoint > 0)
+        {
+            aoeLevel += 1;
+            skillPoint--;
+        }
+    }
+
+    public void ShieldLevelUp()
+    {
+        if(skillPoint > 0)
+        {
+            shieldLevel += 1;
+            skillPoint--;
         }
     }
 

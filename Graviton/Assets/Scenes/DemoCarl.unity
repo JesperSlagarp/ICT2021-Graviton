@@ -23140,6 +23140,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1909479214942967317, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
+      propertyPath: aoeCooldownBar
+      value: 
+      objectReference: {fileID: 253803642}
+    - target: {fileID: 1909479214942967317, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
+      propertyPath: shieldCooldownBar
+      value: 
+      objectReference: {fileID: 834612479}
     - target: {fileID: 1909479215996618615, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
       propertyPath: slots.Array.data[0]
       value: 
@@ -23160,10 +23168,6 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 86869576}
-    - target: {fileID: 5620371456945991859, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: CooldownBar
-      value: 
-      objectReference: {fileID: 253803642}
     - target: {fileID: 5837755101286234274, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
       propertyPath: m_Name
       value: Player
@@ -23212,10 +23216,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8150714407089314740, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: CooldownBar
-      value: 
-      objectReference: {fileID: 834612479}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
 --- !u!1001 &4010976999276837177

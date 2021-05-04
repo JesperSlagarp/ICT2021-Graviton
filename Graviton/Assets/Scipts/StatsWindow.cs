@@ -13,8 +13,8 @@ public class StatsWindow : MonoBehaviour
     public Text armor;
 
     public Text skillPoint;
-    public Text AOE;
-    public Text Shield;
+    public Text aoe;
+    public Text shield;
 
     private CharStats stats;
 
@@ -35,7 +35,8 @@ public class StatsWindow : MonoBehaviour
         armor.text = "Armor: " + stats.baseArmor;
 
         skillPoint.text = "Skill Point: " + stats.skillPoint;
-        AOE.text = "AOE: Level ";
+        aoe.text = "AOE: Level " + stats.aoeLevel;
+        shield.text = "Shield: Level " + stats.shieldLevel;
     }
 
     public void MaxHealth()
@@ -53,5 +54,15 @@ public class StatsWindow : MonoBehaviour
     public void Armor()
     {
         stats.ArmorIncreasement();
+    }
+
+    public void AoeLevelUp()
+    {
+        stats.AoeLevelUp();
+    }
+
+    public void ShieldLevelUp()
+    {
+        stats.ShieldLevelUp();
     }
 }
