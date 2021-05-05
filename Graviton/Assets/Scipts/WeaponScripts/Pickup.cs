@@ -7,10 +7,12 @@ public class Pickup : MonoBehaviour
     //public GameObject player;
     private WeaponSlots weaponSlots;
     public GameObject playerWeapon;
+    private InventorySlots inventorySlots;
 
     private void Start()
     {
         weaponSlots = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponSlots>();
+        inventorySlots = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySlots>();
     }
     void OnTriggerStay2D(Collider2D collider)
     {
@@ -36,14 +38,14 @@ public class Pickup : MonoBehaviour
                     }
                }
             }
-        }
-
-        for(int i = 0; i < weaponSlots.inventorySlots.Length; i++)
-        {
-            if (weaponSlots.inventoryIsFull[i] == false)
+            for (int j = 0; j < inventorySlots.slots.Length; j++)
             {
-                weaponSlots.inventoryIsFull[i] = true;
-                weaponSlots.inventorySlots[i].sprite = playerWeapon.GetComponent<SpriteRenderer>().sprite;
+                if (inventorySlots.isFull[j] == false)
+                {
+                    inventorySlots.isFull[j] = true;
+                    inventorySlots.slots[j].sprite = playerWeapon.GetComponent<SpriteRenderer>().sprite;
+                    break;
+                }
             }
         }
     }
