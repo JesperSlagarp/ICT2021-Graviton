@@ -28,6 +28,7 @@ public class AoEAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        damage = charstats.baseDamage;
         if (Input.GetButtonDown("Ability 2") && nextUse < Time.time && mana <= charstats.playerMana)
         {
             nextUse = Time.time + cooldown;
