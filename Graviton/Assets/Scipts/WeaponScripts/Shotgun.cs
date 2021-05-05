@@ -11,8 +11,22 @@ public class Shotgun : MonoBehaviour
     public int bulletAmount;
     public int spreadVariation;
     private float nextShoot = 0f;
+    private CharStats charstats;
+    private GameObject player;
 
     public float bulletForce = 20f;
+
+    void Awake()
+    {
+        player = GameObject.Find("Player");
+        charstats = player.GetComponent<CharStats>();
+    }
+
+    void Start()
+    {
+        charstats.ReloadBarSetup();
+    }
+
     void Update()
     {
         if (Input.GetButtonDown("Fire1") && Time.time > nextShoot)
@@ -26,6 +40,8 @@ public class Shotgun : MonoBehaviour
             GameObject weapon = Instantiate(droppedWeapon, firePoint.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
+
+        charstats.SetReloadBar(nextShoot, reloadTime);
     }
 
 

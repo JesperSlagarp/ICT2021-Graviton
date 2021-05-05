@@ -203,6 +203,7 @@ public class CharStats : MonoBehaviour
 
     public void SetReloadBar(float nextShoot, float reloadTime)
     {
+        Debug.Log("nextshoot " + nextShoot + " reloadtime " + reloadTime);
         if (nextShoot > Time.time)
         {
             reloadBar.SetReload((1 - ((nextShoot - Time.time) / reloadTime)));

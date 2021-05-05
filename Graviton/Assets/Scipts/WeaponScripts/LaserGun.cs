@@ -12,10 +12,18 @@ public class LaserGun : MonoBehaviour
     private bool reload;
     public LineRenderer lineRenderer;
     public int damage;
-    // Start is called before the first frame update
+    private CharStats charstats;
+    private GameObject player;
+
+    void Awake()
+    {
+        player = GameObject.Find("Player");
+        charstats = player.GetComponent<CharStats>();
+    }
+
     void Start()
     {
-        
+        charstats.ReloadBarSetup();
     }
 
     // Update is called once per frame
@@ -33,6 +41,11 @@ public class LaserGun : MonoBehaviour
         else
         {
             lineRenderer.enabled = false;
+        }
+
+        if (Time.time - timer > duration)
+        {
+            charstats.SetReloadBar(nextShoot, duration);
         }
     }
 
