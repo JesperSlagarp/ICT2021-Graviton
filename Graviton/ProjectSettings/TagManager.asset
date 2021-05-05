@@ -9,6 +9,7 @@ TagManager:
   - Enemybullet
   - Test
   - Key
+  - Inventory
   layers:
   - Default
   - TransparentFX
