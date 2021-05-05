@@ -183,6 +183,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1 &5837755101884924347
 GameObject:
   m_ObjectHideFlags: 0

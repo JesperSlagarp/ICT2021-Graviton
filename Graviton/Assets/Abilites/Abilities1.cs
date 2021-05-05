@@ -30,6 +30,9 @@ public class Abilities1 : MonoBehaviour
 
     void Awake()
     {
+        aoeCooldownBar = GameObject.Find("cooldownBar").GetComponent<Bar>();
+        shieldCooldownBar = GameObject.Find("cooldownBar2").GetComponent<Bar>();
+
         aoeCooldownBar.SetMaxCooldown(aoeCd);
         aoeCooldownBar.SetCooldown(0f);
 
