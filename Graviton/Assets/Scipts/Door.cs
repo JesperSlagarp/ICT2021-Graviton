@@ -11,19 +11,19 @@ public class Door : MonoBehaviour
         inventory = GameObject.Find("Player").GetComponent<InventorySlots>();
     }
 
-    void OnTriggerStay2D(Collider2D collider)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if (Input.GetButton("Pickup"))
+        for (int i = 0; i < inventory.slots.Length; i++)
         {
-            for(int i = 0; i < inventory.slots.Length; i++)
+            if (inventory.isFull[i] == true)
             {
-                if(inventory.isFull[i] == true)
+                if (inventory.slots[i].sprite.name == "Key")
                 {
-                    if(inventory.slots[i].sprite.name == "Key")
-                    {
-                        Destroy(this.gameObject);
-                    }
+                    Debug.Log("found");
+                    Destroy(this.gameObject);
                 }
+                else
+                    Debug.Log("not found");
             }
         }
     }

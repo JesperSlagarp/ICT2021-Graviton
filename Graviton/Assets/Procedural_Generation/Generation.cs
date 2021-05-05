@@ -9,6 +9,8 @@ public class Generation : MonoBehaviour
     [SerializeField]
     private GameObject boss;
     [SerializeField]
+    private GameObject door;
+    [SerializeField]
     private GameObject treasure;
     [SerializeField]
     private GameObject meleeEnemy;
@@ -295,12 +297,13 @@ public class Generation : MonoBehaviour
 
         switch (dir)
         {
-            case 0: enterPos.y -= 50; break;
-            case 1: enterPos.x += 50; break;
-            case 2: enterPos.y += 50; break;
-            case 3: enterPos.x -= 50; break;
+            case 0: enterPos.y -= 50; Instantiate(door, enterPos, Quaternion.identity); break;
+            case 1: enterPos.x += 50; Instantiate(door, enterPos, Quaternion.Euler(0, 0, 90));break;
+            case 2: enterPos.y += 50; Instantiate(door, enterPos, Quaternion.identity); break;
+            case 3: enterPos.x -= 50; Instantiate(door, enterPos, Quaternion.Euler(0, 0, 90)); break;
         }
 
+        
         spawnRoom(39, 31, enterPos, entranceSide);
 
         switch (dir)

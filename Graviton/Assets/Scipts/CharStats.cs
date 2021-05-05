@@ -111,7 +111,6 @@ public class CharStats : MonoBehaviour
         if(playerHealth < maxHealth)
             playerHealth += 2;
             healthBar.SetHealth(playerHealth);
-            Debug.Log("added hp");
         }
     }
     void RegenerateMana(){

@@ -1001,7 +1001,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 8031697866457453280, guid: bec18be2ce0f2e446b575d8f3360df02, type: 3}
-  treasure: {fileID: 8187785556384653705, guid: ce5cfc617fe09014a94b93165df627a4, type: 3}
+  door: {fileID: 2513772333092337153, guid: 554a9381378fe3d4d86d428621a10e2b, type: 3}
+  treasure: {fileID: 1524509665763465975, guid: f6569ba939dd63a46baea406c9fdac52, type: 3}
   meleeEnemy: {fileID: 6278627692612934323, guid: cfe56f542bdb402499bdbd0bcde6f83a, type: 3}
   rangedEnemy: {fileID: 5574560529831073802, guid: 844532b54c0ec1544943134a2ef18f50, type: 3}
   floorMap: {fileID: 1444082542}
