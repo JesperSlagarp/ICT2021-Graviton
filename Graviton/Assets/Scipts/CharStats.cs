@@ -168,7 +168,7 @@ public class CharStats : MonoBehaviour
     public void getExp(int quantity)
     {
         exp += quantity;
-        if(exp >= maxExp)
+        if (exp >= maxExp)
         {
             levelUp();
         }
@@ -181,6 +181,7 @@ public class CharStats : MonoBehaviour
         maxExp += 50;
         statPoint++;
         skillPoint++;
+        UpdateStats();
     }
 
     public void MaxHealthIncreasement()
@@ -243,9 +244,15 @@ public class CharStats : MonoBehaviour
 
     public void UpdateStats()
     {
+        healthBar.SetMaxHealth(maxHealth);
+        manaBar.SetMaxMana(maxMana);
+        expBar.SetMaxExp(maxExp);
+
         healthBar.SetHealth(playerHealth);
         manaBar.SetMana(playerMana);
         expBar.SetExp(exp);
+
+
     }
 
     public virtual void Die(){

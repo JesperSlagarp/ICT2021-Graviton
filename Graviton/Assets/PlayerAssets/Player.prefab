@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1909479215996618615}
   - component: {fileID: 1909479215996618619}
   - component: {fileID: 1909479214942967317}
+  - component: {fileID: 1857537268}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -107,9 +108,6 @@ MonoBehaviour:
   isFull: 00
   slots:
   - {fileID: 0}
-  inventoryIsFull: 00
-  inventorySlots:
-  - {fileID: 0}
 --- !u!114 &1909479215996618619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,9 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea05998120f055a46baa92ebd1aca9d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 6137725627231463129, guid: 8e1ddbfd614780645b0f9339e71b73ac, type: 3}
-  manaBar: {fileID: 3043898714045967035, guid: 5e647f312fbc0c14eba87e28a3a500d1, type: 3}
-  expBar: {fileID: 4850747045052852456, guid: 575b2d75691ed2645869dad49ca5c465, type: 3}
+  healthBar: {fileID: 0}
+  manaBar: {fileID: 0}
+  expBar: {fileID: 0}
   maxHealth: 100
   maxMana: 100
   damageTaken: 0
@@ -150,12 +148,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb019cf08451fc440b8f1b0ea6b0712d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aoeCooldownBar: {fileID: 427982446285081246, guid: 0c5b615ad1ac156478a452f1239cce0d, type: 3}
-  shieldCooldownBar: {fileID: 8761089628076472439, guid: 4342ff912be832344b953901a8f9ab89, type: 3}
+  aoeCooldownBar: {fileID: 0}
+  shieldCooldownBar: {fileID: 0}
   aoeReady: 1
   shieldReady: 1
   aoeCd: 3
   shieldCd: 5
+--- !u!114 &1857537268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837755101286234274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11c31cdaea85e04f92b9b04bbe87dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFull: 000000000000000000000000000000
+  slots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &5837755101884924347
 GameObject:
   m_ObjectHideFlags: 0
