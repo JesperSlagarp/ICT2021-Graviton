@@ -27,7 +27,7 @@ public class CharStats : MonoBehaviour
 
     [Min(0)]
     public int baseArmor = 0;
-    public int baseDamage { get; private set; } = 5;
+    public int baseDamage { get; private set; } = 25;
 
     private float remainingTime;
     private float delayTime = 3;

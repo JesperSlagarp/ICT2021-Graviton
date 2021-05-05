@@ -47,13 +47,12 @@ public class bossController : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision) 
     {
-        if (collision.gameObject.tag == "Bullet")
-        {
-            Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            TakeDamage(bullet.damage);
-        }
+        if (collision.gameObject.tag == "Bullet") 
+        { 
+            int playerDamage = GameObject.Find("Player").GetComponent<CharStats>().baseDamage; TakeDamage(playerDamage); 
+        } 
     }
 
     public void TakeDamage(int damage)

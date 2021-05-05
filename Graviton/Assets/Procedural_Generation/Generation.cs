@@ -19,6 +19,8 @@ public class Generation : MonoBehaviour
     [SerializeField]
     private Tilemap wallMap;
     [SerializeField]
+    private Tilemap foregroundMap;
+    [SerializeField]
     private Tilemap topMap;
     [SerializeField]
     private Tile floorTile;
@@ -137,6 +139,21 @@ public class Generation : MonoBehaviour
 
                 if (!tile)
                 {
+                    //foreground and top
+                    if (!tileTwoBelow && !tileBelow) topMap.SetTile(pos, topTile);
+                    else if (!tileBelow) foregroundMap.SetTile(pos, midTile); 
+                    //Wall_Tilemap
+                    if (tileAbove || tileRight || tileLeft || tileBelow) wallMap.SetTile(pos, wallTile);
+                    else if (tileUpRight || tileUpLeft) wallMap.SetTile(pos, wallTile);
+                }
+                else
+                { 
+                    //top
+                    if (!tileTwoBelow) topMap.SetTile(pos, topTile);
+                }
+                /*
+                if (!tile)
+                {
                     //Wall_Tilemap
                     if (tileAbove || tileRight || tileLeft || tileBelow) wallMap.SetTile(pos, wallTile);
                     else if(tileUpRight || tileUpLeft) wallMap.SetTile(pos, wallTile);
@@ -148,9 +165,9 @@ public class Generation : MonoBehaviour
                         if (tile3DownRight || tile3DownLeft) topMap.SetTile(pos, topTile);
                         else if(tile2DownRight || tile2DownLeft) topMap.SetTile(pos, topTile);
                         else if(tileDownRight || tileDownLeft) topMap.SetTile(pos, topTile);
-                        else if (tileRight || tileLeft) topMap.SetTile(pos, midTile);
+                        else if (tileRight || tileLeft) foregroundMap.SetTile(pos, midTile);
   
-                        if (tileTwoBelow) topMap.SetTile(pos, midTile);
+                        if (tileTwoBelow) foregroundMap.SetTile(pos, midTile);
                         else if (tileThreeBelow) topMap.SetTile(pos, topTile);
                     }
                     
@@ -159,12 +176,12 @@ public class Generation : MonoBehaviour
                 else {
                     //Foreground_Tilemap
                     if (!tileBelow) {
-                        if (!(tile3DownRight || tile3DownLeft) ) topMap.SetTile(pos, midTile);
+                        if (!(tile3DownRight || tile3DownLeft) ) foregroundMap.SetTile(pos, midTile);
                         else topMap.SetTile(pos, topTile); 
 
                         if(tileAbove && (tileDownLeft != tileDownRight) && !tileTwoBelow) topMap.SetTile(pos, topTile);
                     } else if (!tileTwoBelow) topMap.SetTile(pos, topTile);
-                }
+                }*/
             }
         }
     }
