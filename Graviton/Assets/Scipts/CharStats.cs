@@ -54,6 +54,10 @@ public class CharStats : MonoBehaviour
     }*/
 
     void Awake(){
+        healthBar = GameObject.Find("HealthBar").GetComponent<Bar>();
+        manaBar = GameObject.Find("ManaBar").GetComponent<Bar>();
+        expBar = GameObject.Find("ExpBar").GetComponent<Bar>();
+
         playerHealth = maxHealth;
         playerMana = maxMana;
         exp = 80;
@@ -179,9 +183,9 @@ public class CharStats : MonoBehaviour
         level += 1;
         exp = 0;
         maxExp += 50;
+        expBar.SetMaxExp(maxExp);
         statPoint++;
         skillPoint++;
-        UpdateStats();
     }
 
     public void MaxHealthIncreasement()
@@ -244,9 +248,6 @@ public class CharStats : MonoBehaviour
 
     public void UpdateStats()
     {
-        healthBar.SetMaxHealth(maxHealth);
-        manaBar.SetMaxMana(maxMana);
-        expBar.SetMaxExp(maxExp);
 
         healthBar.SetHealth(playerHealth);
         manaBar.SetMana(playerMana);
