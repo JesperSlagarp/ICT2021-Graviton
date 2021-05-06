@@ -34,11 +34,11 @@ public class BasicGun : MonoBehaviour
             Shoot();
         }
 
-        if (Input.GetButtonDown("Drop"))
+        /*if (Input.GetButtonDown("Drop"))
         {
             GameObject weapon = Instantiate(droppedWeapon, firePoint.position, Quaternion.identity);
             Destroy(this.gameObject);
-        }
+        }*/
 
         charstats.SetReloadBar(nextShoot, reloadTime);
     }

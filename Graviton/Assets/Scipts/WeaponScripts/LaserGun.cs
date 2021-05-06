@@ -14,6 +14,7 @@ public class LaserGun : MonoBehaviour
     public int damage;
     private CharStats charstats;
     private GameObject player;
+    public GameObject droppedWeapon;
 
     void Awake()
     {
@@ -46,6 +47,12 @@ public class LaserGun : MonoBehaviour
         if (Time.time - timer > duration)
         {
             charstats.SetReloadBar(nextShoot, duration);
+        }
+
+        if (Input.GetButtonDown("Drop"))
+        {
+            GameObject weapon = Instantiate(droppedWeapon, firePoint.position, Quaternion.identity);
+            Destroy(this.gameObject);
         }
     }
 

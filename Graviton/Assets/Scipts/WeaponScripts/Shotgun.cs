@@ -41,6 +41,12 @@ public class Shotgun : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        if (Input.GetButtonDown("Drop"))
+        {
+            GameObject weapon = Instantiate(droppedWeapon, firePoint.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
+
         charstats.SetReloadBar(nextShoot, reloadTime);
     }
 

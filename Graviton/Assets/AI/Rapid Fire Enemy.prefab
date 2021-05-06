@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3990779870061093495}
   - component: {fileID: 817070683200874289}
   m_Layer: 8
-  m_Name: RangedAI Basic Gun 2
+  m_Name: Rapid Fire Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -341,6 +341,10 @@ PrefabInstance:
     - target: {fileID: 34486976123434858, guid: eae220f4c043dcd49abb5f71447752b0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758528669378366650, guid: eae220f4c043dcd49abb5f71447752b0, type: 3}
+      propertyPath: reloadTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7508871662323389647, guid: eae220f4c043dcd49abb5f71447752b0, type: 3}
       propertyPath: m_Name
