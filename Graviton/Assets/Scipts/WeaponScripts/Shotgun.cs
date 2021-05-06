@@ -6,7 +6,6 @@ public class Shotgun : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
-    public GameObject droppedWeapon;
     public float reloadTime;
     public int bulletAmount;
     public int spreadVariation;
@@ -33,18 +32,6 @@ public class Shotgun : MonoBehaviour
         {
             nextShoot = Time.time + reloadTime;
             Shoot();
-        }
-
-        else if (Input.GetButtonDown("Drop"))
-        {
-            GameObject weapon = Instantiate(droppedWeapon, firePoint.position, Quaternion.identity);
-            Destroy(this.gameObject);
-        }
-
-        if (Input.GetButtonDown("Drop"))
-        {
-            GameObject weapon = Instantiate(droppedWeapon, firePoint.position, Quaternion.identity);
-            Destroy(this.gameObject);
         }
 
         charstats.SetReloadBar(nextShoot, reloadTime);

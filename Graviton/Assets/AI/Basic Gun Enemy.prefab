@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 8537491017033182218}
   - component: {fileID: 5354650800432769356}
   m_Layer: 8
-  m_Name: RangedAI 2
+  m_Name: Basic Gun Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,6 +279,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &9003953331921604206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7649085717548561260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e41d09f891de6c640b08813951f8dc96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLaser: 0
+  rotateSpeed: 0
 --- !u!1001 &149705177035089827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -342,6 +356,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4758528669378366650, guid: eae220f4c043dcd49abb5f71447752b0, type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 1549372007815941853}
     - target: {fileID: 7508871662323389647, guid: eae220f4c043dcd49abb5f71447752b0, type: 3}
       propertyPath: m_Name
       value: Basic Enemy Gun
@@ -350,10 +368,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8357657763838605581, guid: eae220f4c043dcd49abb5f71447752b0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: eae220f4c043dcd49abb5f71447752b0, type: 3}
+--- !u!1 &7649085717548561260 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7508871662323389647, guid: eae220f4c043dcd49abb5f71447752b0, type: 3}
+  m_PrefabInstance: {fileID: 149705177035089827}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &173768640380817609 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 34486976123434858, guid: eae220f4c043dcd49abb5f71447752b0, type: 3}
+  m_PrefabInstance: {fileID: 149705177035089827}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1549372007815941853 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1698883665905002878, guid: eae220f4c043dcd49abb5f71447752b0, type: 3}
   m_PrefabInstance: {fileID: 149705177035089827}
   m_PrefabAsset: {fileID: 0}

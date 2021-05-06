@@ -6,7 +6,6 @@ public class BasicGun : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
-    public GameObject droppedWeapon;
     public float reloadTime = 1f;
     private float nextShoot = 0f;
     private CharStats charstats;
@@ -33,12 +32,6 @@ public class BasicGun : MonoBehaviour
             nextShoot = Time.time + reloadTime;
             Shoot();
         }
-
-        /*if (Input.GetButtonDown("Drop"))
-        {
-            GameObject weapon = Instantiate(droppedWeapon, firePoint.position, Quaternion.identity);
-            Destroy(this.gameObject);
-        }*/
 
         charstats.SetReloadBar(nextShoot, reloadTime);
     }

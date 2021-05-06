@@ -5,23 +5,13 @@ using UnityEngine;
 public class EnemyLaserGun : MonoBehaviour
 {
     public Transform firePoint;
-    public float reloadTime;
-    public float duration;
-    private float nextShoot = 0f;
-    private float timer;
-    private bool reload;
     public LineRenderer lineRenderer;
     public int damage;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        
+            Shoot();
     }
 
     void Shoot()
@@ -34,7 +24,17 @@ public class EnemyLaserGun : MonoBehaviour
         //Debug.Log(hit.collider.gameObject.name);
         if (hit.collider.gameObject.tag == "Player") //&& distance < maxDistance
         {
-            
+            CharStats charstats = hit.collider.gameObject.GetComponent<CharStats>();
+            charstats.TakeDamage(damage);
+            lineRenderer.SetPosition(0, firePoint.position);
+            lineRenderer.SetPosition(1, hit.point);
+            lineRenderer.enabled = true;
         }
+        else
+        {
+            lineRenderer.enabled = false;
+        }
+
+        
     }
 }

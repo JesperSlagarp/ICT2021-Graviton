@@ -5,7 +5,6 @@ using UnityEngine;
 public class LaserGun : MonoBehaviour
 {
     public Transform firePoint;
-    public float reloadTime;
     public float duration; 
     private float nextShoot = 0f;
     private float timer;
@@ -14,7 +13,6 @@ public class LaserGun : MonoBehaviour
     public int damage;
     private CharStats charstats;
     private GameObject player;
-    public GameObject droppedWeapon;
 
     void Awake()
     {
@@ -48,12 +46,6 @@ public class LaserGun : MonoBehaviour
         {
             charstats.SetReloadBar(nextShoot, duration);
         }
-
-        if (Input.GetButtonDown("Drop"))
-        {
-            GameObject weapon = Instantiate(droppedWeapon, firePoint.position, Quaternion.identity);
-            Destroy(this.gameObject);
-        }
     }
 
     IEnumerator wait()
@@ -72,7 +64,6 @@ public class LaserGun : MonoBehaviour
             EnemyStats enemystats = hit.collider.gameObject.GetComponent<EnemyStats>();
             enemystats.TakeDamage(damage);
         }
-        //Debug.DrawRay(firePoint.position, firePoint.right, Color.red, 10.0f);
         Debug.Log(hit.collider.gameObject.name);
 
         lineRenderer.SetPosition(0, firePoint.position);
