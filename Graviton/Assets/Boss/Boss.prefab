@@ -542,8 +542,8 @@ MonoBehaviour:
   baseRotationSpeed: 0.5
   lasers:
   - {fileID: 8031697865260587797}
-  - {fileID: 8031697866463245357}
   - {fileID: 8031697866375162711}
+  - {fileID: 8031697866463245357}
   - {fileID: 8031697865644199048}
 --- !u!1 &8031697865644199048
 GameObject:

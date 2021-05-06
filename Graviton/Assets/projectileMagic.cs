@@ -25,4 +25,9 @@ public class projectileMagic : MonoBehaviour
         GameObject tempProjectile = Instantiate(projectile, transform);
         tempProjectile.GetComponent<Rigidbody2D>().AddForce(shootDir * projectileSpeed, ForceMode2D.Impulse);
     }
+
+    public void SetActive(bool active)
+    {
+        gameObject.SetActive(active);
+    }
 }

@@ -40,7 +40,7 @@ public class bossController : MonoBehaviour
         if (phaseTwo)
         {
             Debug.Log("phase 2");
-            laserMount.SetActive(true);
+            laserMount.GetComponent<laserMount>().phaseTwo();
             AoE_Magic.SetActive(true);
             projectileMagic.SetActive(true);
         }
@@ -77,6 +77,6 @@ public class bossController : MonoBehaviour
         Debug.Log("Player detected");
         laserMount.SetActive(true);
         AoE_Magic.SetActive(false);
-        projectileMagic.SetActive(false);  
+        projectileMagic.SetActive(true);  
     }
 }
