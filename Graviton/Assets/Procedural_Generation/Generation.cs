@@ -24,14 +24,16 @@ public class Generation : MonoBehaviour
     private Tilemap foregroundMap;
     [SerializeField]
     private Tilemap topMap;
-    [SerializeField]
+    /*[SerializeField]
     private Tile floorTile;
     [SerializeField]
     private Tile wallTile;
     [SerializeField]
     private Tile midTile;
     [SerializeField]
-    private Tile topTile;
+    private Tile topTile;*/
+    [SerializeField]
+    private Tile[] tiles = new Tile[10];
     [SerializeField]
     private int recursionLimit;
     [SerializeField]
@@ -138,52 +140,22 @@ public class Generation : MonoBehaviour
                 TileBase tileUpRight = floorMap.GetTile(posUpRight);
                 TileBase tileUpLeft = floorMap.GetTile(posUpLeft);
 
-
+                
                 if (!tile)
                 {
                     //foreground and top
-                    if (!tileTwoBelow && !tileBelow) topMap.SetTile(pos, topTile);
-                    else if (!tileBelow) foregroundMap.SetTile(pos, midTile); 
+                    if (!tileTwoBelow && !tileBelow) topMap.SetTile(pos, tiles[3]);
+                    else if (!tileBelow) foregroundMap.SetTile(pos, tiles[2]); 
                     //Wall_Tilemap
-                    if (tileAbove || tileRight || tileLeft || tileBelow) wallMap.SetTile(pos, wallTile);
-                    else if (tileUpRight || tileUpLeft) wallMap.SetTile(pos, wallTile);
+                    if (tileAbove || tileRight || tileLeft || tileBelow) wallMap.SetTile(pos, tiles[1]);
+                    else if (tileUpRight || tileUpLeft) wallMap.SetTile(pos, tiles[1]);
                 }
                 else
                 { 
                     //top
-                    if (!tileTwoBelow) topMap.SetTile(pos, topTile);
+                    if(!tileBelow) topMap.SetTile(pos, tiles[3]);
+                    else if (!tileTwoBelow) topMap.SetTile(pos, tiles[4]);
                 }
-                /*
-                if (!tile)
-                {
-                    //Wall_Tilemap
-                    if (tileAbove || tileRight || tileLeft || tileBelow) wallMap.SetTile(pos, wallTile);
-                    else if(tileUpRight || tileUpLeft) wallMap.SetTile(pos, wallTile);
-
-                    //Foreground_Tilemap
-
-                    if (!tileBelow) 
-                    {
-                        if (tile3DownRight || tile3DownLeft) topMap.SetTile(pos, topTile);
-                        else if(tile2DownRight || tile2DownLeft) topMap.SetTile(pos, topTile);
-                        else if(tileDownRight || tileDownLeft) topMap.SetTile(pos, topTile);
-                        else if (tileRight || tileLeft) foregroundMap.SetTile(pos, midTile);
-  
-                        if (tileTwoBelow) foregroundMap.SetTile(pos, midTile);
-                        else if (tileThreeBelow) topMap.SetTile(pos, topTile);
-                    }
-                    
-
-                }
-                else {
-                    //Foreground_Tilemap
-                    if (!tileBelow) {
-                        if (!(tile3DownRight || tile3DownLeft) ) foregroundMap.SetTile(pos, midTile);
-                        else topMap.SetTile(pos, topTile); 
-
-                        if(tileAbove && (tileDownLeft != tileDownRight) && !tileTwoBelow) topMap.SetTile(pos, topTile);
-                    } else if (!tileTwoBelow) topMap.SetTile(pos, topTile);
-                }*/
             }
         }
     }
@@ -441,7 +413,7 @@ public class Generation : MonoBehaviour
 
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                putTile(x + xOffset, y + yOffset, floorMap, floorTile);
+                putTile(x + xOffset, y + yOffset, floorMap, tiles[0]);
             }
         }
     }
@@ -460,9 +432,9 @@ public class Generation : MonoBehaviour
 
             for (int i = 0; i < length; i++)
             {
-                putTile(entrancePos.x - 1, entrancePos.y + yOffset + i, floorMap, floorTile);
-                putTile(entrancePos.x, entrancePos.y + yOffset + i, floorMap, floorTile);
-                putTile(entrancePos.x + 1, entrancePos.y + yOffset + i, floorMap, floorTile);
+                putTile(entrancePos.x - 1, entrancePos.y + yOffset + i, floorMap, tiles[0]);
+                putTile(entrancePos.x, entrancePos.y + yOffset + i, floorMap, tiles[0]);
+                putTile(entrancePos.x + 1, entrancePos.y + yOffset + i, floorMap, tiles[0]);
             }
         }
         else if (dir == 1 || dir == 3)
@@ -474,9 +446,9 @@ public class Generation : MonoBehaviour
 
             for (int i = 0; i < length; i++)
             {
-                putTile(entrancePos.x + xOffset + i, entrancePos.y - 1, floorMap, floorTile);
-                putTile(entrancePos.x + xOffset + i, entrancePos.y, floorMap, floorTile);
-                putTile(entrancePos.x + xOffset + i, entrancePos.y + 1, floorMap, floorTile);
+                putTile(entrancePos.x + xOffset + i, entrancePos.y - 1, floorMap, tiles[0]);
+                putTile(entrancePos.x + xOffset + i, entrancePos.y, floorMap, tiles[0]);
+                putTile(entrancePos.x + xOffset + i, entrancePos.y + 1, floorMap, tiles[0]);
             }
         }
     }
