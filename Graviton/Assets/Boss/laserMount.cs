@@ -31,10 +31,7 @@ public class laserMount : MonoBehaviour
 
     }
 
-    public void SetActive(bool active) {
-        gameObject.SetActive(active);
-    }
-
+    
     private void OnEnable()
     {
         Debug.Log("Laser is active");

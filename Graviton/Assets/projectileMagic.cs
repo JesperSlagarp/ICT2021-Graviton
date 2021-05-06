@@ -18,16 +18,13 @@ public class projectileMagic : MonoBehaviour
 
         InvokeRepeating("shoot", fireRate, fireRate);
     }
-    private void shoot() 
+    private void shoot()
     {
         Vector3 shootDir = player.transform.position - transform.position;
         shootDir = shootDir.normalized;
         GameObject tempProjectile = Instantiate(projectile, transform);
         tempProjectile.GetComponent<Rigidbody2D>().AddForce(shootDir * projectileSpeed, ForceMode2D.Impulse);
     }
-
-    public void SetActive(bool active)
-    {
-        gameObject.SetActive(active);
-    }
 }
+
+    
