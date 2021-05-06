@@ -20,7 +20,7 @@ public class bossController : MonoBehaviour
     private GameObject projectileMagic;
 
     [SerializeField]
-    private bool phaseTwo;
+    private bool phaseTwo = false;
 
     private float health;
 
@@ -70,11 +70,11 @@ public class bossController : MonoBehaviour
 
     
     private void OnTriggerEnter2D(Collider2D collider) {
-        Debug.Log("Detected");
+        
         if (!collider.CompareTag("Player"))
             return;
 
-        Debug.Log("Player detected");
+        Debug.Log("Player at boss detected");
         laserMount.SetActive(true);
         AoE_Magic.SetActive(false);
         projectileMagic.SetActive(true);  

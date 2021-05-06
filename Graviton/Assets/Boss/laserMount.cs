@@ -19,6 +19,10 @@ public class laserMount : MonoBehaviour
     private void Awake()
     {
         rotationSpeed = baseRotationSpeed;
+        foreach (GameObject laser in lasers)
+        {
+            laser.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -50,6 +54,7 @@ public class laserMount : MonoBehaviour
 
     public void phaseOne() {
         int i = 2;
+        Debug.Log("Laser mount phase 1");
         foreach (GameObject laser in lasers)
         {
             if(i % 2 == 0)
@@ -60,6 +65,7 @@ public class laserMount : MonoBehaviour
 
     public void phaseTwo()
     {
+        Debug.Log("Laser mount phase 2");
         foreach (GameObject laser in lasers)
         {
             laser.SetActive(true);

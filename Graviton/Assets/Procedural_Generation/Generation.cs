@@ -9,7 +9,9 @@ public class Generation : MonoBehaviour
     [SerializeField]
     private GameObject boss;
     [SerializeField]
-    private GameObject door;
+    private GameObject doorFront;
+    [SerializeField]
+    private GameObject doorSide;
     [SerializeField]
     private GameObject treasure;
     [SerializeField]
@@ -33,7 +35,7 @@ public class Generation : MonoBehaviour
     [SerializeField]
     private Tile topTile;*/
     [SerializeField]
-    private Tile[] tiles = new Tile[10];
+    private Tile[] tiles = new Tile[12];
     [SerializeField]
     private int recursionLimit;
     [SerializeField]
@@ -143,19 +145,42 @@ public class Generation : MonoBehaviour
                 
                 if (!tile)
                 {
+                    
                     //foreground and top
-                    if (!tileThreeBelow && !tileTwoBelow && !tileBelow) topMap.SetTile(pos, tiles[3]);//No line
-                    else if (!tileTwoBelow && !tileBelow) topMap.SetTile(pos, tiles[5]);//Bottom line
+                    if (!tileThreeBelow && !tileTwoBelow && !tileBelow) 
+                    {
+                        topMap.SetTile(pos, tiles[3]);//No line
+
+                        if (tile2DownRight) topMap.SetTile(pos, tiles[6]); //Right line
+                        else if (tile2DownLeft) topMap.SetTile(pos, tiles[7]); //Left line
+                    }
+                    else if (!tileTwoBelow && !tileBelow) 
+                    {
+                        topMap.SetTile(pos, tiles[5]);//Bottom line
+                        if(tileRight) topMap.SetTile(pos, tiles[8]); //Corner down right
+                        else if(tileLeft) topMap.SetTile(pos, tiles[9]); //Corner down left
+                    }
                     else if (!tileBelow) foregroundMap.SetTile(pos, tiles[2]); 
                     //Wall_Tilemap
                     if (tileAbove || tileRight || tileLeft || tileBelow) wallMap.SetTile(pos, tiles[1]);
                     else if (tileUpRight || tileUpLeft) wallMap.SetTile(pos, tiles[1]);
                 }
                 else
-                { 
+                {
                     //top
-                    if(!tileBelow) topMap.SetTile(pos, tiles[3]);
-                    else if (!tileTwoBelow) topMap.SetTile(pos, tiles[4]); //Top line
+                    if (!tileBelow)
+                    {
+                        topMap.SetTile(pos, tiles[3]);
+                        if (tileDownRight) topMap.SetTile(pos, tiles[6]); //Right line
+                        else if (tileDownLeft) topMap.SetTile(pos, tiles[7]); //Left line
+                    }
+                    else if (!tileTwoBelow)
+                    {
+                        topMap.SetTile(pos, tiles[4]); //Top line
+                        if (tile2DownRight) topMap.SetTile(pos, tiles[10]); //Corner up right
+                        else if (tile2DownLeft) topMap.SetTile(pos, tiles[11]); //Corner up left 
+
+                    }
                 }
             }
         }
@@ -270,10 +295,10 @@ public class Generation : MonoBehaviour
 
         switch (dir)
         {
-            case 0: enterPos.y -= 50; Instantiate(door, enterPos, Quaternion.identity); break;
-            case 1: enterPos.x += 50; Instantiate(door, enterPos, Quaternion.Euler(0, 0, 90));break;
-            case 2: enterPos.y += 50; Instantiate(door, enterPos, Quaternion.identity); break;
-            case 3: enterPos.x -= 50; Instantiate(door, enterPos, Quaternion.Euler(0, 0, 90)); break;
+            case 0: enterPos.y -= 50; Instantiate(doorFront, enterPos + new Vector3(0.5f, 1, 0), Quaternion.identity); break;
+            case 1: enterPos.x += 50; Instantiate(doorSide, enterPos + new Vector3(-0.1f, 2.5f, 0), Quaternion.identity); break;
+            case 2: enterPos.y += 50; Instantiate(doorFront, enterPos + new Vector3(0.5f, 1, 0), Quaternion.identity); break;
+            case 3: enterPos.x -= 50; Instantiate(doorSide, enterPos + new Vector3(+0.1f, 2.5f, 0), Quaternion.identity) ; break;
         }
 
         

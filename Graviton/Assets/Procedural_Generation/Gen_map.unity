@@ -957,7 +957,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 8031697866457453280, guid: bec18be2ce0f2e446b575d8f3360df02, type: 3}
-  door: {fileID: 2513772333092337153, guid: 554a9381378fe3d4d86d428621a10e2b, type: 3}
+  doorFront: {fileID: 2513772333092337153, guid: 554a9381378fe3d4d86d428621a10e2b, type: 3}
+  doorSide: {fileID: 2083882886599609729, guid: 59d4d85e27bf1cf49abfb6572c17faa4, type: 3}
   treasure: {fileID: 1524509665763465975, guid: f6569ba939dd63a46baea406c9fdac52, type: 3}
   meleeEnemy: {fileID: 6278627692612934323, guid: cfe56f542bdb402499bdbd0bcde6f83a, type: 3}
   rangedEnemy: {fileID: 5574560529831073802, guid: 844532b54c0ec1544943134a2ef18f50, type: 3}
@@ -970,12 +971,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 16bd6625f7c71ea40b804d0b099c571a, type: 2}
   - {fileID: 11400000, guid: a0a3cbc4622ff6044bf639e9e076c65e, type: 2}
   - {fileID: 11400000, guid: 6d9a52b4abf358d4caeae65e15892494, type: 2}
+  - {fileID: 11400000, guid: 365d51f65c1e2314d9d175ac33a2ad23, type: 2}
+  - {fileID: 11400000, guid: 99a9d5e3d02a9274a9269833d9fa69e6, type: 2}
+  - {fileID: 11400000, guid: 60824fef22befc743a19016392f2160b, type: 2}
+  - {fileID: 11400000, guid: 1c9ffe7cef2d6cb4a8563197e1b25ace, type: 2}
+  - {fileID: 11400000, guid: 7f7f09e49e16a634ea5a65f691d928e6, type: 2}
+  - {fileID: 11400000, guid: d708c4f32102afc4db79b131bc22fcc3, type: 2}
+  - {fileID: 11400000, guid: d461b2a8460740f4791a2f07cdb0e768, type: 2}
   - {fileID: 11400000, guid: 1117c3688ca8fa444b9b49e463368f6e, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   recursionLimit: 8
   roomWidth: 27
   roomHeight: 17
