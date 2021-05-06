@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyRotate : MonoBehaviour
 {
+    public bool isLaser;
+    public float rotateSpeed;
     void FixedUpdate()
     {
         GameObject player = GameObject.Find("Player");
@@ -13,6 +15,13 @@ public class EnemyRotate : MonoBehaviour
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        transform.rotation = rotation;
+        if (isLaser == true)
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotateSpeed * Time.deltaTime);
+        }
+        else
+        {
+            transform.rotation = rotation;
+        }
     }
 }

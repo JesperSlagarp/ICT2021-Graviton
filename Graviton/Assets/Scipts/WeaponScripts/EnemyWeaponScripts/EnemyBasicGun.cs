@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyBasicGun : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    public Transform firePoint;
     public int maxDistance;
     public float reloadTime = 1f;
     private float nextShoot = 0f;
@@ -29,7 +30,7 @@ public class EnemyBasicGun : MonoBehaviour
         int mask = (1<<LayerMask.NameToLayer("Player")) | (1<<LayerMask.NameToLayer("obstacles"));
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, Mathf.Infinity, mask);
         //Debug.Log(hit.collider.gameObject.name);
-        if (hit.collider.gameObject.name == "Player") //&& distance < maxDistance
+        if (hit.collider.gameObject.tag == "Player") //&& distance < maxDistance
         {
             GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();

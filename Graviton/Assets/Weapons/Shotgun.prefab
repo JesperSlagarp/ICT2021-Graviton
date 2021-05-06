@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2727919698538879487}
   - component: {fileID: 6191525156910309306}
   - component: {fileID: 1089745305260973751}
+  - component: {fileID: -107453720993958622}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -112,9 +113,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 4617453559214757191}
   bulletPrefab: {fileID: 4912265991779006812, guid: 708904239a485034a93fe24ef1387334, type: 3}
-  droppedWeapon: {fileID: 8079221772577003265, guid: f624315c811fec1439b26dccd7230c0a, type: 3}
   reloadTime: 2
+  bulletAmount: 10
+  spreadVariation: 20
   bulletForce: 20
+--- !u!114 &-107453720993958622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2167998492792298142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08894d4d6e493a49a49a42008cfe7dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedWeapon: {fileID: 8079221772577003265, guid: f624315c811fec1439b26dccd7230c0a, type: 3}
 --- !u!1 &6621144127947021303
 GameObject:
   m_ObjectHideFlags: 0

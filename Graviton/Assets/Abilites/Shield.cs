@@ -41,13 +41,20 @@ public class Shield : MonoBehaviour
             charstats.shield = false;
         }
 
-        if (nextUse > Time.time)
+        /*if (nextUse > Time.time)
         {
             CooldownBar.SetCooldown(1 - ((nextUse - Time.time)/cooldown));
         }
         else
         {
             CooldownBar.SetCooldown(0);
-        }
+        }*/
+
+        CooldownBar.SetCooldown(charstats.SetCooldownBar(nextUse, cooldown));
+    }
+
+    public void Use()
+    {
+
     }
 }

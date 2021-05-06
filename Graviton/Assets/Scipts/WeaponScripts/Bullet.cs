@@ -19,9 +19,6 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name != "Bullet(Clone)" && collision.gameObject.name != "Sprite")
-        {
             Destroy(this.gameObject);
-        }
     }
 }

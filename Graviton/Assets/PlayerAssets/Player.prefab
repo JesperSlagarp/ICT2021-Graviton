@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 7240764085092545317}
   - component: {fileID: 1909479215996618615}
   - component: {fileID: 1909479215996618619}
-  - component: {fileID: 1909479214942967317}
-  - component: {fileID: 1857537268}
+  - component: {fileID: 5620371456945991859}
+  - component: {fileID: 8150714407089314740}
+  - component: {fileID: 1089098987890399256}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -108,6 +109,9 @@ MonoBehaviour:
   isFull: 00
   slots:
   - {fileID: 0}
+  inventoryIsFull: 00
+  inventorySlots:
+  - {fileID: 0}
 --- !u!114 &1909479215996618619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,20 +127,50 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   manaBar: {fileID: 0}
   expBar: {fileID: 0}
-  maxHealth: 100
-  maxMana: 100
+  maxStat: 100
   damageTaken: 0
   shield: 0
-  statPoint: 0
-  skillPoint: 0
   baseArmor: 0
-  damageCooldown: 1
+  baseDamage: 1
+  damageCooldown: 0
   exp: 0
   maxExp: 100
   level: 1
-  aoeLevel: 0
-  shieldLevel: 0
---- !u!114 &1909479214942967317
+--- !u!114 &5620371456945991859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837755101286234274}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0a4021d91d28d41b54f161d58bc0ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CooldownBar: {fileID: 0}
+  cooldown: 2
+  mana: 10
+  attackDistance: 2
+  damage: 30
+  abilities: {fileID: 0}
+--- !u!114 &8150714407089314740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837755101286234274}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bedfe219a303664089cae17cb7036ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CooldownBar: {fileID: 0}
+  cooldown: 2
+  mana: 10
+  duration: 3
+--- !u!114 &1089098987890399256
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,44 +179,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5837755101286234274}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb019cf08451fc440b8f1b0ea6b0712d, type: 3}
+  m_Script: {fileID: 11500000, guid: a4c7fc95c372416b8fab3069da6a2404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aoeCooldownBar: {fileID: 0}
-  shieldCooldownBar: {fileID: 0}
-  aoeReady: 1
-  shieldReady: 1
-  aoeCd: 3
-  shieldCd: 5
---- !u!114 &1857537268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5837755101286234274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e11c31cdaea85e04f92b9b04bbe87dfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFull: 000000000000000000000000000000
-  slots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  aoeattack: {fileID: 0}
+  shield: {fileID: 0}
+  CooldownBar: {fileID: 0}
+  CooldownBar2: {fileID: 4397137895158539098, guid: 7c03149dbd4cd39458c4efb43a00c100, type: 3}
+  aoeattackEnabled: 0
+  shieldEnabled: 0
 --- !u!1 &5837755101884924347
 GameObject:
   m_ObjectHideFlags: 0
