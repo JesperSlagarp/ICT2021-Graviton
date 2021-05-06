@@ -144,7 +144,8 @@ public class Generation : MonoBehaviour
                 if (!tile)
                 {
                     //foreground and top
-                    if (!tileTwoBelow && !tileBelow) topMap.SetTile(pos, tiles[3]);
+                    if (!tileThreeBelow && !tileTwoBelow && !tileBelow) topMap.SetTile(pos, tiles[3]);//No line
+                    else if (!tileTwoBelow && !tileBelow) topMap.SetTile(pos, tiles[5]);//Bottom line
                     else if (!tileBelow) foregroundMap.SetTile(pos, tiles[2]); 
                     //Wall_Tilemap
                     if (tileAbove || tileRight || tileLeft || tileBelow) wallMap.SetTile(pos, tiles[1]);
@@ -154,7 +155,7 @@ public class Generation : MonoBehaviour
                 { 
                     //top
                     if(!tileBelow) topMap.SetTile(pos, tiles[3]);
-                    else if (!tileTwoBelow) topMap.SetTile(pos, tiles[4]);
+                    else if (!tileTwoBelow) topMap.SetTile(pos, tiles[4]); //Top line
                 }
             }
         }

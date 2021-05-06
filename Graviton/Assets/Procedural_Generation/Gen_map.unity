@@ -965,10 +965,17 @@ MonoBehaviour:
   wallMap: {fileID: 156039817}
   foregroundMap: {fileID: 2088730372}
   topMap: {fileID: 2009431636}
-  floorTile: {fileID: 11400000, guid: 6dc4b5fadd7f7ab439cdb4ccbac0a86a, type: 2}
-  wallTile: {fileID: 11400000, guid: f609c913d9b7aaf4d943a256fa1e2d26, type: 2}
-  midTile: {fileID: 11400000, guid: f1cfb017c713ccd4bb489cc82f08073c, type: 2}
-  topTile: {fileID: 11400000, guid: 7709c3417ec28474f8c3347cf3ff7fb2, type: 2}
+  tiles:
+  - {fileID: 11400000, guid: a1518dd5c04cbbb4883c983cd9dd3bb8, type: 2}
+  - {fileID: 11400000, guid: 16bd6625f7c71ea40b804d0b099c571a, type: 2}
+  - {fileID: 11400000, guid: a0a3cbc4622ff6044bf639e9e076c65e, type: 2}
+  - {fileID: 11400000, guid: 6d9a52b4abf358d4caeae65e15892494, type: 2}
+  - {fileID: 11400000, guid: 1117c3688ca8fa444b9b49e463368f6e, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   recursionLimit: 8
   roomWidth: 27
   roomHeight: 17
