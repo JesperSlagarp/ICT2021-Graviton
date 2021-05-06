@@ -11,6 +11,9 @@ public class playerMovement : MonoBehaviour
     private bool isDashButtonDown;
     [SerializeField] private LayerMask dashLayerMask;
 
+    public GameObject[] players;
+
+
     Vector2 movement;
     /*
     private void Awake()
@@ -18,6 +21,10 @@ public class playerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }*/
     // Update is called once per frame
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -36,6 +43,21 @@ public class playerMovement : MonoBehaviour
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
 
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        FindStartPos();
+        players = GameObject.FindGameObjectsWithTag("Player");
+
+        if(players.Length > 1)
+        {
+            Destroy(players[1]);
+        }
+    }
+    void FindStartPos()
+    {
+        transform.position = GameObject.FindWithTag("StartPos").transform.position;
     }
 
     //50 times/sec
