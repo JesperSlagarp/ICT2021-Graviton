@@ -7,21 +7,26 @@ public class Pickup : MonoBehaviour
     //public GameObject player;
     private WeaponSlots weaponSlots;
     public GameObject playerWeapon;
+    private InventorySlots inventorySlots;
 
     private void Start()
     {
         weaponSlots = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponSlots>();
+        inventorySlots = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySlots>();
     }
     void OnTriggerStay2D(Collider2D collider)
     {
         if (Input.GetButton("Pickup")){
+            Debug.Log("Pressed F");
             for(int i = 0; i < weaponSlots.slots.Length; i++)
             {
                 if(weaponSlots.isFull[i] == false)
                 {
                     weaponSlots.isFull[i] = true;
                     GameObject player = GameObject.Find("Player");
+                    Debug.Log("Before error");
                     weaponSlots.slots[i].sprite = playerWeapon.GetComponent<SpriteRenderer>().sprite;
+                    Debug.Log("After error");
                     if (player.transform.childCount == 1)
                     {
                         Vector3 pos = new Vector3(0.6f, 0.8f, 0) + player.transform.position;
@@ -33,14 +38,14 @@ public class Pickup : MonoBehaviour
                     }
                }
             }
-        }
-
-        for(int i = 0; i < weaponSlots.inventorySlots.Length; i++)
-        {
-            if (weaponSlots.inventoryIsFull[i] == false)
+            for (int j = 0; j < inventorySlots.slots.Length; j++)
             {
-                weaponSlots.inventoryIsFull[i] = true;
-                weaponSlots.inventorySlots[i].sprite = playerWeapon.GetComponent<SpriteRenderer>().sprite;
+                if (inventorySlots.isFull[j] == false)
+                {
+                    inventorySlots.isFull[j] = true;
+                    inventorySlots.slots[j].sprite = playerWeapon.GetComponent<SpriteRenderer>().sprite;
+                    break;
+                }
             }
         }
     }

@@ -10,7 +10,10 @@ public class CharStats : MonoBehaviour
     public Bar healthBar;
     public Bar manaBar;
     public Bar expBar;
-    public int maxStat = 100;
+
+    public int maxHealth = 100;
+    public int maxMana = 100;
+
     public int playerMana { get; private set; }
     public int playerHealth { get; private set; }
     public bool damageTaken = false;
@@ -19,9 +22,12 @@ public class CharStats : MonoBehaviour
     public Stats damage;
     public Stats armor;
 
+    public int statPoint = 0;
+    public int skillPoint = 0;
+
     [Min(0)]
     public int baseArmor = 0;
-    public int baseDamage = 1;
+    public int baseDamage { get; private set; } = 25;
 
     private float remainingTime;
     private float delayTime = 3;
@@ -31,6 +37,9 @@ public class CharStats : MonoBehaviour
     public int exp;
     public int maxExp = 100;
     public int level = 1;
+
+    public int aoeLevel;
+    public int shieldLevel;
 
     /*public void Save()
     {
@@ -45,12 +54,19 @@ public class CharStats : MonoBehaviour
     }*/
 
     void Awake(){
-        playerHealth = maxStat;
-        playerMana = maxStat;
+        healthBar = GameObject.Find("HealthBar").GetComponent<Bar>();
+        manaBar = GameObject.Find("ManaBar").GetComponent<Bar>();
+        expBar = GameObject.Find("ExpBar").GetComponent<Bar>();
+
+        playerHealth = maxHealth;
+        playerMana = maxMana;
         exp = 80;
 
-        healthBar.SetMaxHealth(maxStat);
-        manaBar.SetMaxMana(maxStat);
+        aoeLevel = 1;
+        shieldLevel = 1;
+
+        healthBar.SetMaxHealth(maxHealth);
+        manaBar.SetMaxMana(maxMana) ;
         expBar.SetMaxExp(maxExp);
         UpdateStats();
     }
@@ -96,14 +112,13 @@ public class CharStats : MonoBehaviour
 
     void RegenerateHP(){
         if(!damageTaken){
-        if(playerHealth < maxStat)
+        if(playerHealth < maxHealth)
             playerHealth += 2;
             healthBar.SetHealth(playerHealth);
-            Debug.Log("added hp");
         }
     }
     void RegenerateMana(){
-        if(playerMana < maxStat)
+        if(playerMana < maxMana)
         {
             playerMana += 2;
             manaBar.SetMana(playerMana);
@@ -147,16 +162,16 @@ public class CharStats : MonoBehaviour
     public void Heal(int quantity)
     {
         playerHealth += quantity;
-        if(playerHealth >= maxStat)
+        if(playerHealth >= maxHealth)
         {
-            playerHealth = maxStat;
+            playerHealth = maxHealth;
         }
     }
 
     public void getExp(int quantity)
     {
         exp += quantity;
-        if(exp >= maxExp)
+        if (exp >= maxExp)
         {
             levelUp();
         }
@@ -167,14 +182,77 @@ public class CharStats : MonoBehaviour
         level += 1;
         exp = 0;
         maxExp += 50;
-        baseDamage += 20;
+        expBar.SetMaxExp(maxExp);
+        statPoint++;
+        skillPoint++;
+    }
+
+    public void MaxHealthIncreasement()
+    {
+        if(statPoint > 0)
+        {
+            maxHealth += 20;
+            playerHealth += 20;
+            statPoint--;
+        }
+        UpdateStats();
+    }
+
+    public void MaxManaIncreasement()
+    {
+        if (statPoint > 0)
+        {
+            maxMana += 10;
+            playerMana += 10;
+            statPoint--;
+        }
+        UpdateStats();
+    }
+
+    public void DamageIncreasement()
+    {
+        if (statPoint > 0)
+        {
+            baseDamage += 5;
+            statPoint--;
+        }
+    }
+
+    public void ArmorIncreasement()
+    {
+        if (statPoint > 0)
+        {
+            baseArmor += 1;
+            statPoint--;
+        }
+    }
+
+    public void AoeLevelUp()
+    {
+        if(skillPoint > 0)
+        {
+            aoeLevel += 1;
+            skillPoint--;
+        }
+    }
+
+    public void ShieldLevelUp()
+    {
+        if(skillPoint > 0)
+        {
+            shieldLevel += 1;
+            skillPoint--;
+        }
     }
 
     public void UpdateStats()
     {
+
         healthBar.SetHealth(playerHealth);
         manaBar.SetMana(playerMana);
         expBar.SetExp(exp);
+
+
     }
 
     public virtual void Die(){

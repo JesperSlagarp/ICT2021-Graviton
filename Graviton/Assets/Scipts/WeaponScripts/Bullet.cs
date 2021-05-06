@@ -17,12 +17,8 @@ public class Bullet : MonoBehaviour
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }*/
 
-    public int damage;
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name != "Bullet(Clone)" && collision.gameObject.name != "Sprite")
-        {
             Destroy(this.gameObject);
-        }
     }
 }

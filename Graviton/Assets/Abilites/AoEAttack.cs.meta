@@ -3,7 +3,8 @@ guid: 0c0a4021d91d28d41b54f161d58bc0ab
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - CooldownBar: {fileID: 4397137895158539098, guid: 7c03149dbd4cd39458c4efb43a00c100, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

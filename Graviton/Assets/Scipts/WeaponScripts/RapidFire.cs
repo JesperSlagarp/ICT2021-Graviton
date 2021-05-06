@@ -9,17 +9,48 @@ public class RapidFire : MonoBehaviour
     public GameObject droppedWeapon;
     public float bulletForce = 20f;
     public float reloadTime = 1f;
-    public float nextShoot = 0f;
+    public float fireRate;
+    private float nextShoot = 0f;
+    private float nextBullet = 0f;
+    public float duration;
+    private float timer;
+    private CharStats charstats;
+    private GameObject player;
+
+    void Awake()
+    {
+        player = GameObject.Find("Player");
+        charstats = player.GetComponent<CharStats>();
+    }
+
+    void Start()
+    {
+        //charstats.ReloadBarSetup();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time > nextShoot)
+        if (Input.GetButtonDown("Fire1") && Time.time > nextShoot)
         {
-            nextShoot = Time.time + reloadTime;
-            Shoot();
+            timer = Time.time;
         }
-        else if (Input.GetButtonDown("Drop"))
+        else if (Input.GetButton("Fire1") && Time.time - timer < duration)
+        {
+            nextShoot = (Time.time - timer) + Time.time;
+            if (Time.time > nextBullet)
+            {
+                nextBullet = Time.time + fireRate;
+                Shoot();
+            }
+        }
+
+        if (Time.time - timer > duration)
+        {
+            //charstats.SetReloadBar(nextShoot, duration);
+        }
+
+        if (Input.GetButtonDown("Drop"))
         {
             GameObject weapon = Instantiate(droppedWeapon, firePoint.position, Quaternion.identity);
             Destroy(this.gameObject);
@@ -30,6 +61,6 @@ public class RapidFire : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+        rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
     }
 }

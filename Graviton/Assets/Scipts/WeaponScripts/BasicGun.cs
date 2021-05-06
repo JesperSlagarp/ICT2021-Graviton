@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class BasicGun : MonoBehaviour
 {
-
     public Transform firePoint;
     public GameObject bulletPrefab;
-    public GameObject droppedWeapon;
     public float reloadTime = 1f;
     private float nextShoot = 0f;
+    private CharStats charstats;
+    private GameObject player;
 
     public float bulletForce = 20f;
+
+    void Awake()
+    {
+        player = GameObject.Find("Player");
+        charstats = player.GetComponent<CharStats>();
+    }
+
+    void Start()
+    {
+        //charstats.ReloadBarSetup();
+    }
 
     // Update is called once per frame
     void Update()
@@ -21,11 +32,8 @@ public class BasicGun : MonoBehaviour
             nextShoot = Time.time + reloadTime;
             Shoot();
         }
-        else if (Input.GetButtonDown("Drop"))
-        {
-            GameObject weapon = Instantiate(droppedWeapon, firePoint.position, Quaternion.identity);
-            Destroy(this.gameObject);
-        }
+
+        //charstats.SetReloadBar(nextShoot, reloadTime);
     }
 
     void Shoot()
