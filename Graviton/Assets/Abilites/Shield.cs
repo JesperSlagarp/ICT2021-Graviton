@@ -50,7 +50,7 @@ public class Shield : MonoBehaviour
             CooldownBar.SetCooldown(0);
         }*/
 
-        CooldownBar.SetCooldown(charstats.SetCooldownBar(nextUse, cooldown));
+        //CooldownBar.SetCooldown(charstats.SetCooldownBar(nextUse, cooldown));
     }
 
     public void Use()

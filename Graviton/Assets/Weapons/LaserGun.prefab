@@ -113,11 +113,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 3920649240296941305}
-  reloadTime: 0
   duration: 3
   lineRenderer: {fileID: 4191305088932593951}
   damage: 1
-  droppedWeapon: {fileID: 5242307528257377076, guid: 355e19332c014fc40ae5d64ba80a9e19, type: 3}
 --- !u!114 &4169471422626982134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +221,7 @@ PrefabInstance:
     - target: {fileID: 9028174158569370711, guid: 8c78aa997d5a8874db4329f51dce9e8c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: 844d9079b637567498dc53e56a33693e, type: 2}
     - target: {fileID: 9028174158569370711, guid: 8c78aa997d5a8874db4329f51dce9e8c, type: 3}
       propertyPath: m_Parameters.colorGradient.ctime0
       value: 0

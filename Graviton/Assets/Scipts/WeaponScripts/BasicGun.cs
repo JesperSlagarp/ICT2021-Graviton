@@ -21,7 +21,7 @@ public class BasicGun : MonoBehaviour
 
     void Start()
     {
-        charstats.ReloadBarSetup();
+        //charstats.ReloadBarSetup();
     }
 
     // Update is called once per frame
@@ -33,7 +33,7 @@ public class BasicGun : MonoBehaviour
             Shoot();
         }
 
-        charstats.SetReloadBar(nextShoot, reloadTime);
+        //charstats.SetReloadBar(nextShoot, reloadTime);
     }
 
     void Shoot()

@@ -25,7 +25,7 @@ public class RapidFire : MonoBehaviour
 
     void Start()
     {
-        charstats.ReloadBarSetup();
+        //charstats.ReloadBarSetup();
     }
 
     // Update is called once per frame
@@ -47,7 +47,7 @@ public class RapidFire : MonoBehaviour
 
         if (Time.time - timer > duration)
         {
-            charstats.SetReloadBar(nextShoot, duration);
+            //charstats.SetReloadBar(nextShoot, duration);
         }
 
         if (Input.GetButtonDown("Drop"))

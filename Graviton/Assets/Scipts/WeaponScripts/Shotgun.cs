@@ -23,7 +23,7 @@ public class Shotgun : MonoBehaviour
 
     void Start()
     {
-        charstats.ReloadBarSetup();
+        //charstats.ReloadBarSetup();
     }
 
     void Update()
@@ -34,7 +34,7 @@ public class Shotgun : MonoBehaviour
             Shoot();
         }
 
-        charstats.SetReloadBar(nextShoot, reloadTime);
+        //charstats.SetReloadBar(nextShoot, reloadTime);
     }
 
 

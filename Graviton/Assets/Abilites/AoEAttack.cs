@@ -60,7 +60,7 @@ public class AoEAttack : MonoBehaviour
 
         //float cooldownset = charstats.SetCooldownBar(nextUse, cooldown);
 
-        CooldownBar.SetCooldown(charstats.SetCooldownBar(nextUse, cooldown));
+        //CooldownBar.SetCooldown(charstats.SetCooldownBar(nextUse, cooldown));
     }
 
     public void Use()
