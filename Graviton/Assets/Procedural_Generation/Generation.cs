@@ -51,9 +51,12 @@ public class Generation : MonoBehaviour
 
     private Vector3Int startPos;
 
+    private Vector3 gridOffset;
+
 
     private void Awake()
     {
+        gridOffset = gameObject.transform.position;
 
         startPos = new Vector3Int(0, 0, 0);
 
@@ -295,10 +298,10 @@ public class Generation : MonoBehaviour
 
         switch (dir)
         {
-            case 0: enterPos.y -= 50; Instantiate(doorFront, enterPos + new Vector3(0.5f, 1, 0), Quaternion.identity); break;
-            case 1: enterPos.x += 50; Instantiate(doorSide, enterPos + new Vector3(-0.1f, 2.5f, 0), Quaternion.identity); break;
-            case 2: enterPos.y += 50; Instantiate(doorFront, enterPos + new Vector3(0.5f, 1, 0), Quaternion.identity); break;
-            case 3: enterPos.x -= 50; Instantiate(doorSide, enterPos + new Vector3(+0.1f, 2.5f, 0), Quaternion.identity) ; break;
+            case 0: enterPos.y -= 50; Instantiate(doorFront, enterPos + new Vector3(0.5f, 1, 0) + gridOffset, Quaternion.identity); break;
+            case 1: enterPos.x += 50; Instantiate(doorSide, enterPos + new Vector3(-0.1f, 2.5f, 0) + gridOffset, Quaternion.identity); break;
+            case 2: enterPos.y += 50; Instantiate(doorFront, enterPos + new Vector3(0.5f, 1, 0) + gridOffset, Quaternion.identity); break;
+            case 3: enterPos.x -= 50; Instantiate(doorSide, enterPos + new Vector3(+0.1f, 2.5f, 0) + gridOffset, Quaternion.identity) ; break;
         }
 
         
