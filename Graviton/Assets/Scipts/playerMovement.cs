@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
+
     //public GameObject dashEffect;
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
     public Animator animator;
     private bool isDashButtonDown;
     [SerializeField] private LayerMask dashLayerMask;
+
+    
 
     Vector2 movement;
     /*
@@ -34,7 +37,6 @@ public class playerMovement : MonoBehaviour
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
-
 
     }
 

@@ -11,6 +11,7 @@ public class Drop : MonoBehaviour
     {
         if (Input.GetButtonDown("Drop"))
         {
+            gameObject.transform.parent = null;
             GameObject weapon = Instantiate(droppedWeapon, this.gameObject.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }

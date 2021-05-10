@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1909479215996618615}
   - component: {fileID: 1909479215996618619}
   - component: {fileID: -8931190197652034499}
+  - component: {fileID: 850415666405678574}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3fab19b9647aa2448a76110e8cc4dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gun: {fileID: 0}
   moveSpeed: 5
   rb: {fileID: 8870526684306118522}
   animator: {fileID: 5837755101884924320}
@@ -153,6 +155,35 @@ MonoBehaviour:
   shieldReady: 1
   aoeCd: 3
   shieldCd: 5
+--- !u!114 &850415666405678574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837755101286234274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11c31cdaea85e04f92b9b04bbe87dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFull: 000000000000000000000000000000
+  slots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &5837755101884924347
 GameObject:
   m_ObjectHideFlags: 0
