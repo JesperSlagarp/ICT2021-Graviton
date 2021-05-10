@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: -1085705577028902991}
   - component: {fileID: -2796548145378856634}
   - component: {fileID: -7784140052005949763}
+  - component: {fileID: -5240388363388444153}
   m_Layer: 0
   m_Name: Rapid Fire Gun
   m_TagString: Untagged
@@ -147,3 +148,16 @@ MonoBehaviour:
   reloadTime: 0.2
   fireRate: 0.1
   duration: 2
+--- !u!114 &-5240388363388444153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8433489587106205122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08894d4d6e493a49a49a42008cfe7dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedWeapon: {fileID: 4572993521372378168, guid: 2e8190f71da00654f99aea3e103b8a47, type: 3}

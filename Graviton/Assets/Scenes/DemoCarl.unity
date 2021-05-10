@@ -6483,40 +6483,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfe56f542bdb402499bdbd0bcde6f83a, type: 3}
---- !u!1 &820818348 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5837755101286234274, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-  m_PrefabInstance: {fileID: 1909479214942967315}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &820818355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 820818348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e11c31cdaea85e04f92b9b04bbe87dfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFull: 000000000000000000000000000000
-  slots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &1214496101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6781,6 +6747,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f624315c811fec1439b26dccd7230c0a, type: 3}
+--- !u!1 &1711264990 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4572993521372378168, guid: 2e8190f71da00654f99aea3e103b8a47, type: 3}
+  m_PrefabInstance: {fileID: 438558872}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1711264991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711264990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08894d4d6e493a49a49a42008cfe7dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedWeapon: {fileID: 0}
 --- !u!1001 &1759860844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23444,58 +23428,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 437424780968205386, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1089098987890399256, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1089098987890399256, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: CooldownBar
-      value: 
-      objectReference: {fileID: 6309215059680660734, guid: 47505b23ee8cdde4f8be2c581ade0d72, type: 3}
-    - target: {fileID: 1909479215996618615, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: slots.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1909479215996618615, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: inventorySlots.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1909479215996618619, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: expBar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1909479215996618619, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: manaBar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1909479215996618619, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: maxStat
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1909479215996618619, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1909479215996618619, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: reloadBar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1909479215996618619, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: damageCooldown
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620371456945991859, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620371456945991859, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: CooldownBar
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5837755101286234274, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
       propertyPath: m_Name
       value: Player
@@ -23543,14 +23475,6 @@ PrefabInstance:
     - target: {fileID: 5837755101286234276, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150714407089314740, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150714407089314740, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}
-      propertyPath: CooldownBar
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 084c3a68e6fc70547802547102d83c2b, type: 3}

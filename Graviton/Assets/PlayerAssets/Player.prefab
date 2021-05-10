@@ -50,7 +50,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3fab19b9647aa2448a76110e8cc4dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 0}
   moveSpeed: 5
   rb: {fileID: 8870526684306118522}
   animator: {fileID: 5837755101884924320}
@@ -106,9 +105,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23804827bf079d045aeabbfb7516a7bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFull: 00
+  isFull: 0000
   slots:
   - {fileID: 0}
+  - {fileID: 0}
+  weaponNow: {fileID: 0}
+  weaponNext: {fileID: 0}
 --- !u!114 &1909479215996618619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +133,7 @@ MonoBehaviour:
   statPoint: 0
   skillPoint: 0
   baseArmor: 0
-  damageCooldown: 0
+  damageCooldown: 1
   exp: 0
   maxExp: 100
   level: 1
