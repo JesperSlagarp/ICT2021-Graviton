@@ -6312,6 +6312,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfe56f542bdb402499bdbd0bcde6f83a, type: 3}
+--- !u!4 &753381407 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 753381407, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
+  m_PrefabInstance: {fileID: 904639442}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &797602621 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2421473568013031061, guid: 6045f578a141a2948adfe238c35bbc68, type: 3}
@@ -6441,17 +6446,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1339199848, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1948300717}
+    - target: {fileID: 1339199849, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
+      propertyPath: aimT
+      value: 
+      objectReference: {fileID: 753381407}
     - target: {fileID: 5439233922429001058, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
-      propertyPath: dashLayerMask.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 6132195545005791884, guid: ce5cfc617fe09014a94b93165df627a4, type: 3}
     - target: {fileID: 5439233922429001059, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5439233922429001059, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5439233922429001061, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
       propertyPath: m_RootOrder
@@ -6495,22 +6504,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5439233922429001061, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5439233922901877882, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5439233922901877887, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5439233922901877887, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
-      propertyPath: m_SpriteSortPoint
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9080252632233776868, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
-      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -6860,33 +6853,11 @@ PrefabInstance:
       objectReference: {fileID: 1339199847}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfe56f542bdb402499bdbd0bcde6f83a, type: 3}
---- !u!1 &1339199843 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5439233922429001059, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
-  m_PrefabInstance: {fileID: 904639442}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1339199847 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5439233922429001061, guid: 1f7b531c81dcbdb4d93026cc6f596f4c, type: 3}
   m_PrefabInstance: {fileID: 904639442}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1339199848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339199843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea05998120f055a46baa92ebd1aca9d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 1948300717}
-  maxStat: 100
-  damageTaken: 0
-  baseArmor: 5
-  baseDamage: 1
 --- !u!1001 &1488220223
 PrefabInstance:
   m_ObjectHideFlags: 0

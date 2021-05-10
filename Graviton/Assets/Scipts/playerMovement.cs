@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
+
+    //fire gun
+    public float reloadTime = 1f;
+    public float nextShoot = 0f;
+    public BasicGun gun;
+
+
+
     //public GameObject dashEffect;
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
@@ -34,6 +42,12 @@ public class playerMovement : MonoBehaviour
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
+
+        if(Input.GetButtonDown("Fire1") && Time.time > nextShoot) 
+        {
+            nextShoot = Time.time + reloadTime;
+            gun.Shoot();
+        }
 
 
     }
