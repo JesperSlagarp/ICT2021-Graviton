@@ -18,6 +18,7 @@ public class playerMovement : MonoBehaviour
     
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         currSpeed = moveSpeed;
     }
     // Update is called once per frame

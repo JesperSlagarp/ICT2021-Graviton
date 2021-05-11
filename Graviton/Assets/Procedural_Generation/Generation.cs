@@ -15,6 +15,10 @@ public class Generation : MonoBehaviour
     [SerializeField]
     private GameObject boss;
     [SerializeField]
+    private GameObject bossDoorFront;
+    [SerializeField]
+    private GameObject bossDoorSide;
+    [SerializeField]
     private GameObject doorFront;
     [SerializeField]
     private GameObject doorSide;
@@ -190,18 +194,18 @@ public class Generation : MonoBehaviour
     private void generate(Vector3Int currPos, int entranceSide, int limit, int bossPathLock, bool isBossPath) {
 
         //debug
-        debugMap.SetTile(currPos ,debugTile);
+        //debugMap.SetTile(currPos ,debugTile);
 
         //Spawns room at current position
         spawnRoom(roomWidth, roomHeight, currPos, entranceSide);
 
-        //Centralizes position in room
+        //Centralizes position in room and spawn door
         //entranceSide --> 0 = bottom, 1 = right, 2 = top, 3 = left
         switch (entranceSide) {
-            case 0: currPos.y += roomHeight / 2; break;
-            case 1: currPos.x -= roomWidth  / 2; break;
-            case 2: currPos.y -= roomHeight / 2; break;
-            case 3: currPos.x += roomWidth  / 2; break;
+            case 0: Instantiate(doorFront, currPos + new Vector3(0.5f, 1, 0) + gridOffset, Quaternion.identity); currPos.y += roomHeight / 2;  break;
+            case 1: Instantiate(doorSide, currPos + new Vector3(1.1f, 2.5f, 0) + gridOffset, Quaternion.identity); currPos.x -= roomWidth  / 2;  break;
+            case 2: Instantiate(doorFront, currPos + new Vector3(0.5f, 2f, 0) + gridOffset, Quaternion.identity); currPos.y -= roomHeight / 2;  break;
+            case 3: Instantiate(doorSide, currPos + new Vector3(-0.1f, 2.5f, 0) + gridOffset, Quaternion.identity); currPos.x += roomWidth  / 2; break;
         }
 
         //Puts light in middle of rooms
@@ -302,10 +306,10 @@ public class Generation : MonoBehaviour
 
         switch (dir)
         {
-            case 0: enterPos.y -= 50; Instantiate(doorFront, enterPos + new Vector3(0.5f, 1, 0) + gridOffset, Quaternion.identity); break;
-            case 1: enterPos.x += 50; Instantiate(doorSide, enterPos + new Vector3(-0.1f, 2.5f, 0) + gridOffset, Quaternion.identity); break;
-            case 2: enterPos.y += 50; Instantiate(doorFront, enterPos + new Vector3(0.5f, 1, 0) + gridOffset, Quaternion.identity); break;
-            case 3: enterPos.x -= 50; Instantiate(doorSide, enterPos + new Vector3(+0.1f, 2.5f, 0) + gridOffset, Quaternion.identity) ; break;
+            case 0: enterPos.y -= 50; Instantiate(bossDoorFront, enterPos + new Vector3(0.5f, 2f, 0) + gridOffset, Quaternion.identity); break;
+            case 1: enterPos.x += 50; Instantiate(bossDoorSide, enterPos + new Vector3(-0.1f, 2.5f, 0) + gridOffset, Quaternion.identity); break;
+            case 2: enterPos.y += 50; Instantiate(bossDoorFront, enterPos + new Vector3(0.5f, 1, 0) + gridOffset, Quaternion.identity); break;
+            case 3: enterPos.x -= 50; Instantiate(bossDoorSide, enterPos + new Vector3(+1.1f, 2.5f, 0) + gridOffset, Quaternion.identity); break;
         }
 
         
@@ -323,19 +327,21 @@ public class Generation : MonoBehaviour
 
     }
 
-        //dir --> 0 = down, 1 = right, 2 = up, 3 = left
-        private void path(Vector3Int startPos, int dir, int limit, int bossPathLock, bool isBossPath)
+    //dir --> 0 = down, 1 = right, 2 = up, 3 = left
+    private void path(Vector3Int startPos, int dir, int limit, int bossPathLock, bool isBossPath)
     {
+        //debugMap.SetTile(startPos, debugTile);
         Vector3Int exitPos = startPos;
 
         //Sets position of exit depending on direction
         switch (dir)
         {
-            case 0: exitPos.y -= corridorlength; break;
-            case 1: exitPos.x += corridorlength; break;
-            case 2: exitPos.y += corridorlength; break;
-            case 3: exitPos.x -= corridorlength; break;
+            case 0: exitPos.y -= corridorlength; Instantiate(doorFront, startPos + new Vector3(0.5f, 1f, 0) + gridOffset, Quaternion.identity); break;
+            case 1: exitPos.x += corridorlength; Instantiate(doorSide , startPos + new Vector3(1.1f, 2.5f, 0) + gridOffset, Quaternion.identity); break;
+            case 2: exitPos.y += corridorlength; Instantiate(doorFront, startPos + new Vector3(0.5f, 2f, 0) + gridOffset, Quaternion.identity); break;
+            case 3: exitPos.x -= corridorlength; Instantiate(doorSide , startPos + new Vector3(-0.1f, 2.5f, 0) + gridOffset, Quaternion.identity); break;
         }
+        //debugMap.SetTile(exitPos, debugTile);
 
         //Checking if the end of the corridor has found generated floor
         bool stop = floorMap.HasTile(exitPos);
@@ -351,13 +357,13 @@ public class Generation : MonoBehaviour
         } 
         else if (stop && !isBossPath)                        //Stop corridor here and don't spawn room
         {
-            return;
+            return; //Doesn't spawn entrance door if this happens, not important FIX LATER
         }
         else
         {
             dir = invertDir(dir, "straight");
             generate(exitPos, dir, limit - 1, bossPathLock, isBossPath);
-        }
+        } 
     }
 
 
@@ -455,7 +461,7 @@ public class Generation : MonoBehaviour
     private void spawnCorridor(int length, Vector3Int entrancePos, int dir) {
         int xOffset = 0;
         int yOffset = 0;
-
+        
         if (dir == 0 || dir == 2)
         {
             if (dir == 0)
