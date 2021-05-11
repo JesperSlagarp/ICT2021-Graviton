@@ -51,6 +51,9 @@ public class Generation : MonoBehaviour
 
     private Vector3Int startPos;
 
+    [SerializeField]
+    private GameObject playerDetector;
+
 
     private void Awake()
     {
@@ -200,6 +203,9 @@ public class Generation : MonoBehaviour
             case 3: currPos.x += roomWidth  / 2; break;
         }
 
+
+        Instantiate(playerDetector, currPos, Quaternion.identity); //+ new Vector3(0.5f, 0.5f, 0)
+
         //Centralizes player in spawn room
         if (limit == recursionLimit)
             GameObject.Find("Player").transform.position = currPos;
@@ -313,7 +319,6 @@ public class Generation : MonoBehaviour
         }
 
         Instantiate(boss, enterPos, Quaternion.identity);
-
     }
 
         //dir --> 0 = down, 1 = right, 2 = up, 3 = left
@@ -408,7 +413,7 @@ public class Generation : MonoBehaviour
     }
 
     //entranceSide --> 0 = bottom, 1 = right, 2 = top, 3 = left
-    private void spawnRoom(int width, int height, Vector3Int entrancePos, int entranceSide) {
+    private void spawnRoom(int width, int height, Vector3Int entrancePos, int entranceSide) { 
 
         int xOffset;
         int yOffset;
