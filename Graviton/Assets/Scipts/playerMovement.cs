@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class playerMovement : MonoBehaviour
 {
@@ -15,12 +17,29 @@ public class playerMovement : MonoBehaviour
 
     private float currSpeed;
     Vector2 movement;
-    
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         currSpeed = moveSpeed;
+        
+
     }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
+        switch (scene.name) {
+            case "HUB level": transform.position = new Vector3(0, 0, 0); break;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

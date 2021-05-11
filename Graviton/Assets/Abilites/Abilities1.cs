@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Abilities1 : MonoBehaviour
 {
-    [SerializeField]
     private Bar aoeCooldownBar;
     private Bar shieldCooldownBar;
 
@@ -28,7 +27,7 @@ public class Abilities1 : MonoBehaviour
     private CharStats charstats;
 
 
-    void Awake()
+    void Start()
     {
         aoeCooldownBar = GameObject.Find("cooldownBar").GetComponent<Bar>();
         shieldCooldownBar = GameObject.Find("cooldownBar2").GetComponent<Bar>();
@@ -38,10 +37,7 @@ public class Abilities1 : MonoBehaviour
 
         shieldCooldownBar.SetMaxCooldown(shieldCd);
         shieldCooldownBar.SetCooldown(0f);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
+ 
         charstats = GetComponent<CharStats>();
     }
 

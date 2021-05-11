@@ -8,6 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartMenu.unity
     guid: a84e09402d5003e49ac85fc44a783639
+  - enabled: 1
+    path: Assets/Scenes/HUB level.unity
+    guid: 8dc6dd4c48fbf44b1bbfe7ecd018a445
+  - enabled: 1
+    path: Assets/Scenes/Puzzle2.unity
+    guid: d9fdd4fe5dc5447dfa563dd84591b1bc
+  - enabled: 1
+    path: Assets/Scenes/Gen_map.unity
+    guid: c3d3793b8c53dad4ea696ef8b73045cf
   - enabled: 0
     path: Assets/Scenes/Game.unity
     guid: 95e623c2c430ea148abd6476f039b2a5
@@ -15,15 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/DemoCarl.unity
     guid: e65e3b8b3bd9bfb4388a1cbfc9da6c17
   - enabled: 1
-    path: Assets/Scenes/Gen_map.unity
-    guid: c3d3793b8c53dad4ea696ef8b73045cf
-  - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 663d2f54f89322a4098101846b114c9d
   - enabled: 1
     path: Assets/Scenes/Puzzle.unity
     guid: be893d9ddda314cf3a548ff72ab96dc6
-  - enabled: 1
-    path: Assets/Scenes/Puzzle2.unity
-    guid: d9fdd4fe5dc5447dfa563dd84591b1bc
   m_configObjects: {}

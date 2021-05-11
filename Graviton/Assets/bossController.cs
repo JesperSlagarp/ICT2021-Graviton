@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class bossController : MonoBehaviour
 {
@@ -44,7 +45,6 @@ public class bossController : MonoBehaviour
             AoE_Magic.SetActive(true);
             projectileMagic.SetActive(true);
         }
-        
     }
 
     void OnCollisionEnter2D(Collision2D collision) 
@@ -60,6 +60,7 @@ public class bossController : MonoBehaviour
         if (health < damage || health == 0)
         {
             Destroy(this.gameObject);
+            SceneManager.LoadScene("HUB level");
         }
         else
         {

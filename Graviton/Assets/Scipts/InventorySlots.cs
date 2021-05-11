@@ -9,7 +9,7 @@ public class InventorySlots : MonoBehaviour
     public Image[] slots;
     private GameObject canvas;
     private GameObject inventory;
-    void Awake()
+    void Start()
     {
         canvas = GameObject.Find("Canvas");
         inventory = canvas.transform.Find("Inventory").gameObject;

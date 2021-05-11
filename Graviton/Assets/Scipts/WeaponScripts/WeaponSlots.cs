@@ -13,7 +13,7 @@ public class WeaponSlots : MonoBehaviour
     private GameObject player;
 
 
-    void Awake()
+    void Start()
     {
         player = GameObject.Find("Player");
         weaponNow = null;

@@ -6,6 +6,7 @@ public class cameraMovement : MonoBehaviour
 {
 
     private GameObject player;
+
     
 
     private void Awake()

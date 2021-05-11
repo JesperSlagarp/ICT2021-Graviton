@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 public class CharStats : MonoBehaviour
 {
 
-    private Bar healthBar;
-    private Bar manaBar;
-    private Bar expBar;
+    public Bar healthBar;
+    public Bar manaBar;
+    public Bar expBar;
 
     public int maxHealth = 100;
     public int maxMana = 100;
@@ -41,8 +41,6 @@ public class CharStats : MonoBehaviour
     public int aoeLevel;
     public int shieldLevel;
 
-    private GameObject canvas;
-
     /*public void Save()
     {
         PlayerPrefs.SetInt("Health", playerHealth);
@@ -55,13 +53,10 @@ public class CharStats : MonoBehaviour
         playerMana = PlayerPrefs.GetInt("Mana");
     }*/
 
-    void Awake(){
-        canvas = GameObject.Find("Canvas");
-
-        healthBar = canvas.transform.Find("HealthBar").GetComponent<Bar>();
-        manaBar = canvas.transform.Find("ManaBar").GetComponent<Bar>();
-        expBar = canvas.transform.Find("ExpBar").GetComponent<Bar>();
-
+    void Start(){
+        healthBar = GameObject.Find("HealthBar").GetComponent<Bar>();
+        manaBar = GameObject.Find("ManaBar").GetComponent<Bar>();
+        expBar = GameObject.Find("ExpBar").GetComponent<Bar>();
         playerHealth = maxHealth;
         playerMana = maxMana;
         exp = 80;
@@ -73,9 +68,7 @@ public class CharStats : MonoBehaviour
         manaBar.SetMaxMana(maxMana) ;
         expBar.SetMaxExp(maxExp);
         UpdateStats();
-    }
-
-    void Start(){
+    
         InvokeRepeating("RegenerateHP", 0, 1);
         InvokeRepeating("RegenerateMana", 0, 1);
     }
