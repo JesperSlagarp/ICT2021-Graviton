@@ -4,49 +4,73 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
-
     //public GameObject dashEffect;
     public float moveSpeed = 5f;
+    public float dashSpeed = 20f;
     public Rigidbody2D rb;
     public Animator animator;
-    private bool isDashButtonDown;
+    private bool dashOnCooldown;
+    private bool isDashing;
     [SerializeField] private LayerMask dashLayerMask;
 
-    
-
+    private float currSpeed;
     Vector2 movement;
-    /*
+    
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-    }*/
+        DontDestroyOnLoad(gameObject);
+        currSpeed = moveSpeed;
+    }
     // Update is called once per frame
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        if (!isDashing)
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+        }
         if (movement.sqrMagnitude > 1)
         {
             movement = movement.normalized;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        //Dash
+        if (Input.GetKeyDown(KeyCode.Space) && !dashOnCooldown)
         {
-            isDashButtonDown = true;
+            //isDashButtonDown = true;
+            currSpeed = dashSpeed;
+            isDashing = true;
+            dashOnCooldown = true;
+            gameObject.GetComponent<CharStats>().shield = true;
+            Invoke("stopDash", 0.2f);
         }
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
+
+    }
+
+    private void stopDash()
+    {
+        isDashing = false;
+        currSpeed = moveSpeed;
+        gameObject.GetComponent<CharStats>().shield = false;
+        Invoke("dashCooldown", 0.5f);
+    }
+
+    private void dashCooldown() {
+        dashOnCooldown = false;
     }
 
     //50 times/sec
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * currSpeed * Time.fixedDeltaTime);
 
-        
+        /*
         if (isDashButtonDown){
+
             float dashAmount = 5f;
             Vector2 dashPosition = rb.position + movement * dashAmount;
            // GameObject clone = Instantiate(dashEffect, rb.position, Quaternion.identity);
@@ -58,7 +82,7 @@ public class playerMovement : MonoBehaviour
             }
             rb.MovePosition(rb.position + movement * dashAmount);
             isDashButtonDown = false; 
-        }
+        }*/
     }
 
     

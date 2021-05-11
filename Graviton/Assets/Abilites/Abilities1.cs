@@ -5,8 +5,8 @@ using UnityEngine;
 public class Abilities1 : MonoBehaviour
 {
     [SerializeField]
-    public Bar aoeCooldownBar;
-    public Bar shieldCooldownBar;
+    private Bar aoeCooldownBar;
+    private Bar shieldCooldownBar;
 
     public bool aoeReady = true;
     public bool shieldReady = true;
