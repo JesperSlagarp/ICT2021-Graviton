@@ -19,7 +19,7 @@ public class Pickup : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D collider)
     {
-        if (Input.GetButton("Pickup")){
+        if (Input.GetButtonDown("Pickup")){
             Debug.Log("Pressed F");
             /*for (int i = 0; i < weaponSlots.slots.Length; i++)
             {
