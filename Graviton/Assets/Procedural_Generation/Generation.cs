@@ -7,6 +7,12 @@ using Pathfinding;
 public class Generation : MonoBehaviour
 {
     [SerializeField]
+    private GameObject torch;
+    [SerializeField]
+    private Tilemap debugMap;
+    [SerializeField]
+    private Tile debugTile;
+    [SerializeField]
     private GameObject boss;
     [SerializeField]
     private GameObject doorFront;
@@ -26,14 +32,6 @@ public class Generation : MonoBehaviour
     private Tilemap foregroundMap;
     [SerializeField]
     private Tilemap topMap;
-    /*[SerializeField]
-    private Tile floorTile;
-    [SerializeField]
-    private Tile wallTile;
-    [SerializeField]
-    private Tile midTile;
-    [SerializeField]
-    private Tile topTile;*/
     [SerializeField]
     private Tile[] tiles = new Tile[12];
     [SerializeField]
@@ -190,7 +188,10 @@ public class Generation : MonoBehaviour
     }
 
     private void generate(Vector3Int currPos, int entranceSide, int limit, int bossPathLock, bool isBossPath) {
-   
+
+        //debug
+        debugMap.SetTile(currPos ,debugTile);
+
         //Spawns room at current position
         spawnRoom(roomWidth, roomHeight, currPos, entranceSide);
 
@@ -202,6 +203,9 @@ public class Generation : MonoBehaviour
             case 2: currPos.y -= roomHeight / 2; break;
             case 3: currPos.x += roomWidth  / 2; break;
         }
+
+        //Puts light in middle of rooms
+        Instantiate(torch, currPos + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
 
         //Centralizes player in spawn room
         if (limit == recursionLimit)
@@ -423,12 +427,12 @@ public class Generation : MonoBehaviour
                 yOffset = entrancePos.y;
                 break;
             case 1:
-                xOffset = -width + entrancePos.x;
+                xOffset = -width + entrancePos.x + 1;
                 yOffset = -height / 2 + entrancePos.y;
                 break;
             case 2:
                 xOffset = -width / 2 + entrancePos.x;
-                yOffset = -height + entrancePos.y;
+                yOffset = -height + entrancePos.y + 1;
                 break;
             case 3:
                 xOffset = entrancePos.x;
