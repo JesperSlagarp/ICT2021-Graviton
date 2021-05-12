@@ -7,8 +7,8 @@ public class Minimap : MonoBehaviour
     private bool visitedRoom = false;
     private SpriteRenderer spriterenderer;
     private BoxCollider2D bosscollider;
-    public Sprite currentRoomIcon;
-    public Sprite lastRoomIcon;
+    public Sprite currentRoomIcon; // room icon with a player sprite in it
+    public Sprite lastRoomIcon; // room icon without player sprite in it
     public Sprite unvisitedRoomIcon;
 
     void Awake()
@@ -25,7 +25,7 @@ public class Minimap : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerEnter2D(Collider2D collider) // if player walks into a room, update the sprite for the minimap
     {
         if(collider.gameObject.tag == "Player")
         {
@@ -73,7 +73,7 @@ public class Minimap : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D collider)
+    void OnTriggerExit2D(Collider2D collider) // if the player exits the room, change the sprite for the minimap
     {
         if (collider.gameObject.tag == "Player")
         {

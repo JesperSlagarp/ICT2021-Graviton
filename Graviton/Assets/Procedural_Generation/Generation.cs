@@ -204,7 +204,7 @@ public class Generation : MonoBehaviour
         }
 
 
-        Instantiate(playerDetector, currPos, Quaternion.identity); //+ new Vector3(0.5f, 0.5f, 0)
+        Instantiate(playerDetector, currPos + new Vector3(0.5f, 0.5f, 0), Quaternion.identity); //+ new Vector3(0.5f, 0.5f, 0)
 
         //Centralizes player in spawn room
         if (limit == recursionLimit)
