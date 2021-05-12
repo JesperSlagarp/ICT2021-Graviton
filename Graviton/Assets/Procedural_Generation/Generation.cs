@@ -56,7 +56,7 @@ public class Generation : MonoBehaviour
     private Vector3 gridOffset;
 
 
-    private void Awake()
+    private void Start()
     {
         gridOffset = gameObject.transform.position;
 
@@ -79,7 +79,7 @@ public class Generation : MonoBehaviour
 
         configAI();
 
-        Invoke("enableEnemies", 0.2f);
+        Invoke("enableEnemies", 1f);
     }
 
     private void configAI() {
@@ -100,7 +100,7 @@ public class Generation : MonoBehaviour
 
         gg.SetDimensions(width, depth, nodeSize);
 
-        Invoke("Scan", 0.1f);
+        Invoke("Scan", 0.5f);
     }
 
     private void Scan()
