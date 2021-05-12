@@ -4,103 +4,117 @@ using UnityEngine;
 
 public class Abilities : MonoBehaviour
 {
-    [SerializeField]
-    private AoEAttack aoeattack;
-    [SerializeField]
-    private Shield shield;
-    [SerializeField]
-    private Bar CooldownBar;
-    [SerializeField]
-    private Bar CooldownBar2;
+    private Bar aoeCooldownBar;
+    private Bar shieldCooldownBar;
+
+    public bool aoeReady = true;
+    public bool shieldReady = true;
+    public float aoeCd = 3f;
+    public float shieldCd = 5f;
+
+    private float aoeNextUse = 0f;
+    private float shieldNextUse = 0f;
+
+    public int aoeMana { get; private set; }
+    public int shieldMana { get; private set; }
+
+    public float shieldDuration { get; private set; }
+    private float shieldStop = 0f;
+
+    public int attackDistance { get; private set; }
+    public int aoeDamage { get; private set; }
+
     private CharStats charstats;
-    private float nextUse = 0f;
-    public bool aoeattackEnabled;
-    public bool shieldEnabled;
-    /*private Shield shield;
-    private AoEAttack aoeattack;
-    private HealthBar CooldownBar;
-    public string shieldAbilitynr;
-    public string aoeattackAbilitynr;
 
-    void Awake()
-    {
-        CooldownBar = GetComponent<HealthBar>();
-        CooldownBar.SetMaxCooldown(1f);
-        CooldownBar.SetCooldown(0f);
-        CooldownBar.SetMaxCooldown2(1f);
-        CooldownBar.SetCooldown2(0f);
-    }
 
-    // Start is called before the first frame update
     void Start()
     {
-        shield = GetComponent<Shield>();
-        aoeattack = GetComponent<AoEAttack>();
-        if (shield != null)
-        {
-            shieldAbilitynr = "Ability 1";
-        }
-        else if (aoeattack != null)
-        {
-            shieldAbilitynr = "Ability 2";
-        }
+        aoeCooldownBar = GameObject.Find("cooldownBar").GetComponent<Bar>();
+        shieldCooldownBar = GameObject.Find("cooldownBar2").GetComponent<Bar>();
+
+        aoeCooldownBar.SetMaxCooldown(aoeCd);
+        aoeCooldownBar.SetCooldown(0f);
+
+        shieldCooldownBar.SetMaxCooldown(shieldCd);
+        shieldCooldownBar.SetCooldown(0f);
+ 
+        charstats = GetComponent<CharStats>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        aoeMana = 20 + 5 * (charstats.aoeLevel - 1);
+        shieldMana = 30 + 5 * (charstats.shieldLevel - 1);
 
-    }*/
 
-    void Awake()
-    {
+        attackDistance = 2 + 1 * (charstats.aoeLevel - 1);
+        shieldDuration = 2f + 0.5f * (charstats.shieldLevel - 1);
+        
 
-        /*CooldownBar.SetMaxCooldown(1f);
-        CooldownBar.SetCooldown(0f);
-        CooldownBar2.SetMaxCooldown2(1f);
-        CooldownBar2.SetCooldown2(0f);*/
-        charstats = GetComponent<CharStats>();
+        if (Input.GetButtonDown("Ability 1") && aoeMana <= charstats.playerMana && aoeReady)
+        {
+            AoeAttack();
+            aoeReady = false;
+            aoeNextUse = aoeCd + Time.time;
+        }
+
+        if (Input.GetButtonDown("Ability 2") && shieldMana <= charstats.playerMana && shieldReady)
+        {
+            Shield();
+            shieldReady = false;
+            shieldNextUse = shieldCd + Time.time;
+            shieldStop = shieldDuration + Time.time;
+        }
+
+        if(aoeNextUse < Time.time)
+        {
+            aoeReady = true;
+            aoeCooldownBar.SetCooldown(0);
+        }
+        else
+        {
+            aoeCooldownBar.SetCooldown(aoeCd - (aoeNextUse - Time.time));
+        }
+
+        if(shieldNextUse < Time.time)
+        {
+            shieldReady = true;
+            shieldCooldownBar.SetCooldown(0);
+        }
+        else
+        {
+            shieldCooldownBar.SetCooldown(shieldCd - (shieldNextUse  - Time.time));
+        }
+
+
+        if (shieldStop < Time.time && charstats.shield == true)
+        {
+            charstats.shield = false;
+        }
+
     }
 
-    void Update()
+    void AoeAttack()
     {
-        /*if (Input.GetButtonDown("Ability 1"))
+        charstats.DepleteMana(shieldMana);
+        aoeDamage = charstats.baseDamage;
+
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject target in enemies)
         {
-            if (shieldEnabled == true && shield.mana <= charstats.playerMana && nextUse < Time.time)
+            float distance = Vector2.Distance(target.transform.position, transform.position);
+            if (distance <= attackDistance)
             {
-                shield.Use();
-                nextUse = Time.time + shield.cooldown;
-                charstats.DepleteMana(shield.mana);
+                EnemyStats enemystat = target.GetComponent<EnemyStats>();
+                enemystat.TakeDamage(aoeDamage);
             }
         }
-
-        if (Input.GetButtonDown("Ability 2"))
-        {
-
-        }
-
-        Debug.Log("nextuse" + nextUse);
-
-        if (nextUse > Time.time)
-        {
-            Debug.Log("cooldown" + (nextUse - Time.time));
-            CooldownBar2.SetCooldown2(1 - ((nextUse - Time.time) / shield.cooldown));
-        }
-        else
-        {
-            CooldownBar2.SetCooldown2(0);
-        }*/
     }
-
-    public float SetCooldownBar(float nextUse, float currentTime, int cooldown)
+    void Shield()
     {
-        if (nextUse > Time.time)
-        {
-            return (1 - ((nextUse - Time.time) / cooldown));
-        }
-        else
-        {
-            return 0;
-        }
+        charstats.DepleteMana(aoeMana);
+        charstats.shield = true;
     }
 }

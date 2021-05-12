@@ -814,8 +814,8 @@ MonoBehaviour:
   doorFront: {fileID: 2513772333092337153, guid: 1c9a4950fd5a2ab44ab97a82a9bd7ddb, type: 3}
   doorSide: {fileID: 2083882886599609729, guid: cd6d0990d0737fb4487035dfe1101fd0, type: 3}
   treasure: {fileID: 1524509665763465975, guid: f6569ba939dd63a46baea406c9fdac52, type: 3}
-  meleeEnemy: {fileID: 6278627692612934323, guid: cfe56f542bdb402499bdbd0bcde6f83a, type: 3}
-  rangedEnemy: {fileID: 5574560529831073802, guid: 844532b54c0ec1544943134a2ef18f50, type: 3}
+  meleeEnemy: {fileID: 9000245831301145387, guid: 2a494e8497124584fb91925c18c72546, type: 3}
+  rangedEnemy: {fileID: 9217567564680994396, guid: 50560b5e6537f8b41b118337a30f57fc, type: 3}
   floorMap: {fileID: 1444082542}
   wallMap: {fileID: 156039817}
   foregroundMap: {fileID: 2088730372}

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameControl : MonoBehaviour
 {
     public static GameControl control;
-    private bool hasSpawnedPlayer = false;
+    //private bool hasSpawnedPlayer = false;
 
     [SerializeField]
     private GameObject playerPrefab;
@@ -20,7 +20,7 @@ public class GameControl : MonoBehaviour
             player.name = "Player";
             GameObject canvas = Instantiate(canvasPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             canvas.name = "Canvas";
-            hasSpawnedPlayer = true;
+            //hasSpawnedPlayer = true;
             DontDestroyOnLoad(gameObject);
             control = this;
         }
@@ -36,7 +36,7 @@ public class GameControl : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        /*if (!hasSpawnedPlayer)
+        /*if (GameObject.Find("Player") == null)
         {
             GameObject player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             player.name = "Player";

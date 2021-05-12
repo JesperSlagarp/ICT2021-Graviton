@@ -260,7 +260,9 @@ public class CharStats : MonoBehaviour
     }
 
     public virtual void Die(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Destroy(GameObject.Find("Canvas"));
+        Destroy(GameObject.Find("GameControl"));
+        SceneManager.LoadScene("GameOver");
         //play death animation
     }
 

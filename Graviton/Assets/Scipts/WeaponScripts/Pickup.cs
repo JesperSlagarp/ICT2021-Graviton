@@ -9,6 +9,7 @@ public class Pickup : MonoBehaviour
     public GameObject playerWeapon;
     //private InventorySlots inventorySlots;
     private GameObject player;
+    private bool canPickUp = false;
 
     private void Start()
     {
@@ -17,9 +18,11 @@ public class Pickup : MonoBehaviour
         //inventorySlots = GameObject.FindGameObjectWithTag("Player").GetComponent<InventorySlots>();
 
     }
-    void OnTriggerStay2D(Collider2D collider)
+
+    private void Update()
     {
-        if (Input.GetButtonDown("Pickup")){
+        if (Input.GetButtonDown("Pickup") && canPickUp)
+        {
             Debug.Log("Pressed F");
             /*for (int i = 0; i < weaponSlots.slots.Length; i++)
             {
@@ -45,19 +48,21 @@ public class Pickup : MonoBehaviour
             {
                 weaponSlots.weaponNow = playerWeapon;
             }
-            else if(player.transform.childCount == 3)
+            else if (player.transform.childCount == 3)
             {
                 weaponSlots.weaponNext = weaponSlots.weaponNow;
                 weaponSlots.weaponNow = playerWeapon;
                 player.transform.Find(weaponSlots.weaponNext.name + "(Clone)").gameObject.SetActive(false);
                 //Destroy(player.transform.GetChild(1).gameObject);
             }
-            else if(player.transform.childCount == 4)
+            else if (player.transform.childCount == 4)
             {
                 GameObject temp = weaponSlots.weaponNow;
                 player.transform.Find(temp.name + "(Clone)").gameObject.GetComponent<Drop>().DropWeapon();
                 weaponSlots.weaponNow = playerWeapon;
             }
+
+
 
 
             /*if (player.transform.childCount <= 2)
@@ -83,7 +88,14 @@ public class Pickup : MonoBehaviour
             }*/
         }
     }
-
-
-    
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.gameObject.tag == "Player")
+            canPickUp = true;
+    }
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player")
+            canPickUp = false;
+    }
 }

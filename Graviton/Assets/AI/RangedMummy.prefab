@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &2938961887529199267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4683062729373115084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e41d09f891de6c640b08813951f8dc96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isLaser: 0
-  rotateSpeed: 20
 --- !u!114 &2938961887529199265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31,6 +17,20 @@ MonoBehaviour:
   maxDistance: 10
   reloadTime: 1
   bulletForce: 20
+--- !u!114 &2938961887529199267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4683062729373115084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e41d09f891de6c640b08813951f8dc96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLaser: 0
+  rotateSpeed: 20
 --- !u!1 &9217567564680994396
 GameObject:
   m_ObjectHideFlags: 0
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 4274545324642796413}
   - component: {fileID: 2938961886943288585}
   m_Layer: 8
-  m_Name: RangedMummie
+  m_Name: RangedMummy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,13 +125,13 @@ MonoBehaviour:
     m_Bits: 4294967295
   centerOffsetCompatibility: NaN
   orientation: 1
-  enableRotation: 1
+  enableRotation: 0
   targetCompatibility: {fileID: 0}
   maxAcceleration: 10
   rotationSpeed: 360
-  slowdownDistance: 4
+  slowdownDistance: 0.92
   pickNextWaypointDist: 2
-  endReachedDistance: 0
+  endReachedDistance: 0.79
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
