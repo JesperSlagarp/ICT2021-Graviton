@@ -22,12 +22,15 @@ public class NextScene : MonoBehaviour
         
     }
 
-    
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
+
         GameObject collisionGameObject = collision.gameObject;
+
         if(collisionGameObject.name == "Player")
         {
+
             LoadScene();
         }
 
@@ -38,13 +41,21 @@ public class NextScene : MonoBehaviour
         {
             Debug.Log("iNewScene");
             SceneManager.LoadScene(iNewScene);
-            //SceneManager.MoveGameObjectToScene(GameObject.Find("Player"), SceneManager.GetSceneByBuildIndex(iNewScene));
+
+
+
+            // SceneManager.MoveGameObjectToScene(GameObject.Find("Player"), SceneManager.GetSceneByBuildIndex(iNewScene));
+
+
         }
         else
         {
             Debug.Log("sNewScene");
             SceneManager.LoadScene(sNewScene);
-            //SceneManager.MoveGameObjectToScene(GameObject.Find("Player"), SceneManager.GetSceneByName("sNewScene"));
+
+            // SceneManager.MoveGameObjectToScene(GameObject.Find("Player"), SceneManager.GetSceneByName("sNewScene"));
+
+
         }
     }
 }
