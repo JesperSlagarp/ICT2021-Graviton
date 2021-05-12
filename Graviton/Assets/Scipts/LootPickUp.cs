@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class LootPickUp : MonoBehaviour
 {
-    public enum PickupObject{EXP, HEART};
+    public enum PickupObject{EXP, HEART, ARMOR};
     public PickupObject currentObject;
     public int objectQuantity;
+    private CharStats charStats;
+
+    void Awake()
+    {
+        charStats = GameObject.Find("Player").GetComponent<CharStats>();
+    }
+
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,14 +22,17 @@ public class LootPickUp : MonoBehaviour
         {
             if(currentObject == PickupObject.EXP)
             {
-                GameObject.Find("Player").GetComponent<CharStats>().getExp(objectQuantity);
-                GameObject.Find("Player").GetComponent<CharStats>().UpdateStats();
+                charStats.getExp(objectQuantity);
             }
             if (currentObject == PickupObject.HEART)
             {
-                GameObject.Find("Player").GetComponent<CharStats>().Heal(objectQuantity);
-                GameObject.Find("Player").GetComponent<CharStats>().UpdateStats();
+                charStats.Heal(objectQuantity);
             }
+            if(currentObject == PickupObject.ARMOR)
+            {
+                charStats.GetArmor(objectQuantity);
+            }
+
             Destroy(gameObject);
         }
     }

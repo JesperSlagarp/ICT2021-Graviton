@@ -163,6 +163,7 @@ public class CharStats : MonoBehaviour
         {
             playerHealth = maxHealth;
         }
+        UpdateStats();
     }
 
     public void getExp(int quantity)
@@ -172,6 +173,7 @@ public class CharStats : MonoBehaviour
         {
             levelUp();
         }
+        UpdateStats();
     }
 
     public void levelUp()
@@ -222,6 +224,11 @@ public class CharStats : MonoBehaviour
             baseArmor += 1;
             statPoint--;
         }
+    }
+
+    public void GetArmor(int armor)
+    {
+        baseArmor += armor;
     }
 
     public void AoeLevelUp()
