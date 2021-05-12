@@ -23,10 +23,25 @@ public class bossController : MonoBehaviour
     [SerializeField]
     private bool phaseTwo = false;
 
+    [SerializeField]
+    private GameObject spriteRight;
+    [SerializeField]
+    private GameObject spriteLeft;
+    [SerializeField]
+    private GameObject spriteFront;
+    [SerializeField]
+    private GameObject spriteBack;
+
     private float health;
+    private GameObject player;
 
     private void Awake()
     {
+        player = GameObject.Find("Player");
+        spriteRight.SetActive(true);
+        spriteLeft.SetActive(false);
+        spriteFront.SetActive(false);
+        spriteBack.SetActive(false);
         health = maxHealth;
         laserMount.SetActive(false);
         AoE_Magic.SetActive(false);
@@ -45,6 +60,47 @@ public class bossController : MonoBehaviour
             AoE_Magic.SetActive(true);
             projectileMagic.SetActive(true);
         }
+
+        rotate();
+
+    }
+
+    private void rotate() {
+        Vector3 BossToPlayer = player.transform.position - transform.position;
+        float flip = 1;
+        if (BossToPlayer.y < 0)
+            flip = -1;
+        float angle = flip * Vector3.Angle(BossToPlayer, Vector3.right);
+        if (angle > -45f && angle < 45f)
+        {
+            spriteRight.SetActive(true);
+            spriteLeft.SetActive(false);
+            spriteFront.SetActive(false);
+            spriteBack.SetActive(false);
+        }
+        else if (angle > 45f && angle < 135f)
+        {
+
+            spriteRight.SetActive(false);
+            spriteLeft.SetActive(false);
+            spriteFront.SetActive(false);
+            spriteBack.SetActive(true);
+        }
+        else if ((angle > 135f && angle < 180f) || (angle < -135f && angle > -180f))
+        {
+            spriteRight.SetActive(false);
+            spriteLeft.SetActive(true);
+            spriteFront.SetActive(false);
+            spriteBack.SetActive(false);
+        }
+        else if (angle > -135f && angle < -45f)
+        {
+            spriteRight.SetActive(false);
+            spriteLeft.SetActive(false);
+            spriteFront.SetActive(true);
+            spriteBack.SetActive(false);
+        }
+
     }
 
     void OnCollisionEnter2D(Collision2D collision) 

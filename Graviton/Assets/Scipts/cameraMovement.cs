@@ -9,7 +9,7 @@ public class cameraMovement : MonoBehaviour
 
     
 
-    private void Awake()
+    private void Start()
     {
         player = GameObject.Find("Player");
     }

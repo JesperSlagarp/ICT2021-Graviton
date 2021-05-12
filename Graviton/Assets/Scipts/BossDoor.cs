@@ -19,13 +19,11 @@ public class BossDoor : MonoBehaviour
     private void closeDoor() {
         closed.SetActive(true);
         open.SetActive(false);
-        Debug.Log("Door closed");
     }
 
     private void openDoor() {
         closed.SetActive(false);
         open.SetActive(true);
-        Debug.Log("Door opened");
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -37,7 +35,8 @@ public class BossDoor : MonoBehaviour
             {
                 if (inventory.slots[i].sprite.name == "Key")
                 {
-                    openDoor();
+                    if (collider.tag == "Player")
+                        openDoor();
                 }
             }
         }
