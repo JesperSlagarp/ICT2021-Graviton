@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class Rotate : MonoBehaviour
 {
-    //public Rigidbody2D rb;
-    //public Camera cam;
-    public Vector2 mousePos;
-    /*private bool negativeDir;
-    private bool positiveDir;*/
+    private Vector2 mousePos;
+    private Vector3 weaponPos;
+    private SpriteRenderer weaponSprite;
+    private GameObject player;
+    private int defaultSortingOrder;
+
+    void Start()
+    {
+        player = GameObject.Find("Player");
+        weaponPos = this.gameObject.transform.localPosition;
+        weaponSprite = this.gameObject.GetComponent<SpriteRenderer>();
+        defaultSortingOrder = weaponSprite.sortingOrder;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -17,14 +26,34 @@ public class Rotate : MonoBehaviour
 
     void FixedUpdate()
     {
-        /*if (mousePos.x < 0)
-        {
-            Debug.Log("hey");
-            positiveDir = false;
-        }*/
         Vector2 transpos = transform.position;
+        Vector2 playerpos = player.transform.position;
         Vector2 lookDir = mousePos - transpos;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg; //- 90f;
+        Vector2 playerLookDir = mousePos - playerpos;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+        float playerAngle = Mathf.Atan2(playerLookDir.y, playerLookDir.x) * Mathf.Rad2Deg;
+
+        if (playerLookDir.x < 0)
+        {
+            this.gameObject.transform.localScale = new Vector3(1, -1, 1);
+            this.gameObject.transform.localPosition = new Vector3(weaponPos.x * -1, weaponPos.y, weaponPos.z);
+        }
+        else
+        {
+            this.gameObject.transform.localScale = new Vector3(1, 1, 1);
+            this.gameObject.transform.localPosition = new Vector3(weaponPos.x, weaponPos.y, weaponPos.z);
+        }
+       
+
+        if (Input.GetKey("w")) // if player faces forward, hide gun
+        {
+            weaponSprite.sortingOrder = defaultSortingOrder - 1;
+        }
+        else
+        {
+            weaponSprite.sortingOrder = defaultSortingOrder;
+        }
+
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         transform.rotation = rotation;
