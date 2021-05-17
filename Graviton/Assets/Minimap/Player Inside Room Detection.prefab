@@ -45,9 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3d6e81d9e3bbc48baf48903599885c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRoomIcon: {fileID: 21300000, guid: 1047ce1596fc00047a33ac7ab866f11c, type: 3}
-  lastRoomIcon: {fileID: 21300000, guid: b52de574eb8aa7c4a9fc45cc19ba74b2, type: 3}
-  unvisitedRoomIcon: {fileID: 21300000, guid: f1b9db2542d891648a560ba4c3491b77, type: 3}
+  currentRoomIcon: {fileID: 21300000, guid: 8f13913efc13875468fb2c9dab49cada, type: 3}
+  lastRoomIcon: {fileID: 21300000, guid: 90c713d0bb59af341a6b55c3719b071a, type: 3}
+  unvisitedRoomIcon: {fileID: 21300000, guid: b4165beb9df7cbf41ae950cb41cbb998, type: 3}
+  bossRoomIcon: {fileID: 0}
 --- !u!61 &8257123299611901312
 BoxCollider2D:
   m_ObjectHideFlags: 0

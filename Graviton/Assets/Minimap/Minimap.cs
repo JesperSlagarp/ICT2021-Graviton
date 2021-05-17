@@ -6,11 +6,12 @@ public class Minimap : MonoBehaviour
 {
     private bool visitedRoom = false;
     private SpriteRenderer spriterenderer;
-    private BoxCollider2D bosscollider;
     public Sprite currentRoomIcon; // room icon with a player sprite in it
     public Sprite lastRoomIcon; // room icon without player sprite in it
     public Sprite unvisitedRoomIcon;
-    public Sprite bossRoomIcon;
+    
+
+    private GameObject boss;
 
     void Awake()
     {
@@ -18,6 +19,12 @@ public class Minimap : MonoBehaviour
         //playerIcon2 = playerIcon2.GetComponent<SpriteRenderer>();
         spriterenderer = GetComponent<SpriteRenderer>();
         //bosscollider = GameObject.Find("Boss").GetComponent<BoxCollider2D>();
+    }
+
+    private void Start()
+    {
+        boss = GameObject.FindGameObjectWithTag("Boss");
+        
     }
 
     // Update is called once per frame
@@ -38,6 +45,8 @@ public class Minimap : MonoBehaviour
                 int mask = (1 << LayerMask.NameToLayer("Minimap"));//| (1 << LayerMask.NameToLayer("obstacles"));
                 int maskDoor = (1 << LayerMask.NameToLayer("Door"));
                 
+
+
                 RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, this.gameObject.transform.right, 25, mask);
                 RaycastHit2D hitDoor = Physics2D.Raycast(this.gameObject.transform.position, this.gameObject.transform.right, 25, maskDoor);
                 

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8093800351715209254}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 2513772333092337214}
   - component: {fileID: 7504188670806187802}
   - component: {fileID: 1466156974127670631}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: bossDoorFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8926838888008034568}
   - component: {fileID: 4234174387718120972}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4037080493474699483}
   - component: {fileID: 1698891124687512777}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8256826915689787947}
   - component: {fileID: 5186881320851792957}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1013383128083808380}
   - component: {fileID: 3680523311365394079}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Closed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2828400053842907539}
   - component: {fileID: 135949258160174915}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
