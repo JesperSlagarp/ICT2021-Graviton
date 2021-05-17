@@ -1413,7 +1413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 3991525872806456776}
-  maxHealth: 100
+  maxHealth: 1000
   laserMount: {fileID: 8031697865621888825}
   AoE_Magic: {fileID: 8031697864948337186}
   projectileMagic: {fileID: 8031697865065514093}

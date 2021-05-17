@@ -74,10 +74,7 @@ public class CharStats : MonoBehaviour
     }
 
     void Update(){
-        if (Input.GetKeyDown(KeyCode.T))
-            TakeDamage(10);
-        if (Input.GetKeyDown(KeyCode.Y))
-            DepleteMana(10);
+        
         if (damageTaken)
         {
             remainingTime -= Time.deltaTime;
