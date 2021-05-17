@@ -23,6 +23,7 @@ public class WeaponSlots : MonoBehaviour
         {
             slots[i] = weapons.transform.GetChild(i).gameObject.GetComponent<Image>();
         }
+        
     }
 
     void Update()

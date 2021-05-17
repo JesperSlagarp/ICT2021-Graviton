@@ -15,6 +15,8 @@ public class Abilities : MonoBehaviour
     private float aoeNextUse = 0f;
     private float shieldNextUse = 0f;
 
+    private float aoeAnimationTime = 0f;
+
     public int aoeMana { get; private set; }
     public int shieldMana { get; private set; }
 
@@ -57,6 +59,12 @@ public class Abilities : MonoBehaviour
             AoeAttack();
             aoeReady = false;
             aoeNextUse = aoeCd + Time.time;
+            aoeAnimationTime = 1f + Time.time;
+        }
+
+        if (aoeAnimationTime < Time.time)
+        {
+            GameObject.Find("Player").transform.Find("Sprite").gameObject.transform.Find("AOE").gameObject.SetActive(false);
         }
 
         if (Input.GetButtonDown("Ability 2") && shieldMana <= charstats.playerMana && shieldReady)
@@ -90,6 +98,7 @@ public class Abilities : MonoBehaviour
 
         if (shieldStop < Time.time && charstats.shield == true)
         {
+            GameObject.Find("Player").transform.Find("Sprite").gameObject.transform.Find("Shield").gameObject.SetActive(false);
             charstats.shield = false;
         }
 
@@ -97,6 +106,7 @@ public class Abilities : MonoBehaviour
 
     void AoeAttack()
     {
+        GameObject.Find("Player").transform.Find("Sprite").gameObject.transform.Find("AOE").gameObject.SetActive(true);
         charstats.DepleteMana(shieldMana);
         aoeDamage = charstats.baseDamage;
 
@@ -114,6 +124,7 @@ public class Abilities : MonoBehaviour
     }
     void Shield()
     {
+        GameObject.Find("Player").transform.Find("Sprite").gameObject.transform.Find("Shield").gameObject.SetActive(true);
         charstats.DepleteMana(aoeMana);
         charstats.shield = true;
     }
