@@ -338,7 +338,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3870172186502544403, guid: f6c12b2c3151e46488b0a00609747f0b, type: 3}
       propertyPath: m_AssetsPPU
-      value: 28
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3870172186502544413, guid: f6c12b2c3151e46488b0a00609747f0b, type: 3}
       propertyPath: m_Name
@@ -805,7 +805,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f6c030fd495d848b1260a65c764332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossDetector: {fileID: 5662439566346562755, guid: b0103273f91ead54b9bfd604dd53376c, type: 3}
   playerDetector: {fileID: 3896150571836177909, guid: a438e9cb09deb3847abfdf8d32d7491c, type: 3}
   torch: {fileID: 507264887766229168, guid: 3c51ab1169d233c4099c3d0f8285effe, type: 3}
   debugMap: {fileID: 1526590138}
