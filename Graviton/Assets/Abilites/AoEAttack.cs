@@ -36,7 +36,6 @@ public class AoEAttack : MonoBehaviour
         {
             nextUse = Time.time + cooldown;
             charstats.DepleteMana(mana);
-
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach(GameObject target in enemies)
             {
