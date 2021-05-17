@@ -7,6 +7,10 @@ using Pathfinding;
 public class Generation : MonoBehaviour
 {
     [SerializeField]
+    private GameObject bossDetector;
+    [SerializeField]
+    private GameObject playerDetector;
+    [SerializeField]
     private GameObject torch;
     [SerializeField]
     private Tilemap debugMap;
@@ -226,7 +230,7 @@ public class Generation : MonoBehaviour
                 case 3: currPos.x += roomWidth / 2; break;
             }
         }
-
+        Instantiate(playerDetector, currPos + new Vector3(0.5f, 0.5f, 0) + gridOffset, Quaternion.identity);
 
         //Centralizes player in spawn room
         if (limit == recursionLimit)
@@ -325,6 +329,8 @@ public class Generation : MonoBehaviour
     private void spawnBossRoom(Vector3Int pos, int entranceSide)
     {
         int dir = invertDir(entranceSide, "straight");
+
+        Instantiate(bossDetector, pos + new Vector3(0.5f, 0.5f, 0) + gridOffset, Quaternion.identity);
         spawnCorridor(50, pos, dir);
 
         Vector3Int enterPos = pos;
