@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 0c0a4021d91d28d41b54f161d58bc0ab
+guid: 156ff8354abae2f428b2e4a3f7e2ce60
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - CooldownBar: {fileID: 4397137895158539098, guid: 7c03149dbd4cd39458c4efb43a00c100, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

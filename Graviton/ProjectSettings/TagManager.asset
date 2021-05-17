@@ -10,6 +10,8 @@ TagManager:
   - Test
   - Key
   - Inventory
+  - StartPos
+  - Rocket
   layers:
   - Default
   - TransparentFX
@@ -53,6 +55,15 @@ TagManager:
   - name: Obstacles
     uniqueID: 2416603333
     locked: 0
+  - name: Lights
+    uniqueID: 1101897901
+    locked: 0
   - name: Foreground
     uniqueID: 1253158959
+    locked: 0
+  - name: Top
+    uniqueID: 2160810657
+    locked: 0
+  - name: Debug
+    uniqueID: 3120166227
     locked: 0
