@@ -36,7 +36,7 @@ public class Dialog : MonoBehaviour
             textDisplay.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
-
+        button.SetActive(true);
     }
 
     public void NextSentence()
@@ -45,6 +45,7 @@ public class Dialog : MonoBehaviour
         {
             index++;
             textDisplay.text = "";
+            button.SetActive(false);
             StartCoroutine(Type());
         }
         else
@@ -57,8 +58,10 @@ public class Dialog : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+
         switch (scene.name) {
             case "HUB level":
+                textDisplay.text = "";
                 index = 0;
                 button.SetActive(true);
                 Title.SetActive(true);
@@ -66,6 +69,7 @@ public class Dialog : MonoBehaviour
                 StartCoroutine(Type());
                 break;
             case "Gen_map":
+                textDisplay.text = "";
                 index = 0;
                 button.SetActive(true);
                 Title.SetActive(true);
