@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -7543615060043611635}
   - component: {fileID: 8257123299611901312}
   - component: {fileID: -6249373626217510634}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Player Inside Room Detection
   m_TagString: Room
   m_Icon: {fileID: 0}
@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3d6e81d9e3bbc48baf48903599885c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomIcon: {fileID: 23587511481750425, guid: 9a5a94ca93dcc6b44af6aa8f3389c702, type: 3}
-  playerIcon: {fileID: 9081582554968032517, guid: 2fed42d7a50fecb40871f765a7d7da4d, type: 3}
   currentRoomIcon: {fileID: 21300000, guid: 1047ce1596fc00047a33ac7ab866f11c, type: 3}
   lastRoomIcon: {fileID: 21300000, guid: b52de574eb8aa7c4a9fc45cc19ba74b2, type: 3}
   unvisitedRoomIcon: {fileID: 21300000, guid: f1b9db2542d891648a560ba4c3491b77, type: 3}

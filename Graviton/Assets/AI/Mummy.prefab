@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 4061709665278901770}
   - component: {fileID: 3154034295567560102}
   m_Layer: 8
-  m_Name: Mummie
+  m_Name: Mummy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -306,7 +306,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.7, y: 2.1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

@@ -10,6 +10,7 @@ public class Minimap : MonoBehaviour
     public Sprite currentRoomIcon; // room icon with a player sprite in it
     public Sprite lastRoomIcon; // room icon without player sprite in it
     public Sprite unvisitedRoomIcon;
+    public Sprite bossRoomIcon;
 
     void Awake()
     {
@@ -36,7 +37,7 @@ public class Minimap : MonoBehaviour
                 Debug.Log("unvisited");
                 int mask = (1 << LayerMask.NameToLayer("Minimap"));//| (1 << LayerMask.NameToLayer("obstacles"));
                 int maskDoor = (1 << LayerMask.NameToLayer("Door"));
-                int maskBoss = (1 << LayerMask.NameToLayer("bossDetector"));
+                
                 RaycastHit2D hit = Physics2D.Raycast(this.gameObject.transform.position, this.gameObject.transform.right, 25, mask);
                 RaycastHit2D hitDoor = Physics2D.Raycast(this.gameObject.transform.position, this.gameObject.transform.right, 25, maskDoor);
                 
@@ -53,7 +54,7 @@ public class Minimap : MonoBehaviour
                 hitDoor = Physics2D.Raycast(this.gameObject.transform.position, this.gameObject.transform.right * -1, 25, maskDoor);
                 
                 Debug.DrawRay(this.gameObject.transform.position, this.gameObject.transform.right * -1, Color.red, 10f);
-                if (hit.collider != null && hitDoor.collider != null/*hit.collider.gameObject.tag == "Room"*/)
+                if (hit.collider != null && hitDoor.collider != null)
                 {
                     Debug.Log("room found");
                     hit.collider.gameObject.GetComponent<Minimap>().ShowUnvisitedRoom();
@@ -79,20 +80,6 @@ public class Minimap : MonoBehaviour
                     hit.collider.gameObject.GetComponent<Minimap>().ShowUnvisitedRoom();
                     //Instantiate(unvisitedRoomIcon, hit.collider.gameObject.transform.position, Quaternion.identity);
                 }
-
-                /*if (Physics2D.Raycast(this.gameObject.transform.position, this.gameObject.transform.right, 15, maskBoss).collider != null) {
-
-                }
-                else if ()
-                {
-
-                }
-                else if ()
-                {
-
-                }
-                else if () { }*/
-                
             }
             visitedRoom = true;
             Debug.Log("visited room");

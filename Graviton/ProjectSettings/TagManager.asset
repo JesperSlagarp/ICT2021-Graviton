@@ -12,6 +12,7 @@ TagManager:
   - Inventory
   - StartPos
   - Rocket
+  - Room
   layers:
   - Default
   - TransparentFX
@@ -24,9 +25,9 @@ TagManager:
   - Enemies
   - Enemy Bullets
   - Player hit detection
-  - 
-  - 
-  - 
+  - Door
+  - Minimap
+  - BossDetector
   - 
   - 
   - 

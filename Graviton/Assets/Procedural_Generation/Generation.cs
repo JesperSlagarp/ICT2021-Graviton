@@ -7,8 +7,6 @@ using Pathfinding;
 public class Generation : MonoBehaviour
 {
     [SerializeField]
-    private GameObject bossDetector;
-    [SerializeField]
     private GameObject playerDetector;
     [SerializeField]
     private GameObject torch;
@@ -330,7 +328,6 @@ public class Generation : MonoBehaviour
     {
         int dir = invertDir(entranceSide, "straight");
 
-        Instantiate(bossDetector, pos + new Vector3(0.5f, 0.5f, 0) + gridOffset, Quaternion.identity);
         spawnCorridor(50, pos, dir);
 
         Vector3Int enterPos = pos;
