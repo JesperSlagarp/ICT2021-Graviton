@@ -53,11 +53,10 @@ public class CharStats : MonoBehaviour
         playerMana = PlayerPrefs.GetInt("Mana");
     }*/
 
-    void Awake(){
+    void Start(){
         healthBar = GameObject.Find("HealthBar").GetComponent<Bar>();
         manaBar = GameObject.Find("ManaBar").GetComponent<Bar>();
         expBar = GameObject.Find("ExpBar").GetComponent<Bar>();
-
         playerHealth = maxHealth;
         playerMana = maxMana;
         exp = 80;
@@ -69,9 +68,7 @@ public class CharStats : MonoBehaviour
         manaBar.SetMaxMana(maxMana) ;
         expBar.SetMaxExp(maxExp);
         UpdateStats();
-    }
-
-    void Start(){
+    
         InvokeRepeating("RegenerateHP", 0, 1);
         InvokeRepeating("RegenerateMana", 0, 1);
     }
@@ -166,6 +163,7 @@ public class CharStats : MonoBehaviour
         {
             playerHealth = maxHealth;
         }
+        UpdateStats();
     }
 
     public void getExp(int quantity)
@@ -175,6 +173,7 @@ public class CharStats : MonoBehaviour
         {
             levelUp();
         }
+        UpdateStats();
     }
 
     public void levelUp()
@@ -227,6 +226,11 @@ public class CharStats : MonoBehaviour
         }
     }
 
+    public void GetArmor(int armor)
+    {
+        baseArmor += armor;
+    }
+
     public void AoeLevelUp()
     {
         if(skillPoint > 0)
@@ -256,7 +260,9 @@ public class CharStats : MonoBehaviour
     }
 
     public virtual void Die(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Destroy(GameObject.Find("Canvas"));
+        Destroy(GameObject.Find("GameControl"));
+        SceneManager.LoadScene("GameOver");
         //play death animation
     }
 

@@ -87,24 +87,28 @@ public class PauseMenu : MonoBehaviour
     void InventoryDisplay()
     {
         inventoryUI.SetActive(true);
+        Time.timeScale = 0f;
         InventoryActive = true;
     }
     void InventoryFade()
     {
         
-        inventoryUI.SetActive(false);
+        inventoryUI.SetActive(false); 
+        Time.timeScale = 1f;
         InventoryActive = false;
     }
 
     void StatsWindowDisplay()
     {
         statsWindowUI.SetActive(true);
+        Time.timeScale = 0f;
         StatsWindowActive = true;
     }
     void StatsWindowFade()
     {
 
         statsWindowUI.SetActive(false);
+        Time.timeScale = 1f;
         StatsWindowActive = false;
     }
 }
