@@ -23,7 +23,9 @@ public class Generation : MonoBehaviour
     [SerializeField]
     private GameObject doorSide;
     [SerializeField]
-    private GameObject treasure;
+    private GameObject Key;
+    [SerializeField]
+    private GameObject[] weapons;
     [SerializeField]
     private GameObject meleeEnemy;
     [SerializeField]
@@ -309,7 +311,15 @@ public class Generation : MonoBehaviour
     private void spawnTreasure(Vector3Int pos) {
         treasureHasSpawned = true;
 
-        Instantiate(treasure, pos - new Vector3Int(1, 1, 0), Quaternion.identity);
+        Instantiate(Key, pos - new Vector3Int(1, 1, 0), Quaternion.identity);
+
+        Instantiate(weapons[0], pos - new Vector3Int(3, 3, 0), Quaternion.identity);
+
+        Instantiate(weapons[1], pos - new Vector3Int(-3, -3, 0), Quaternion.identity);
+
+        //Instantiate(weapons[2], pos - new Vector3Int(3, -3, 0), Quaternion.identity);
+
+        //Instantiate(weapons[3], pos - new Vector3Int(-3, 3, 0), Quaternion.identity);
     }
 
     private void spawnBossRoom(Vector3Int pos, int entranceSide)
