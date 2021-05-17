@@ -201,15 +201,30 @@ public class Generation : MonoBehaviour
 
         //Centralizes position in room and spawn door
         //entranceSide --> 0 = bottom, 1 = right, 2 = top, 3 = left
-        switch (entranceSide) {
-            case 0: Instantiate(doorFront, currPos + new Vector3(0.5f, 1, 0) + gridOffset, Quaternion.identity); currPos.y += roomHeight / 2;  break;
-            case 1: Instantiate(doorSide, currPos + new Vector3(1.1f, 2.5f, 0) + gridOffset, Quaternion.identity); currPos.x -= roomWidth  / 2;  break;
-            case 2: Instantiate(doorFront, currPos + new Vector3(0.5f, 2f, 0) + gridOffset, Quaternion.identity); currPos.y -= roomHeight / 2;  break;
-            case 3: Instantiate(doorSide, currPos + new Vector3(-0.1f, 2.5f, 0) + gridOffset, Quaternion.identity); currPos.x += roomWidth  / 2; break;
+        if (limit != recursionLimit) //Quick lazy fix to door spawning in first room
+        {
+            switch (entranceSide)
+            {
+                case 0: Instantiate(doorFront, currPos + new Vector3(0.5f, 1, 0) + gridOffset, Quaternion.identity); currPos.y += roomHeight / 2; break;
+                case 1: Instantiate(doorSide, currPos + new Vector3(1.1f, 2.5f, 0) + gridOffset, Quaternion.identity); currPos.x -= roomWidth / 2; break;
+                case 2: Instantiate(doorFront, currPos + new Vector3(0.5f, 2f, 0) + gridOffset, Quaternion.identity); currPos.y -= roomHeight / 2; break;
+                case 3: Instantiate(doorSide, currPos + new Vector3(-0.1f, 2.5f, 0) + gridOffset, Quaternion.identity); currPos.x += roomWidth / 2; break;
+            }
+
+            //Puts light in middle of rooms
+            Instantiate(torch, currPos + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
+        }
+        else
+        {
+            switch (entranceSide)
+            {
+                case 0: currPos.y += roomHeight / 2; break;
+                case 1: currPos.x -= roomWidth / 2; break;
+                case 2: currPos.y -= roomHeight / 2; break;
+                case 3: currPos.x += roomWidth / 2; break;
+            }
         }
 
-        //Puts light in middle of rooms
-        Instantiate(torch, currPos + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
 
         //Centralizes player in spawn room
         if (limit == recursionLimit)
@@ -253,20 +268,20 @@ public class Generation : MonoBehaviour
         if (isBossPath) {
             bool potentialStraight = invertDir(entranceSide, "straight") != bossPathLock;
             bool potentialRight    = invertDir(entranceSide, "right"   ) != bossPathLock;
-            bool potentialLeft     = invertDir(entranceSide, "left"    ) != bossPathLock;
+            //bool potentialLeft     = invertDir(entranceSide, "left"    ) != bossPathLock;
 
             //If no paths are potential boss paths, make one (COULD USE SOME RANDOMNESS LATER BUT THIS WORKS FOR NOW)
-            if (!((potentialStraight && goingStraight) || (potentialRight && goingRight) || (potentialLeft && goingLeft))) 
+            if (!((potentialStraight && goingStraight) || (potentialRight && goingRight) /*|| (potentialLeft && goingLeft)*/)) 
             {
                 if (potentialStraight  ) goingStraight = true;
                 else if (potentialRight) goingRight    = true;
-                else if (potentialLeft ) goingLeft     = true;
+                //else if (potentialLeft ) goingLeft     = true;
             }
 
             //Will go Straight if possible, otherwise to the Right, otherwise to the Left
             if (potentialStraight && goingStraight) bossIsStraight = true;
             else if (potentialRight && goingRight) bossIsRight = true;
-            else if (potentialLeft && goingLeft) bossIsLeft = true;
+            //else if (potentialLeft && goingLeft) bossIsLeft = true;
             
         }
 
@@ -294,7 +309,7 @@ public class Generation : MonoBehaviour
     private void spawnTreasure(Vector3Int pos) {
         treasureHasSpawned = true;
 
-        Instantiate(treasure, pos, Quaternion.identity);
+        Instantiate(treasure, pos - new Vector3Int(1, 1, 0), Quaternion.identity);
     }
 
     private void spawnBossRoom(Vector3Int pos, int entranceSide)
