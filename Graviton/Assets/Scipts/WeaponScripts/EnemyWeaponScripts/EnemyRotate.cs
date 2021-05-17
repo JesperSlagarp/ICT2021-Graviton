@@ -29,8 +29,6 @@ public class EnemyRotate : MonoBehaviour
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        Debug.Log("enemy " + enemyLookDir);
-
         if (enemyLookDir.x < 0)
         {
             this.gameObject.transform.localScale = new Vector3(1, -1, 1);
