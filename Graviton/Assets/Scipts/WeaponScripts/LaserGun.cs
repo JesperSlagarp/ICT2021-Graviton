@@ -59,6 +59,10 @@ public class LaserGun : MonoBehaviour
             {
                 EnemyStats enemystats = hit.collider.gameObject.GetComponent<EnemyStats>();
                 enemystats.TakeDamage(damage);
+            } 
+            else if (hit.collider.gameObject.tag == "Boss")
+            {
+                hit.collider.gameObject.GetComponent<bossController>().TakeDamage(damage);
             }
 
             Debug.Log(hit.collider.gameObject.name);

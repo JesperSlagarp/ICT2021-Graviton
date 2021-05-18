@@ -128,7 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ef0da0f66584f4cbba34b2032183ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mousePos: {x: 0, y: 0}
 --- !u!114 &-7784140052005949763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +145,7 @@ MonoBehaviour:
   droppedWeapon: {fileID: 4572993521372378168, guid: 2e8190f71da00654f99aea3e103b8a47, type: 3}
   bulletForce: 20
   reloadTime: 0.2
-  fireRate: 0.1
+  fireRate: 0.2
   duration: 2
 --- !u!114 &-5240388363388444153
 MonoBehaviour:

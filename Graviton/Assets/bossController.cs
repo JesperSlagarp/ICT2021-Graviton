@@ -32,7 +32,7 @@ public class bossController : MonoBehaviour
     [SerializeField]
     private GameObject spriteBack;
 
-    private float health;
+    public float health;
     private GameObject player;
 
     private void Awake()
