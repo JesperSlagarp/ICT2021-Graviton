@@ -12,6 +12,7 @@ public class Dialog : MonoBehaviour
     public string[] startTips;
     public string[] egyptTips;
     public string[] endTips;
+    public string[] puzzletips;
     //bool firstLoad = true;
 
     private string[] sentences;
@@ -76,6 +77,15 @@ public class Dialog : MonoBehaviour
                 sentences = egyptTips;
                 StartCoroutine(Type());
                 break;
+            case "Puzzle2":
+                textDisplay.text = "";
+                index = 0;
+                button.SetActive(true);
+                Title.SetActive(true);
+                sentences = puzzletips;
+                StartCoroutine(Type());
+                break;
+
         }
     }
 }

@@ -10,7 +10,10 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     private RectTransform reactTrans;
     public Canvas myCanvas;
     private CanvasGroup canvasGroup;
-    public int id;
+    public int id1;
+    public int id2;
+    public int id3;
+
     private Vector3 initial;
 
     void Start()
