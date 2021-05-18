@@ -50,7 +50,7 @@ public class Abilities : MonoBehaviour
         shieldMana = 30 + 5 * (charstats.shieldLevel - 1);
 
 
-        attackDistance = 2 + 1 * (charstats.aoeLevel - 1);
+        attackDistance = 3 + 1 * (charstats.aoeLevel - 1);
         shieldDuration = 2f + 0.5f * (charstats.shieldLevel - 1);
         
 
@@ -108,7 +108,7 @@ public class Abilities : MonoBehaviour
     {
         GameObject.Find("Player").transform.Find("Sprite").gameObject.transform.Find("AOE").gameObject.SetActive(true);
         charstats.DepleteMana(shieldMana);
-        aoeDamage = charstats.baseDamage;
+        aoeDamage = charstats.baseDamage * 2;
 
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");

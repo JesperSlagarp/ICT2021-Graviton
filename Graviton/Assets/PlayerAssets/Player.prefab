@@ -122,8 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3fab19b9647aa2448a76110e8cc4dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  dashSpeed: 20
+  moveSpeed: 7
+  dashSpeed: 22
   rb: {fileID: 8870526684306118522}
   animator: {fileID: 5837755101884924320}
   dashLayerMask:

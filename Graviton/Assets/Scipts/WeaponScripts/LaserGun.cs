@@ -8,7 +8,7 @@ public class LaserGun : MonoBehaviour
     public float duration; 
     private float nextShoot = 0f;
     private float timer;
-    private bool reload;
+    //private bool reload;
     public LineRenderer lineRenderer;
     public int damage;
     private CharStats charstats;
@@ -48,26 +48,30 @@ public class LaserGun : MonoBehaviour
         }
     }
 
-    IEnumerator wait()
-    {
-        yield return new WaitForSeconds(4);
-        reload = false;
-    }
-
     void Shoot()
     {
         int mask = (1 << LayerMask.NameToLayer("Enemies")) | (1 << LayerMask.NameToLayer("obstacles"));
-        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.right, Mathf.Infinity, mask);
-
-        if (hit.collider.gameObject.tag == "Enemy")
+        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.right, 100, mask);
+        if (hit.collider != null)
         {
-            EnemyStats enemystats = hit.collider.gameObject.GetComponent<EnemyStats>();
-            enemystats.TakeDamage(damage);
-        }
-        Debug.Log(hit.collider.gameObject.name);
 
-        lineRenderer.SetPosition(0, firePoint.position);
-        lineRenderer.SetPosition(1, hit.point);
+            if (hit.collider.gameObject.tag == "Enemy")
+            {
+                EnemyStats enemystats = hit.collider.gameObject.GetComponent<EnemyStats>();
+                enemystats.TakeDamage(damage);
+            }
+
+            Debug.Log(hit.collider.gameObject.name);
+
+            lineRenderer.SetPosition(0, firePoint.position);
+            lineRenderer.SetPosition(1, hit.point);
+        }
+        else
+        {
+            lineRenderer.SetPosition(0, firePoint.position);
+            lineRenderer.SetPosition(1, firePoint.transform.right);
+        }
+
 
         lineRenderer.enabled = true;
     }

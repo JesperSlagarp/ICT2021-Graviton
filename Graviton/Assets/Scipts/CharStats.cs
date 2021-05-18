@@ -59,7 +59,7 @@ public class CharStats : MonoBehaviour
         expBar = GameObject.Find("ExpBar").GetComponent<Bar>();
         playerHealth = maxHealth;
         playerMana = maxMana;
-        exp = 80;
+        exp = 0;
 
         aoeLevel = 1;
         shieldLevel = 1;
@@ -86,7 +86,8 @@ public class CharStats : MonoBehaviour
 
     public void TakeDamage(int dps){
 
-
+        if (shield)
+            return;
         int currentArmor = armor.GetValue(baseArmor);
         dps = dps - currentArmor;
         dps = Mathf.Clamp(dps, 0, int.MaxValue);
@@ -177,9 +178,9 @@ public class CharStats : MonoBehaviour
     {
         level += 1;
         exp = 0;
-        maxExp += 50;
+        maxExp += 80;
         expBar.SetMaxExp(maxExp);
-        statPoint++;
+        statPoint += 3;
         skillPoint++;
     }
 

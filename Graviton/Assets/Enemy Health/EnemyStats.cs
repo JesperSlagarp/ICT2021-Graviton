@@ -10,6 +10,8 @@ public class EnemyStats : MonoBehaviour
     public float health;
     public int damage;
     private float maxHealth;
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
 
     void Start()
@@ -37,6 +39,8 @@ public class EnemyStats : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        spriteRenderer.color = Color.red;
+        Invoke("resetColor", 0.2f);
         if (health <= damage || health == 0)
         {
             Destroy(this.gameObject);
@@ -47,6 +51,10 @@ public class EnemyStats : MonoBehaviour
             health = health - damage;
             healthbar.transform.localScale = new Vector3(health / maxHealth, healthbar.transform.localScale.y, healthbar.transform.localScale.z);
         }
+    }
+
+    private void resetColor() {
+        spriteRenderer.color = Color.white;
     }
 
     private void MakeLoot()

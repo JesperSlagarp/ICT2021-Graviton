@@ -113,6 +113,12 @@ public class bossController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        spriteRight.GetComponent<SpriteRenderer>().color = Color.red;
+        spriteLeft.GetComponent<SpriteRenderer>().color = Color.red;
+        spriteFront.GetComponent<SpriteRenderer>().color = Color.red;
+        spriteBack.GetComponent<SpriteRenderer>().color = Color.red;
+        Invoke("resetColor", 0.2f);
+
         if (health < damage || health == 0)
         {
             Destroy(this.gameObject);
@@ -125,7 +131,14 @@ public class bossController : MonoBehaviour
         }
     }
 
-    
+    private void resetColor()
+    {
+        spriteRight.GetComponent<SpriteRenderer>().color = Color.white;
+        spriteLeft.GetComponent<SpriteRenderer>().color = Color.white;
+        spriteFront.GetComponent<SpriteRenderer>().color = Color.white;
+        spriteBack.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
     private void OnTriggerEnter2D(Collider2D collider) {
         
         if (!collider.CompareTag("Player"))

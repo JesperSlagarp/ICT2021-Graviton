@@ -163,9 +163,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.06773567, y: -0.50541365}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.76052094
 --- !u!50 &1266816776379568888
 Rigidbody2D:
   serializedVersion: 4
@@ -203,6 +203,7 @@ MonoBehaviour:
   lootTable: {fileID: 11400000, guid: b9bcb9fc4e6664743820c6af416493c7, type: 2}
   health: 100
   damage: 10
+  spriteRenderer: {fileID: 9217567564794775175}
 --- !u!114 &2938961886943288585
 MonoBehaviour:
   m_ObjectHideFlags: 0

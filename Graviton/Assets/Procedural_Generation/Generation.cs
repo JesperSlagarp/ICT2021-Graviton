@@ -315,11 +315,12 @@ public class Generation : MonoBehaviour
 
         Instantiate(Key, pos - new Vector3Int(1, 1, 0), Quaternion.identity);
 
-        Instantiate(weapons[0], pos - new Vector3Int(3, 3, 0), Quaternion.identity);
-
-        Instantiate(weapons[1], pos - new Vector3Int(-3, -3, 0), Quaternion.identity);
-
-        //Instantiate(weapons[2], pos - new Vector3Int(3, -3, 0), Quaternion.identity);
+        if(Random.value < 0.7)
+            Instantiate(weapons[0], pos - new Vector3Int(3, 3, 0), Quaternion.identity);
+        if (Random.value < 0.7)
+            Instantiate(weapons[1], pos - new Vector3Int(-3, -3, 0), Quaternion.identity);
+        if (Random.value < 0.3)
+            Instantiate(weapons[2], pos - new Vector3Int(3, -3, 0), Quaternion.identity);
 
         //Instantiate(weapons[3], pos - new Vector3Int(-3, 3, 0), Quaternion.identity);
     }
@@ -341,14 +342,14 @@ public class Generation : MonoBehaviour
         }
 
         
-        spawnRoom(39, 31, enterPos, entranceSide);
+        spawnRoom(35, 27, enterPos, entranceSide);
 
         switch (dir)
         {
-            case 0: enterPos.y -= 16; break;
-            case 1: enterPos.x += 20; break;
-            case 2: enterPos.y += 16; break;
-            case 3: enterPos.x -= 20; break;
+            case 0: enterPos.y -= 13; break;
+            case 1: enterPos.x += 16; break;
+            case 2: enterPos.y += 13; break;
+            case 3: enterPos.x -= 16; break;
         }
 
         Instantiate(boss, enterPos, Quaternion.identity);
