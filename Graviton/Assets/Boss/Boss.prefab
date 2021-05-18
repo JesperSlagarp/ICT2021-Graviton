@@ -678,8 +678,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 325aa830e39a3b24e8bb98b7d48427f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDelay: 1.5
-  attackRadius: 2
+  attackDelay: 1
+  attackRadius: 3
 --- !u!212 &8031697864948337215
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -804,8 +804,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 724843249aac47f41ba488637e04ba8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
-  projectileSpeed: 5
+  fireRate: 2
+  projectileSpeed: 20
   projectile: {fileID: 6107644566155497214, guid: 7dab598393c44eb43aebe506e00a3d36, type: 3}
 --- !u!1 &8031697865260587797
 GameObject:
@@ -1413,7 +1413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 3991525872806456776}
-  maxHealth: 1000
+  maxHealth: 2000
   laserMount: {fileID: 8031697865621888825}
   AoE_Magic: {fileID: 8031697864948337186}
   projectileMagic: {fileID: 8031697865065514093}

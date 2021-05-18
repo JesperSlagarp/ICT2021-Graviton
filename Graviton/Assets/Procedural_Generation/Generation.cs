@@ -315,11 +315,12 @@ public class Generation : MonoBehaviour
 
         Instantiate(Key, pos - new Vector3Int(1, 1, 0), Quaternion.identity);
 
-        Instantiate(weapons[0], pos - new Vector3Int(3, 3, 0), Quaternion.identity);
-
-        Instantiate(weapons[1], pos - new Vector3Int(-3, -3, 0), Quaternion.identity);
-
-        //Instantiate(weapons[2], pos - new Vector3Int(3, -3, 0), Quaternion.identity);
+        if(Random.value < 0.7)
+            Instantiate(weapons[0], pos - new Vector3Int(3, 3, 0), Quaternion.identity);
+        if (Random.value < 0.7)
+            Instantiate(weapons[1], pos - new Vector3Int(-3, -3, 0), Quaternion.identity);
+        if (Random.value < 0.3)
+            Instantiate(weapons[2], pos - new Vector3Int(3, -3, 0), Quaternion.identity);
 
         //Instantiate(weapons[3], pos - new Vector3Int(-3, 3, 0), Quaternion.identity);
     }
