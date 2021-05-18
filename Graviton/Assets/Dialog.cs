@@ -58,11 +58,13 @@ public class Dialog : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-
+        
         switch (scene.name) {
             case "HUB level":
                 textDisplay.text = "";
                 index = 0;
+                if (button == null)
+                    return;
                 button.SetActive(true);
                 Title.SetActive(true);
                 sentences = endTips;
@@ -71,6 +73,8 @@ public class Dialog : MonoBehaviour
             case "Gen_map":
                 textDisplay.text = "";
                 index = 0;
+                if (button == null)
+                    return;
                 button.SetActive(true);
                 Title.SetActive(true);
                 sentences = egyptTips;

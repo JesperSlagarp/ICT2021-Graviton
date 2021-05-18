@@ -12,13 +12,17 @@ public class GameControl : MonoBehaviour
     private GameObject playerPrefab;
     [SerializeField]
     private GameObject canvasPrefab;
+
+    private GameObject player;
+
+    private GameObject canvas;
     private void Awake()
     {
         if (control == null)
         {
-            GameObject player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            player = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             player.name = "Player";
-            GameObject canvas = Instantiate(canvasPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            canvas = Instantiate(canvasPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             canvas.name = "Canvas";
             //hasSpawnedPlayer = true;
             DontDestroyOnLoad(gameObject);
@@ -43,5 +47,11 @@ public class GameControl : MonoBehaviour
             GameObject canvas = Instantiate(canvasPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             canvas.name = "Canvas";
         }*/
+
+
+        switch (scene.name)
+        {
+            case "HUB level": if (player != null) player.transform.position = new Vector3(0, 0, 0); break;
+        }
     }
 }

@@ -28,17 +28,17 @@ public class playerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        //SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    /*void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
         switch (scene.name) {
             case "HUB level": transform.position = new Vector3(0, 0, 0); break;
         }
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
