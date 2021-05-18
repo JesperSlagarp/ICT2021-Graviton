@@ -342,14 +342,14 @@ public class Generation : MonoBehaviour
         }
 
         
-        spawnRoom(39, 31, enterPos, entranceSide);
+        spawnRoom(35, 27, enterPos, entranceSide);
 
         switch (dir)
         {
-            case 0: enterPos.y -= 16; break;
-            case 1: enterPos.x += 20; break;
-            case 2: enterPos.y += 16; break;
-            case 3: enterPos.x -= 20; break;
+            case 0: enterPos.y -= 13; break;
+            case 1: enterPos.x += 16; break;
+            case 2: enterPos.y += 13; break;
+            case 3: enterPos.x -= 16; break;
         }
 
         Instantiate(boss, enterPos, Quaternion.identity);
