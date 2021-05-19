@@ -44,10 +44,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textDisplay: {fileID: 0}
-  sentences:
-  - This is a test but also binary!
-  - In the beginning, everything was binary.
-  - 'Ones and zeros.... '
-  - 
-  - 
+  startTips: []
+  egyptTips: []
+  endTips: []
+  puzzletips:
+  - Drag and drop puzzle!
+  - 'This task will challenge your knowledge in binary values. '
+  - Click and drag each gate to its right slot.
+  - Then find a binary value taht gives the desired outpout.
   typingSpeed: 0.05
+  button: {fileID: 0}
+  Title: {fileID: 0}
